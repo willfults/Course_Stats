@@ -11,6 +11,9 @@ gem 'carrierwave'
 gem 'railties', '3.2.5'
 gem 'pg'
 gem 'linkedin', '0.3.7'
+gem 'devise', '2.1.2'
+
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -26,6 +29,7 @@ group :test do
   gem 'factory_girl_rails', '1.4.0'
   gem 'cucumber-rails', '1.2.1', require: false
   gem 'database_cleaner', '0.7.0'
+  gem "email_spec", '>= 1.2.1'
 end
 
 # Gems used only for assets and not required

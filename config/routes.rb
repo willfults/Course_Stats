@@ -1,11 +1,13 @@
 FirstApp::Application.routes.draw do
+  devise_for :users, :controllers => { :registrations => "registrations" }
+
   resources :users do
     member do
       get :following, :followers
+      get :crop
     end
   end
 
-  resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
 
@@ -14,12 +16,8 @@ FirstApp::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
   match '/signup',  to: 'users#new'
-  match '/signin',  to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy', via: :delete
   match '/linkedin', to: "static_pages#linkedin"
   
-  resources :microposts
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

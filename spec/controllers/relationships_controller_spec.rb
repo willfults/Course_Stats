@@ -1,15 +1,23 @@
 require 'spec_helper'
 
 describe RelationshipsController do
+  include Devise::TestHelpers
 
-  let(:user) { FactoryGirl.create(:user) }
   let(:other_user) { FactoryGirl.create(:user) }
+  
+  let(:user) { FactoryGirl.create(:user) }
 
-  before { sign_in user }
+  before(:each) do
+    sign_in user
+  end
 
-  describe "creating a relationship with Ajax" do
+
+  
+
+   describe "creating a relationship with Ajax" do
 
     it "should increment the Relationship count" do
+      
       expect do
         xhr :post, :create, relationship: { followed_id: other_user.id }
       end.should change(Relationship, :count).by(1)

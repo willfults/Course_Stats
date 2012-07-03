@@ -1,7 +1,6 @@
-
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:edit, :update, :index, :destroy, :following, :followers]
-  before_filter :correct_user,   only: [:edit, :update]
+  before_filter :authenticate_user!
+  before_filter :correct_user,   only: [:edit, :update, :crop]
   before_filter :admin_user,     only: :destroy
   
   def new
@@ -27,7 +26,7 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def update
+  def update    
     if @user.update_attributes(params[:user])
       sign_in @user
       if params[:user][:image].present?
@@ -41,6 +40,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def crop
+  end
+  
   def index
     @users = User.paginate(page: params[:page])
   end
@@ -69,7 +71,9 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_path) unless current_user?(@user)
+      logger.info "1 #{@user.id}"
+      logger.info "1 #{current_user.id}"
+      redirect_to(root_path) unless current_user == (@user)
     end
 
     def admin_user

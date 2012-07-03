@@ -6,25 +6,6 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
-  <script type="text/javascript" src="http://platform.linkedin.com/in.js">>
-    api_key: fc0yd5hs7ra3
-    authorize: true
-  </script>
-  <script type="text/javascript">
-   function onLinkedInAuth() {
-    IN.API.Profile("me")
-      .result( function(me) {
-        var id = me.values[0].id;
-        window.setTimeout(  
-          function() {  
-            $('#linkedin_id').val(id);
-            $('#linkedin_login').submit();
-          },  
-          1000  
-        );        
-      });
-    }
-  </script>
 </head>
 <body>
   <%= render 'layouts/header' %>

@@ -15,9 +15,18 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation, :linkedin_id, :image, :image_cache,:crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessible :email, :name, :linkedin_id, :image, :image_cache,:crop_x, :crop_y, :crop_w, :crop_h
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :crop_avatar
+
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name
   
   has_many :microposts, dependent: :destroy
   mount_uploader :image, ImageUploader
@@ -30,20 +39,6 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
   
-  validates :name, presence: true
-  validates :name, length: { maximum: 50 }
-  validates :email, presence: true
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, format: { with: VALID_EMAIL_REGEX }
-  validates :email, uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }, :unless => :isCropped? 
-  validates :password_confirmation, presence: true, :unless => :isCropped? 
-  
-  has_secure_password
-  
-  before_save { |user| user.email = email.downcase }
-  before_save :create_remember_token
- 
   def crop_avatar
     image.recreate_versions! if crop_x.present?
   end
@@ -70,11 +65,6 @@ class User < ActiveRecord::Base
   
   private
 
-    def create_remember_token
-      # Create the token.
-      self.remember_token = SecureRandom.urlsafe_base64
-    end
-    
     def isCropped?
      self.crop_x.present?
     end
