@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe "User pages" do
+  include EmailSpec::Helpers
+  include EmailSpec::Matchers
 
   subject { page }
   
@@ -48,12 +50,19 @@ describe "User pages" do
 
       describe "after saving the user" do
         before { click_button submit }
+        
         let(:user) { User.find_by_email('user@example.com') }
+
+        it {ActionMailer::Base.deliveries.last.to.should == ['user@example.com']}
+        
+        it {ActionMailer::Base.deliveries.last.subject.should == 'Confirmation instructions'}
+        
+        it {ActionMailer::Base.deliveries.last.body.should have_link('Confirm my account')}
 
         #todo
         #it { should have_selector('title', text: user.name) }
-        it { should have_selector('div.alert.alert-notice', text: 'Welcome') }
-        it { should have_link('Sign out') }
+        it { should have_selector('div.alert.alert-notice', text: 'A message with a confirmation') }
+        it { should have_link('Sign in') }
       end
     end
   end

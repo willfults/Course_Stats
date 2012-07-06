@@ -8,6 +8,7 @@ describe RelationshipsController do
   let(:user) { FactoryGirl.create(:user) }
 
   before(:each) do
+    user.confirm!
     sign_in user
   end
 

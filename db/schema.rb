@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629151944) do
+ActiveRecord::Schema.define(:version => 20120705221021) do
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -41,8 +41,6 @@ ActiveRecord::Schema.define(:version => 20120629151944) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",                  :default => false
-    t.string   "image"
-    t.string   "linkedin_id"
     t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -52,8 +50,15 @@ ActiveRecord::Schema.define(:version => 20120629151944) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "image"
+    t.string   "linkedin_id"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
+  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
