@@ -116,8 +116,6 @@ GEM
     nokogiri (1.5.5-x86-mingw32)
     oauth (0.4.6)
     orm_adapter (0.3.0)
-    pg (0.13.2)
-    pg (0.13.2-x86-mingw32)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -211,7 +209,6 @@ DEPENDENCIES
   jquery-rails (= 2.0.0)
   linkedin (= 0.3.7)
   mini_magick
-  pg
   rails (= 3.2.5)
   railties (= 3.2.5)
   rspec-rails

@@ -1,4 +1,7 @@
 FirstApp::Application.configure do
+
+ 
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -34,6 +37,11 @@ FirstApp::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Email configuration  
+  config.action_mailer.delivery_method       = :smtp
+  config.action_mailer.perform_deliveries    = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { :host => 'localhost:3000'}
   
-  config.action_mailer.default_url_options = { :host => 'localhost:3000'} 
 end
