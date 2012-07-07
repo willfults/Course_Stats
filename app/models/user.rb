@@ -2,20 +2,32 @@
 #
 # Table name: users
 #
-#  id              :integer         not null, primary key
-#  name            :string(255)
-#  email           :string(255)
-#  created_at      :datetime        not null
-#  updated_at      :datetime        not null
-#  password_digest :string(255)
-#  remember_token  :string(255)
-#  admin           :boolean         default(FALSE)
-#  image           :string(255)
-#  linkedin_id     :string(255)
+#  id                     :integer         not null, primary key
+#  name                   :string(255)
+#  email                  :string(255)     default(""), not null
+#  created_at             :datetime        not null
+#  updated_at             :datetime        not null
+#  password_digest        :string(255)
+#  remember_token         :string(255)
+#  admin                  :boolean         default(FALSE)
+#  image                  :string(255)
+#  encrypted_password     :string(255)     default(""), not null
+#  reset_password_token   :string(255)
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer         default(0)
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string(255)
+#  last_sign_in_ip        :string(255)
+#  confirmation_token     :string(255)
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string(255)
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :linkedin_id, :image, :image_cache,:crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessible :email, :name, :image, :image_cache,:crop_x, :crop_y, :crop_w, :crop_h
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :crop_avatar
 
@@ -28,6 +40,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :confirmed_at
   
+  has_many :services, :dependent => :destroy
   has_many :microposts, dependent: :destroy
   mount_uploader :image, ImageUploader
 
@@ -57,10 +70,6 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     relationships.find_by_followed_id(other_user.id).destroy
-  end
-  
-  def isLinkedIn?
-    !self.linkedin_id.blank?
   end
   
   private

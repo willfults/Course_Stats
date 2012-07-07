@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120705221021) do
+ActiveRecord::Schema.define(:version => 20120706221202) do
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(:version => 20120705221021) do
   add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
+  create_table "services", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "uname"
+    t.string   "uemail"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email",                  :default => "",    :null => false
@@ -41,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20120705221021) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",                  :default => false
+    t.string   "image"
     t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -50,8 +61,6 @@ ActiveRecord::Schema.define(:version => 20120705221021) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "image"
-    t.string   "linkedin_id"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

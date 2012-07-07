@@ -13,7 +13,9 @@ gem 'railties', '3.2.5'
 gem 'linkedin', '0.3.7'
 gem 'devise', '2.1.2'
 #gem 'tlsmail', '0.0.1'
-
+gem 'omniauth', '1.1.0'
+gem 'omniauth-facebook', '1.4.0'
+gem 'omniauth-linkedin', '0.0.6'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -21,12 +23,12 @@ gem 'devise', '2.1.2'
 group :development do
   gem 'sqlite3', '1.3.5'
   gem 'annotate', '~> 2.4.1.beta'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.10.1'
 end
 
 group :test do
   gem 'capybara', '1.1.2'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.10.1'
   gem 'factory_girl_rails', '1.4.0'
   gem 'cucumber-rails', '1.2.1', require: false
   gem 'database_cleaner', '0.7.0'
