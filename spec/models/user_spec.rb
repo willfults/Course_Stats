@@ -24,7 +24,6 @@ describe User do
   it { should respond_to(:followed_users) }
   it { should respond_to(:reverse_relationships) }
   it { should respond_to(:followers) }
-  it { should respond_to(:linkedin_id) }
   
     
   it { should be_valid }
