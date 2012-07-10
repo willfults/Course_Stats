@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(:version => 20120709234845) do
   add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
+  create_table "services", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "uname"
+    t.string   "uemail"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email",                  :default => "",    :null => false
@@ -62,7 +72,6 @@ ActiveRecord::Schema.define(:version => 20120709234845) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "image"
-    t.string   "linkedin_id"
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

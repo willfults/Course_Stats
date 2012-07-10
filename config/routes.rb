@@ -16,8 +16,8 @@ FirstApp::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
   match '/signup',  to: 'users#new'
-  match '/linkedin', to: "static_pages#linkedin"
-  
+  match '/auth/:service/callback' => 'services#create' 
+  resources :services, :only => [:index, :create, :destroy]  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
