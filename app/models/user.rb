@@ -28,7 +28,7 @@
 
 class User < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :name, use: [:slugged, :history]
+  friendly_id :username, use: [:slugged, :history]
 
   attr_accessible :email, :name, :image, :image_cache,:crop_x, :crop_y, :crop_w, :crop_h
 
@@ -80,5 +80,9 @@ class User < ActiveRecord::Base
 
     def isCropped?
      self.crop_x.present?
+    end
+    
+    def username
+      self.name.downcase.strip if self.name.present?
     end
 end
