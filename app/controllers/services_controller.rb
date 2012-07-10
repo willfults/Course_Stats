@@ -82,7 +82,7 @@ class ServicesController < ApplicationController
                 sign_in_and_redirect(:user, user)
               end
             else
-              flash[:error] =  service_route.capitalize + ' can not be used to sign-up as no valid email address has been provided. Please use another authentication provider or use local sign-up. If you already have an account, please sign-in and add ' + service_route.capitalize + ' from your profile.'
+              flash[:error] =  service_route.capitalize + ' can not be used to sign-up as no valid email address has been provided. Please use another authentication provider or use local sign-up. If you already have an account, please sign-in and add ' + service_route.capitalize + ' on your Authentication Services page.'
               redirect_to new_user_session_path
             end
           end
