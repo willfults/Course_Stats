@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+    if request.path != user_path(@user)
+      redirect_to @user, status: :moved_permanently
+    end
   end
 
   def create
