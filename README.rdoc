@@ -14,3 +14,13 @@ This app was created following the rails tutorial.
 All tests should pass.
 
 This is using sqllite as the db so there is no need to futz with a database directly.
+
+
+Logging in via Facebook or Linked In:
+
+In order to log in with Facebook or LinkedIn, an app needs to be registered on those sites.
+The URL to do this on Facebook is https://developers.facebook.com/apps. For LinkedIn the
+URL is https://www.linkedin.com/secure/developer. The file config/initializers/omniauth.rb
+then needs to be edited with the App ID and App Secret for Facebook, and the API Key and 
+Secret Key for LinkedIn. This file currently contains keys for apps registered to run on
+localhost:3000. Editing this file requires a server restart.
