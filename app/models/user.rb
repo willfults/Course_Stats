@@ -15,6 +15,8 @@
 #
 
 class User < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: [:slugged, :history]
   attr_accessible :email, :name, :linkedin_id, :image, :image_cache,:crop_x, :crop_y, :crop_w, :crop_h
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :crop_avatar

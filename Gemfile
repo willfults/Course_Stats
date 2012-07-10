@@ -12,6 +12,7 @@ gem 'railties', '3.2.5'
 #gem 'pg'
 gem 'linkedin', '0.3.7'
 gem 'devise', '2.1.2'
+gem "friendly_id", "~> 4.0.1"
 #gem 'tlsmail', '0.0.1'
 
 
