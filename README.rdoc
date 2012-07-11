@@ -13,7 +13,12 @@ This app was created following the rails tutorial.
 
 All tests should pass.
 
-This is using sqllite as the db so there is no need to futz with a database directly.
+This is using sqllite as the db, no setup necessary.  For logging this is using mongodb.  To get mongodb up and running...
+1 – install mongodb locally
+Installation Notes for windows: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/
+Mac: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/
+
+2 –start mogodb using  your_mogodb_install_directory\bin\mongod.exe file for windows, or set it up as a service as mentioned in the previous directions.
 
 
 Logging in via Facebook or Linked In:

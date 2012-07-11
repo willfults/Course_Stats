@@ -16,7 +16,7 @@ gem "friendly_id", "~> 4.0.1"
 gem 'omniauth', '1.1.0'
 gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-linkedin', '0.0.6'
-
+gem 'mongodb_logger'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

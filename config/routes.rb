@@ -1,6 +1,17 @@
 FirstApp::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "registrations" }
+  #authenticate(:user) do
+  #  mount MongodbLogger::Server.new, :at => "/mongodb"
+  #end
+  resque_constraint = lambda do |request|
+    request.env['warden'].authenticate? and request.env['warden'].user.admin?
+  end
 
+  constraints resque_constraint do
+    mount MongodbLogger::Server.new, :at => "/mongodb"
+  end
+
+  
   resources :users do
     member do
       get :following, :followers

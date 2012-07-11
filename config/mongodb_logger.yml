@@ -1,0 +1,25 @@
+#
+# this file is used for mongodb logs
+# for more inforation see: http://mongodb-logger.catware.org/
+#
+
+development:
+  database: my_app_logs
+  capsize: <%= 500.megabytes %>
+  host: localhost
+  port: 27017
+  replica_set: true
+  
+test:
+  database: my_app
+  capsize: <%= 500.megabytes %>
+  host: localhost
+  port: 27017
+  replica_set: true
+
+production:
+  database: my_app_prod logs
+  capsize: <%= 500.megabytes %>
+  host: localhost
+  port: 27017
+  replica_set: true

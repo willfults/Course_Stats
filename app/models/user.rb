@@ -30,8 +30,10 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :username, use: [:slugged, :history]
 
+  # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :name, :image, :image_cache,:crop_x, :crop_y, :crop_w, :crop_h
-
+  attr_accessible :password, :password_confirmation, :remember_me, :confirmed_at
+  
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :crop_avatar
 
@@ -40,9 +42,6 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
-
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :confirmed_at
   
   has_many :services, :dependent => :destroy
   has_many :microposts, dependent: :destroy
