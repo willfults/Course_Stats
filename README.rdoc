@@ -13,7 +13,11 @@ This app was created following the rails tutorial.
 
 All tests should pass.
 
-This is using sqllite as the db, no setup necessary.  For logging this is using mongodb.  To get mongodb up and running...
+This is using sqllite as the db, no setup necessary.  
+
+Additional Installation--
+
+For logging this is using mongodb.  To get mongodb up and running...
 1. install mongodb locally
 Installation Notes for windows: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/
 Mac: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/
@@ -29,6 +33,7 @@ Mac: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/
 
 6. start server, log in as the admin user, go through a few pages, then access the logger at localhost:3000/mongodb/
 
+Also for image manipulation you will need to install ImageMagick, this is used by the mini-magick gem.  http://www.imagemagick.org
 
 Logging in via Facebook or Linked In:
 
