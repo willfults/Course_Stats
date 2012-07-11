@@ -17,9 +17,18 @@ This is using sqllite as the db, no setup necessary.  For logging this is using 
 1. install mongodb locally
 Installation Notes for windows: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/
 Mac: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-os-x/
-
 2. start mogodb using  your_mogodb_install_directory\bin\mongod.exe file for windows, or set it up as a service as mentioned in the previous directions.
 3. Only admins may access the mongodb logger interface.  
+4. If you are using heroku there is an additional step - https://github.com/le0pard/mongodb_logger/blob/master/README.md
+5. To make a user an admin do the following…
+        rails c
+        User.all
+        user = User.find(3) #where 3 is the id of the user you want to make an admin
+        user.admin = true
+        user.save
+
+6. start server, log in as the admin user, go through a few pages, then access the logger at localhost:3000/mongodb/
+
 
 Logging in via Facebook or Linked In:
 
