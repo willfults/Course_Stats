@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'bson_ext'
 gem 'rails', '3.2.5'
 gem 'bootstrap-sass', '2.0.0'
 gem 'bcrypt-ruby', '3.0.1'
@@ -7,9 +8,9 @@ gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem 'mini_magick'
-gem 'carrierwave'
+gem 'carrierwave-mongoid'
 gem 'railties', '3.2.5'
-gem 'pg'
+#gem 'pg'
 gem 'devise', '2.1.2'
 gem "friendly_id", "~> 4.0.1"
 #gem 'tlsmail', '0.0.1'
