@@ -17,6 +17,7 @@ gem 'omniauth', '1.1.0'
 gem 'omniauth-facebook', '1.4.0'
 gem 'omniauth-linkedin', '0.0.6'
 gem 'mongodb_logger'
+gem 'simplecov', :require => false, :group => :test
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

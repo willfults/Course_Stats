@@ -210,6 +210,10 @@ GEM
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
+    simplecov (0.6.4)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.5.3)
+    simplecov-html (0.5.3)
     sinatra (1.3.2)
       rack (~> 1.3, >= 1.3.6)
       rack-protection (~> 1.2)
@@ -268,6 +272,7 @@ DEPENDENCIES
   railties (= 3.2.5)
   rspec-rails (= 2.10.1)
   sass-rails (~> 3.2.4)
+  simplecov
   sqlite3 (= 1.3.5)
   uglifier (>= 1.2.3)
   will_paginate (= 3.0.3)
