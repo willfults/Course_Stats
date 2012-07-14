@@ -1,27 +1,7 @@
 
 class AvatarsController < ApplicationController
-  # GET /avatars
-  # GET /avatars.json
-  def index
-    @avatars = Avatar.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @avatars }
-    end
-  end
-
-  # GET /avatars/1
-  # GET /avatars/1.json
-  def show
-    @avatar = Avatar.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @avatar }
-    end
-  end
-
+  before_filter :authenticate_user!
+  
   # GET /avatars/new
   # GET /avatars/new.json
   def new
@@ -45,7 +25,8 @@ class AvatarsController < ApplicationController
 
     respond_to do |format|
       if @avatar.save
-        format.html { redirect_to @avatar, notice: 'Avatar was successfully created.' }
+        current_user.update_attribute :avatar, @avatar._id.to_s
+        format.html { redirect_to current_user, notice: 'Avatar was successfully created.' }
         format.json { render json: @avatar, status: :created, location: @avatar }
       else
         format.html { render action: "new" }
@@ -58,10 +39,10 @@ class AvatarsController < ApplicationController
   # PUT /avatars/1.json
   def update
     @avatar = Avatar.find(params[:id])
-
+    
     respond_to do |format|
       if @avatar.update_attributes(params[:avatar])
-        format.html { redirect_to @avatar, notice: 'Avatar was successfully updated.' }
+        format.html { redirect_to current_user, notice: 'Avatar was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -75,9 +56,9 @@ class AvatarsController < ApplicationController
   def destroy
     @avatar = Avatar.find(params[:id])
     @avatar.destroy
-
+    current_user.update_attribute :avatar, nil
     respond_to do |format|
-      format.html { redirect_to avatars_url }
+      format.html { redirect_to current_user }
       format.json { head :no_content }
     end
   end

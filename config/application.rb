@@ -1,7 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-require 'carrierwave/mongoid'
+#require 'carrierwave/mongoid'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -60,11 +60,5 @@ module FirstApp
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     
-    config.generators do |g|
-      g.orm :mongoid
-      g.template_engine :erb # this could be :haml or whatever
-      g.test_framework :test_unit, :fixture => false # this could be :rpsec or whatever
-    end
-        
   end
 end
