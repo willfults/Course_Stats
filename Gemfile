@@ -9,7 +9,6 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'mini_magick'
 gem 'carrierwave'
 gem 'railties', '3.2.5'
-gem 'pg'
 gem 'devise', '2.1.2'
 gem "friendly_id", "~> 4.0.1"
 #gem 'tlsmail', '0.0.1'
