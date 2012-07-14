@@ -1,5 +1,6 @@
 <a href="<%= user_path(current_user) %>">
-  <%= image_tag current_user.image_url(:thumb).to_s if current_user.image?%>
+  <%= image_tag(@avatar.image.url(:thumb)) if current_user.avatar? %>
+  <%= image_tag('default_avatar.jpg') if !current_user.avatar? %>
 </a>
 <h1>
   <%= current_user.name %>
