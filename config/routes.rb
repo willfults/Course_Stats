@@ -1,4 +1,6 @@
 FirstApp::Application.routes.draw do
+  resources :avatars
+
   devise_for :users, :controllers => { :registrations => "registrations" }
   #authenticate(:user) do
   #  mount MongodbLogger::Server.new, :at => "/mongodb"
@@ -18,6 +20,9 @@ FirstApp::Application.routes.draw do
       get :crop
     end
   end
+  
+  match "/images/uploads/*path" => "gridfs#serve"
+  resources :avatars
 
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]

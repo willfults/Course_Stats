@@ -31,12 +31,10 @@ class User < ActiveRecord::Base
   friendly_id :username, use: [:slugged, :history]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :name, :image, :image_cache,:crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessible :email, :name
   attr_accessible :password, :password_confirmation, :remember_me, :confirmed_at
+  attr_accessible :avatar
   
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
-  after_update :crop_avatar
-
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -54,11 +52,7 @@ class User < ActiveRecord::Base
                                    class_name:  "Relationship",
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
-  
-  def crop_avatar
-    image.recreate_versions! if crop_x.present?
-  end
-  
+
   def feed
     Micropost.from_users_followed_by(self)
   end

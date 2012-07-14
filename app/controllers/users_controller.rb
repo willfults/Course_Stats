@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+    if @user.avatar? 
+      @avatar = Avatar.find(@user.avatar)
+    end
     if request.path != user_path(@user)
       redirect_to @user, status: :moved_permanently
     end
@@ -41,9 +44,6 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
-  end
-
-  def crop
   end
   
   def index
