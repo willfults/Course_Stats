@@ -3,8 +3,15 @@
   <aside class="span4">
     <section>
       <h1>
-        <%= image_tag @user.image_url(:thumb).to_s if @user.image?%>
-        <%= @user.name %>
+      	<% if current_user == @user %>
+    	   	<%= link_to image_tag(@avatar.image.url(:thumb)), edit_avatar_path(@avatar) if @user.avatar? %>
+    	   	<%= link_to image_tag('default_avatar.jpg'), new_avatar_path if !@user.avatar? %>
+    	  	<%= @user.name %>
+        <% else %>
+        	<%= image_tag(@avatar.image.url(:thumb)) if @user.avatar? %>
+    	   	<%= image_tag('default_avatar.jpg') if !@user.avatar? %>
+    	  	<%= @user.name %>
+   		<% end %>      
       </h1>
     </section>
     <section>

@@ -43,3 +43,6 @@ URL is https://www.linkedin.com/secure/developer. The file config/initializers/o
 then needs to be edited with the App ID and App Secret for Facebook, and the API Key and 
 Secret Key for LinkedIn. This file currently contains keys for apps registered to run on
 localhost:3000. Editing this file requires a server restart.
+
+Test Coverage:
+After running unit tests, you can view the report by opening coverage/index.html in your browser.

@@ -12,11 +12,6 @@
       <div><%= f.label :email %><br />
       <%= f.email_field :email %></div>
 
-      <%= f.label :image %>
-      <%= f.file_field :image%>
-      <%= f.hidden_field :image_cache %>
-      <%= image_tag @user.image_url(:thumb).to_s if @user.image?%>
-
       <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
       <%= f.password_field :password, :autocomplete => "off" %></div>
 

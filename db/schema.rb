@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120709234845) do
+ActiveRecord::Schema.define(:version => 20120713194935) do
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20120709234845) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "slug"
+    t.string   "avatar"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
