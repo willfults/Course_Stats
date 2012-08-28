@@ -5,6 +5,10 @@ class CoursesController < ApplicationController
   
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag' # <- New
   
+  def index
+    @courses = Course.all
+  end
+  
   def edit
     @course = Course.find(params[:id])
   end
