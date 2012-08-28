@@ -1,0 +1,40 @@
+<h2><%= @course.name %></h2>
+<div class="class-show">
+<p>
+  <%= @course.description %>
+</p>
+
+<p>
+  <b>Modules:</b>
+  <ul class="courses">
+    <% 
+    @course.course_modules.each_with_index do |course_module, index|
+      @module_history = @course_history.course_module_histories.where(:course_module_id => course_module.id).first
+      if !@module_history
+        @module_history = CourseModuleHistory.new
+      end
+
+    %>
+      <li class="<%= @module_history.status %>">
+        <div class="part">
+          Part <%= index + 1 %>
+        </div>
+        <div class="summary">
+          <div class="title">
+            <%= course_module.name %> (<%=course_module.class_type %>)
+          </div>
+          <div class="commands">
+            <%= link_to @module_history.status == "in_progress" ? 'Resume':@module_history.status == "completed" ?"Review":"Start", course_course_module_path(@course, course_module) %>
+            <% if(@module_history.status == "completed") %>
+               - Completed <%=@module_history.created_at.to_formatted_s(:long) %>
+            <% end %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+
+</p>
+</div>
+
+<%= link_to 'Back', courses_path %>

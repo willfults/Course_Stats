@@ -1,0 +1,27 @@
+<h2>Courses</h2> 
+<ul class="courses">
+  <% 
+  if @courses.empty? 
+    %>
+      No Courses. 
+    <%
+  end
+@courses.each do |course| %>
+  
+	<li>
+	  <div class="title">
+	   <span><%= link_to course.name, course_path(course) %></span>
+	  </div>
+	  <div class="description"><%= course.description %></div>
+	  <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
+	  <div class="commands">
+      <ul>
+        <li>
+          <%= link_to 'Start Course', course_path(course) %>
+        </li>
+      </ul>
+    </div>
+	</li>
+  
+<% end %>
+</ul>

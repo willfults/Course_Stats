@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= @course.name + " - " + @course_module.name %></h2>
+
+<div class="quiz">
+  
+  <h3>Results</h3>
+  
+  <p>
+    <% 
+    if @course_module.quiz.passing_score > 0 && @correctAnswers >= @course_module.quiz.passing_score
+    %>
+      Congratulations you passed! 
+    <% end %>
+    
+    You got <%= @correctAnswers %> out of <%= @course_module.quiz.quiz_questions.size%> correct!
+    
+    </p>
+</div>
+
+
+<%= link_to 'Back to Course Summary', course_path(@course) %>

@@ -17,6 +17,17 @@ gem 'omniauth', '~> 1.1.0'
 gem 'omniauth-facebook', '~> 1.4.0'
 gem 'omniauth-linkedin', '~> 0.0.6'
 gem 'mongodb_logger'
+gem 'carrierwave', '0.6.2'
+gem 'acts-as-taggable-on', '~> 2.2.2'
+gem 'rails3-jquery-autocomplete'
+gem 'rickshaw_rails'
+
+gem 'chronic'
+#gem 'pg'
+gem 'mongoid'#, '~> 3.0.2'
+
+gem 'cancan', '1.6.7'
+gem 'resque', :require => "resque/server"
 
 group :development do
   gem 'sqlite3', '~> 1.3.5'

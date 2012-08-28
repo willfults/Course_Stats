@@ -1,0 +1,29 @@
+<h2>My Courses</h2> 
+<ul class="courses my_courses">
+  <% 
+  if @course_histories.empty? 
+    %>
+      No Courses. 
+    <%
+  end
+@course_histories.each do |course_history| 
+  course = course_history.course
+  %>
+  
+  <li class="<%=course_history.status %>">
+    <div class="title">
+     <span><%= link_to course.name, course_path(course) %></span>
+    </div>
+    <div class="description"><%= course.description %></div>
+    <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
+    <div class="commands">
+      <ul>
+        <li>
+          <%= link_to course_history.status == "completed"?'Review Course':'Resume Course', course_path(course) %>
+        </li>
+      </ul>
+    </div>
+  </li>
+  
+<% end %>
+</ul>

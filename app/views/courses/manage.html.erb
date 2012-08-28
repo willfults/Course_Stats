@@ -1,0 +1,36 @@
+<h2>Manage Courses</h2> 
+  <%= link_to image_tag("plus-icon.png", :border => 0) + 'Create New Course', {:controller => "courses", :action => "new"}, :class => 'image-link' %>
+
+<ul class="courses">
+<% 
+  if @courses.empty? 
+    %>
+      No Courses. 
+    <%
+  end
+  @courses.each do |course| %>
+  
+	<li>
+	  <div class="title">
+	   <span><%= course.name %></span>
+	  </div>
+	  <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
+	  <div class="commands">
+      <ul>
+      	<li>
+          <%= link_to 'View Statistics', :controller => "statistics", :action => "index", :id => course%>
+        </li>
+        <li>
+          <%= link_to 'Edit', :controller => "courses", :action => "edit", :id => course%>
+        </li>
+        <li>
+          <%= link_to "Delete", course, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: course.name %> </span>
+        </li>
+      </ul>
+    </div>
+	</li>
+  
+<% end %>
+</ul>

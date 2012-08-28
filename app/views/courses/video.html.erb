@@ -1,0 +1,23 @@
+<% sidebar %>
+        
+<% toolbar %>
+
+<br class="clearfloat" />
+<div class="space_center">
+</div>
+<h2><%=@course.name %> by <%=@course.user.name %></h2>
+<br>
+<div id="videoPage">
+	<video class="jwplayer" src="<%=@course.media %>" id="container"></video>
+</div>
+<br>
+<div>
+	<%= link_to "Force completion, skip to quiz", test_path(:id => params[:id]) %>
+</div>
+
+
+<%= javascript_tag do %>
+  window.testURL = "<%=j test_url %>?id=<%= params[:id]%>";
+  window.videoId = "<%= params[:id]%>";
+<% end %>
+

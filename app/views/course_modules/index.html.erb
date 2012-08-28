@@ -1,0 +1,83 @@
+<h2><%= @course.name %></h2>
+<div id="flash">
+  <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
+</div>
+<div class="tab-container course-class">
+    <div class="subnav">
+        <ul class="tabs">
+            <li class="tab-header">
+              <span>
+                <%= link_to 'Basic Info', edit_course_path(@course) %>
+              </span>
+            </li>
+
+            <li class="tab-header classes-tab selected">
+              <span>
+                <%= link_to 'Classes', course_course_modules_path(@course) %>
+              </span>
+            </li>
+        </ul>
+        <span class="tab-bg"></span>
+      </div>
+      <div class="metadata-container">
+        <ul class="modules">
+          <% 
+          if @course_modules.empty? 
+            %>
+              No Course Modules. 
+            <%
+          end
+          $i = 1;
+          @course_modules.each do |course_module| %>
+            <li>
+              <div class="part">
+                Part <%=$i %>
+              </div>
+              <div class="summary">
+                <div class="title">
+                  <%= course_module.name %> (<%=course_module.class_type %>)
+                </div>
+                <div class="commands">
+                  <ul>
+                    <li>
+                      <%= link_to 'Preview', course_course_module_path(@course, course_module) %>
+                    </li>
+                    <li>
+                      <%= link_to 'Edit', edit_course_course_module_path(@course, course_module) %>
+                    </li>
+                    <li>
+                      <%= link_to 'Destroy', course_course_module_path(@course, course_module), confirm: 'Are you sure?', method: :delete %>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <% $i +=1%>
+          <% end %>
+        </ul>
+        BLAH
+        <div id="add-module-wrapper">
+          <ul id="nav">
+            <li>
+              <a href="#" class="link">
+                <img border="0" src="/assets/plus-icon.png" alt="Plus-icon">Add New Module
+              </a>
+              <ul>
+                <li><a href="<%=new_course_course_module_path %>?type=Audio">Audio</a></li>
+                <!--li><a href="<%=new_course_course_module_path %>?type=eBook">eBook</a></li-->
+                <li><a href="<%=new_course_course_module_path %>?type=Image">Image</a></li>
+                <li><a href="<%=new_course_course_module_path %>?type=Video">Video</a></li>
+                <li><a href="<%=new_course_course_module_path %>?type=Quiz">Quiz</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+</div>
+        
+
+
+
+<br />
+
+

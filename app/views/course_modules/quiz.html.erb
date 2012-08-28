@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= @course.name + " - " + @course_module.name %></h2>
+
+<p>
+  <%= @course_module.summary %>
+</p>
+<p>
+  Passing Score: <%= @course_module.quiz.passing_score %> / <%= @course_module.quiz.quiz_questions.size %>
+</p>
+
+<div class="quiz">
+  
+  <%= form_tag(course_course_module_path(@course, @course_module)+ "/quiz", :method => "post") do %>
+  <% 
+  quiz = @course_module.quiz 
+  quiz.quiz_questions.each do |question|
+  %>
+  
+  
+  <fieldset id="videoPage">
+    <p><%=question.question %></p>
+    <ul>
+    <% question.quiz_answers.each do |answer|%>
+      <li>
+        <%= radio_button_tag 'question_' + question.id.to_s, answer.id.to_s %>
+        <%=answer.answer %>
+      </li>
+    <% end %>
+    </ul>
+  </fieldset>
+  <% 
+  end 
+  %>
+  
+  <%= submit_tag("Next") %>
+  
+  <% 
+  end 
+  %>
+</div>
+
+
+<%= link_to 'Back to Course Summary', course_path(@course) %>

@@ -35,6 +35,9 @@ class User < ActiveRecord::Base
   attr_accessible :password, :password_confirmation, :remember_me, :confirmed_at
   attr_accessible :avatar
   
+  has_many :courses
+  has_many :course_histories
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

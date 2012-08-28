@@ -2,4 +2,23 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  courses: "Courses"
+  admin_label: "Admin"
+
+  account:
+    slug: 
+      change: "Change address"
+  
+  settings:
+    slug_change:
+      briefing: "Change the website address that users reach you at"
+      
+  activerecord:
+    attributes:
+        quiz:
+          passing_score: "Passing Score"
+          quiz_questions:
+            question: "Question"
+            quiz_answers:
+              answer: "Answer"
+        

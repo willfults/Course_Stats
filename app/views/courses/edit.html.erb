@@ -1,0 +1,6 @@
+<h2><%=@course.name %></h2>
+<div id="flash">
+  <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
+</div>
+<%= render 'form' %>
+

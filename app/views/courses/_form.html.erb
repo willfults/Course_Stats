@@ -1,0 +1,65 @@
+<%= form_for @course, :html => {:multipart => true} do |f| %>
+
+  
+  <div class="tab-container">
+    <div class="subnav">
+        <ul class="tabs">
+            <li class="tab-header  selected">
+              <span>
+                <a href="">Basic Info</a>
+              </span>
+            </li>
+
+            <li class="tab-header classes-tab">
+              <span>
+                <%if @course.id %>
+                <%= link_to 'Modules', course_course_modules_path(@course) %>
+                <% end %>
+              </span>
+            </li>
+        </ul>
+        <span class="tab-bg"></span>
+      </div>
+      <div class="metadata-container">
+            <% if @course.errors.any? %>
+              <div id="error_explanation">
+                <ul>
+                <% @course.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+          <div data-tab-id="basic-info" class="metadata-tab">
+            <fieldset class="metadata-two-column">
+               <%= f.label :name %>
+               <%= f.text_field :name, :class=>'input-text' %>
+              
+                <%= f.label :description %>
+                <%= f.text_area :description, :class=>'input-textarea' %>
+
+                <%= f.label 'Tag List (Delimiter = ,)'%>
+                <%= f.autocomplete_field :tag_list, courses_path, :"data-delimiter" => ', ', :class=>'input-text'  %>
+            </fieldset>
+
+            <fieldset class="metadata-column">
+                <%= f.label :category %><br />
+                <%= select :course, :category, [['Choose One', ''], ['Comedy', 'Comedy'], ['Education', 'Education'], ['Entertainment', 'Entertainment']],{}, { :class => 'input-select' } %>
+                
+                <%= f.label :privacy %><br />
+                <%= select :course, :privacy, [["Choose One", ""], ["Public", "Public"], ["Private", "Private"]],{},{ :class => 'input-select' } %>
+            </fieldset>
+         </div>
+          <div class="actions">
+    <%= f.submit %>
+  </div>
+
+
+            
+
+
+
+      </div>
+    </div>
+  
+<% end %>

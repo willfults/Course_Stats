@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= @course.name + " - " + @course_module.name %></h2>
+
+<p>
+  <%= @course_module.summary %>
+</p>
+<div class="video_wrapper">
+  <div id="videoPage">
+    <img src="<%=@course_module.file %>">
+  </div>
+</div>
+
+
+<%= link_to 'Back to Course Summary', course_path(@course) %>

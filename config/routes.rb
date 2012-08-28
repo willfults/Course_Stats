@@ -21,9 +21,15 @@ FirstApp::Application.routes.draw do
     end
   end
   
+  resources :courses do
+    get :autocomplete_tag_name, :on => :collection
+    resources :course_modules    
+  end
+  
   match "/images/uploads/*path" => "gridfs#serve"
   resources :avatars
 
+  get "courses/index"
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
 
@@ -34,6 +40,19 @@ FirstApp::Application.routes.draw do
   match '/signup',  to: 'users#new'
   match '/auth/:service/callback' => 'services#create' 
   resources :services, :only => [:index, :create, :destroy]  
+  
+  match 'statistics/detail/:id/:class_id' => 'statistics#show', :as => 'statistic'
+  match 'statistics/:id' => 'statistics#index'
+  mount Resque::Server, :at => "/resque"
+  match 'course_landing' => 'courses#course_landing', :as => 'course_landing'
+  match 'courses' => 'courses#index'
+
+  match 'my_courses' => 'courses#my_courses'
+  match 'manage/courses' => 'courses#manage'
+
+  match 'courses/:id/video' => 'courses#video'
+  match 'courses/:course_id/course_modules/:id/quiz/' => 'course_modules#quiz_answers'
+  match 'courses/:course_id/course_modules/:id/:status/' => 'course_modules#update_stat'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

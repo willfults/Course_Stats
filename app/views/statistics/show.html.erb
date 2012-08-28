@@ -1,0 +1,47 @@
+
+<h2>Course Statistics - <%= @course.name %></h2>
+<div id="chart_main">
+<% # for some reason rickshaw can't render a graph if I use a rails form tag %>
+<form action="<%= statistic_path%>">
+	Start Date: <input type="text" name="start_date" id="start_date" value="<%= @start_date%>" readonly="readonly"> 
+	End Date: <input type="text" name="end_date" id="end_date" value="<%= @end_date %>" readonly="readonly"> 
+	
+	<input type="submit">
+</form>
+<h3>Total Course Views: <%= @play_count%></h3>
+<h3>Total Course Completions: <%= @completion_count%></h3>
+
+
+<div id="chart_container">
+	<!--div id="y_axis"></div-->
+	<div id="chart"></div>
+	<br/>
+	<div id="legend_container">
+		<div id="smoother" title="Smoothing"></div>
+		<div id="legend"></div>
+	</div>
+	<div id="slider"></div>
+</div>
+</div>
+
+
+<script>
+
+var graph = new Rickshaw.Graph( {
+			element: document.getElementById("chart"),
+			width: 800,
+			height: 400,
+			renderer: 'line',
+			series: [
+				{
+					color: "#c05020",
+					data: <%= @completion_data.html_safe %>,
+					name: 'Course Completions'
+				}, {
+					color: "#30c020",
+					data: <%= @play_data.html_safe %>,
+					name: 'Course Views'
+				}
+			]
+		} );
+</script>
