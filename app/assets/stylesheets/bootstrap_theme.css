@@ -1,0 +1,18 @@
+body {
+  padding-left:0;
+  padding-right:0;
+}
+
+.signin .controls {
+  margin-left:0;
+}
+
+.home .hero-unit {
+  padding:10px 40px;
+  min-height: 220px;
+  margin-bottom: 0px;
+}
+
+.home .row-fluid {
+  margin: 20px 0 0 0;
+}
