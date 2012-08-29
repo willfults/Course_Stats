@@ -24,8 +24,7 @@ gem 'rickshaw_rails'
 
 gem 'chronic'
 #gem 'pg'
-gem 'mongoid'#, '~> 3.0.2'
-
+gem 'mongoid'
 gem 'cancan', '1.6.7'
 gem 'resque', :require => "resque/server"
 
@@ -50,7 +49,7 @@ end
 group :assets do
   gem 'sass-rails',   '~> 3.2.4'
   gem 'coffee-rails', '~> 3.2.2'
-
+  gem 'jquery-ui-rails'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
