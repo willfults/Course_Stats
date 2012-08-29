@@ -1,0 +1,2 @@
+module LinkedProfileHelper
+end
