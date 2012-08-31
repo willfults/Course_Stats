@@ -1,0 +1,23 @@
+// Example using 'Cerulean' bootswatch
+//
+// First import journal variables
+.navbar-inner {
+    background-color: red;
+    background-image: none;
+    background-repeat: no-repeat;
+}
+
+@import "bootswatch/cerulean/variables";
+
+
+// Then bootstrap itself
+@import "bootstrap";
+
+// Responsive styles go here in case you want them
+@import "bootstrap-responsive";
+
+// And finally bootswatch style itself
+@import "bootswatch/cerulean/bootswatch";
+
+// Whatever application styles you have go last
+@import "bootstrap_theme";
