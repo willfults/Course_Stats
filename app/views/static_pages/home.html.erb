@@ -1,5 +1,6 @@
-    <div class="container home">
-    <div class="row-fluid">
+<% if !signed_in? %>
+<div class="container home">
+  <div class="row-fluid">
     <div class="span8 hero-unit">
       <h3>
         The easiest way to take courses
@@ -47,11 +48,11 @@
     <%= link_to "Sign up now!", new_user_registration_path, 
                                 class: "btn btn-large" %>
  
-  </div>
+    </div>
       
-    </div>
-    </div>
-
+  </div>
+</div>
+<% end %>
 <% if signed_in? %>
   <div class="row">
     <aside class="span4">

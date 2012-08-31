@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
 //= require jquery.Jcrop
 //= require bootstrap
+//= require bootstrap.min
 //= require_tree .

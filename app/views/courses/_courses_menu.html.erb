@@ -1,0 +1,40 @@
+<div class="navbar navbar-static-top">
+  <div class="navbar-inner sub-nav">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+      <nav class="nav-collapse">
+        <ul class="nav pull-left">
+          <li class="">
+            <%= link_to '#' do %> 
+              <i class="icon-home icon-white"></i>Dashboard
+            <% end %>  
+          </li>
+          <li class="active">
+            <%= link_to my_courses_path do %> 
+              <i class="icon-book icon-white"></i>Courses Library
+            <% end %>  
+          </li>
+          <li>
+            <%= link_to '#' do %>
+              <i class="icon-star icon-white"></i>Achievements
+            <% end %>
+          </li>
+          <li>
+            <%= link_to '#' do %>
+              <i class="icon-comment icon-white"></i>Messages
+            <% end %>
+          </li>
+        </ul>
+        <ul class="nav pull-right">
+          <li>
+            <%= link_to "Switch to Course Admin View", manage_courses_path, :class => 'btn btn-success btn-mini'%>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

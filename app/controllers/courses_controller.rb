@@ -1,6 +1,4 @@
 class CoursesController < ApplicationController
-  layout "full_center_layout"
-  
   before_filter :authenticate_user!
   
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag' # <- New

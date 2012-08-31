@@ -1,36 +1,45 @@
-<h2>Manage Courses</h2> 
-  <%= link_to image_tag("plus-icon.png", :border => 0) + 'Create New Course', {:controller => "courses", :action => "new"}, :class => 'image-link' %>
 
-<ul class="courses">
-<% 
-  if @courses.empty? 
-    %>
-      No Courses. 
-    <%
-  end
-  @courses.each do |course| %>
-  
-	<li>
-	  <div class="title">
-	   <span><%= course.name %></span>
-	  </div>
-	  <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
-	  <div class="commands">
-      <ul>
-      	<li>
-          <%= link_to 'View Statistics', :controller => "statistics", :action => "index", :id => course%>
-        </li>
-        <li>
-          <%= link_to 'Edit', :controller => "courses", :action => "edit", :id => course%>
-        </li>
-        <li>
-          <%= link_to "Delete", course, method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: course.name %> </span>
-        </li>
-      </ul>
+<%= render 'courses_admin_menu' %>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span9">
+      <table class="table table-hover">
+        <tbody>
+          <% 
+          if @courses.empty? 
+            %>
+              <tr><td>No Courses.</td></tr> 
+            <%
+          end
+          @courses.each do |course| %>
+            <tr>
+              <td>
+                <div><%= link_to course.name, :controller => "courses", :action => "edit", :id => course%></div>
+                <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
+              </td>
+              <td>
+                <div class="commands">
+                  <ul>
+                    <li>
+                      <%= link_to 'View Statistics', :controller => "statistics", :action => "index", :id => course%>
+                    </li>
+                    <li>
+                      <%= link_to "Delete", course, method: :delete,
+                                                 data: { confirm: "You sure?" },
+                                                 title: course.name %> </span>
+                    </li>
+                  </ul>
+                </div>
+                
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>      
     </div>
-	</li>
-  
-<% end %>
-</ul>
+    <div class="span3">
+      <%= link_to image_tag("plus-icon.png", :border => 0) + 'Create New Course', {:controller => "courses", :action => "new"}, :class => 'image-link' %>    
+    </div>
+  </div>
+</div>

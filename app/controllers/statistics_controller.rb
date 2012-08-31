@@ -1,5 +1,4 @@
 class StatisticsController < ApplicationController
-  layout "full_center_layout"
   before_filter :authenticate_user!, :isCreator
   
   def index

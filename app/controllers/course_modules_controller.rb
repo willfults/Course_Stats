@@ -1,6 +1,4 @@
 class CourseModulesController < ApplicationController
-  layout "full_center_layout"
-
   before_filter(:get_class)
   
     
