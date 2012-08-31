@@ -60,7 +60,12 @@ i {
   }
 }
 
+div.title a {
+  font-size:1.2em;
+}
+
 div.commands{
+  text-align:right;
   ul{
     display:inline;
     list-style:none;
@@ -85,3 +90,15 @@ div.commands{
   }
 }
 
+form {
+  .input-full {
+    width: 90%;  
+  }
+  textarea.input-full {
+    height: 80px;  
+  }
+  .actions {
+    clear:both;
+    float:right;
+  }
+}

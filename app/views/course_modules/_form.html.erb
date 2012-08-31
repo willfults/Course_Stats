@@ -1,82 +1,67 @@
-<%= form_for [@course, @course_module], :html => {:multipart => true} do |f| %>
-
-  <div class="tab-container course-class">
-    <div class="subnav">
-        <ul class="tabs">
-            <li class="tab-header">
-              <span>
-                <%= link_to 'Basic Info', edit_course_path(@course) %>
-              </span>
-            </li>
-
-            <li class="tab-header classes-tab selected">
-              <span>
-                <%= link_to 'Modules', course_course_modules_path(@course) %>
-              </span>
-            </li>
-        </ul>
-        <span class="tab-bg"></span>
-      </div>
-      <div class="metadata-container">
-        <% if @course_module.errors.any? %>
-          <div id="error_explanation">
-            <ul>
-            <% @course_module.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-            </ul>
-          </div>
+<div class="container-fluid">
+  <ul class="nav nav-tabs">
+    <li>
+      <%= link_to 'Basic Info', edit_course_path(@course) %>
+    </li>
+    <li class="active">
+      <%= link_to 'Modules', course_course_modules_path(@course) %>
+    </li>
+  </ul>
+  <%= form_for [@course, @course_module], :html => {:multipart => true} do |f| %>
+  
+    <% if @course_module.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+        <% @course_module.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
-        <div class="metadata-tab">
-          <fieldset class="metadata-two-column">
-              <%= f.hidden_field :class_type%>
-              <%= f.label :name, @course_module.class_type + " Module Name" %>
-              <%= f.text_field :name, :class => 'input-text'%>
-              <%= f.label :summary %>
-              <%= f.text_area :summary, :class => 'input-textarea' %>
-          </fieldset>
-          
-          <% if @course_module.class_type != "Quiz" %>
-          <fieldset class="metadata-column">
-             <%= f.label :file %>
-             <%= f.file_field :file, :class=>'input-text'%>
-             <%= f.hidden_field :file_cache %>
-          </fieldset>
-          <% end %>
-          <% 
-          i = 1
-          if @course_module.class_type == "Quiz" %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div class="row-fluid">
+      <div class="span6">
+        <%= f.hidden_field :class_type%>
+        <%= f.label :name, @course_module.class_type + " Module Name" %>
+        <%= f.text_field :name, :class => 'input-full'%>
+        <%= f.label :summary %>
+        <%= f.text_area :summary, :class => 'input-full' %>
             
-              <%= f.fields_for :quiz do |quiz| %>
-                <fieldset class="metadata-two-column">
-                  <%= quiz.label :passing_score%>
-                  <%= quiz.text_field :passing_score, :class => 'input-text'%>
-                </fieldset>
-                
-                <%= quiz.fields_for :quiz_questions do |question| %>
-                  <fieldset class="metadata-two-column">
-                  <%=question.label :question, "Question " + i.to_s%>
-                  <% i += 1 %>
-                  <%=question.text_field :question, :class => 'input-text'%>
-                  <span style="float:left;">(Check the correct answer)</span>
-                  <%= question.fields_for :quiz_answers do |answer| %>
-                    <%= answer.label :answer, :class => 'answer'%>
-                    <%= answer.check_box :correct_answer, :class => 'input-check correct_answer'%>
-                    <%= answer.text_field :answer, :class => 'input-text answer'%>
-                  <% end %>
-                  </fieldset>
+        <% if @course_module.class_type != "Quiz" %>
+           <%= f.label :file %>
+           <%= f.file_field :file, :class=>'input-full'%>
+           <%= f.hidden_field :file_cache %>
+        <% end %>
+        <% 
+        i = 1
+        if @course_module.class_type == "Quiz" %>
+          
+            <%= f.fields_for :quiz do |quiz| %>
+                <%= quiz.label :passing_score%>
+                <%= quiz.text_field :passing_score, :class => 'input-full'%>
+              
+              <%= quiz.fields_for :quiz_questions do |question| %>
+                <%=question.label :question, "Question " + i.to_s%>
+                <% i += 1 %>
+                <%=question.text_field :question, :class => 'input-full'%>
+                <span style="float:left;">(Check the correct answer)</span>
+                <%= question.fields_for :quiz_answers do |answer| %>
+                  <%= answer.label :answer, :class => 'answer'%>
+                  <%= answer.check_box :correct_answer, :class => 'input-check correct_answer'%>
+                  <%= answer.text_field :answer, :class => 'input-full answer'%>
                 <% end %>
               <% end %>
-            
-          <% end %>
-        </div>
+            <% end %>
+          
+        <% end %>
         <div class="actions">
           <% if @course_module.class_type == "Quiz" %>
             <%= f.submit 'Add question', :name => "add_question" %>
           <% end %>
-          <%= f.submit %>
+          <%= f.submit :class => 'btn btn-primary' %>
         </div>
       </div>
-  </div>
-  
-<% end %>
+      
+    </div>
+  <% end %>
+</div>

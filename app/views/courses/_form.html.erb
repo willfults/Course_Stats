@@ -1,27 +1,19 @@
+<div class="container-fluid">
 <%= form_for @course, :html => {:multipart => true} do |f| %>
 
   
-  <div class="tab-container">
-    <div class="subnav">
-        <ul class="tabs">
-            <li class="tab-header  selected">
-              <span>
-                <a href="">Basic Info</a>
-              </span>
-            </li>
-
-            <li class="tab-header classes-tab">
-              <span>
-                <%if @course.id %>
-                <%= link_to 'Modules', course_course_modules_path(@course) %>
-                <% end %>
-              </span>
-            </li>
-        </ul>
-        <span class="tab-bg"></span>
-      </div>
-      <div class="metadata-container">
-            <% if @course.errors.any? %>
+  
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <%= link_to 'Basic Info', edit_course_path(@course) %>
+      </li>
+      <li>
+        <%= link_to 'Modules', course_course_modules_path(@course) %>
+      </li>
+    </ul>
+    <div class="row-fluid">
+      <div class="span6">
+              <% if @course.errors.any? %>
               <div id="error_explanation">
                 <ul>
                 <% @course.errors.full_messages.each do |msg| %>
@@ -30,28 +22,27 @@
                 </ul>
               </div>
             <% end %>
-          <div data-tab-id="basic-info" class="metadata-tab">
-            <fieldset class="metadata-two-column">
                <%= f.label :name %>
-               <%= f.text_field :name, :class=>'input-text' %>
+               <%= f.text_field :name, :class=>'input-full' %>
               
                 <%= f.label :description %>
-                <%= f.text_area :description, :class=>'input-textarea' %>
+                <%= f.text_area :description, :class=>'input-full' %>
+                
+                </div>
+      
+    <div class="span6">
 
                 <%= f.label 'Tag List (Delimiter = ,)'%>
-                <%= f.autocomplete_field :tag_list, courses_path, :"data-delimiter" => ', ', :class=>'input-text'  %>
-            </fieldset>
+                <%= f.autocomplete_field :tag_list, courses_path, :"data-delimiter" => ', ', :class=>'input-full'  %>
 
-            <fieldset class="metadata-column">
-                <%= f.label :category %><br />
-                <%= select :course, :category, [['Choose One', ''], ['Comedy', 'Comedy'], ['Education', 'Education'], ['Entertainment', 'Entertainment']],{}, { :class => 'input-select' } %>
+                <%= f.label :category %>
+                <%= select :course, :category, [['Choose One', ''], ['Comedy', 'Comedy'], ['Education', 'Education'], ['Entertainment', 'Entertainment']],{}, { :class => 'input-full' } %>
                 
-                <%= f.label :privacy %><br />
-                <%= select :course, :privacy, [["Choose One", ""], ["Public", "Public"], ["Private", "Private"]],{},{ :class => 'input-select' } %>
-            </fieldset>
-         </div>
+                <%= f.label :privacy %>
+                <%= select :course, :privacy, [["Choose One", ""], ["Public", "Public"], ["Private", "Private"]],{},{ :class => 'input-full' } %>
+    </div>
           <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-primary" %>
   </div>
 
 
@@ -60,6 +51,7 @@
 
 
       </div>
-    </div>
+    
   
 <% end %>
+</div>

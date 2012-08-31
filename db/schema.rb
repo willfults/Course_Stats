@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120821174240) do
+ActiveRecord::Schema.define(:version => 20120831004055) do
 
   create_table "course_histories", :force => true do |t|
     t.integer  "user_id"
@@ -71,6 +71,28 @@ ActiveRecord::Schema.define(:version => 20120821174240) do
   end
 
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
+
+  create_table "quiz_answers", :force => true do |t|
+    t.string   "answer"
+    t.boolean  "correct_answer"
+    t.integer  "quiz_question_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "quiz_questions", :force => true do |t|
+    t.string   "question"
+    t.integer  "quiz_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "quizzes", :force => true do |t|
+    t.integer  "passing_score"
+    t.integer  "course_module_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id"
