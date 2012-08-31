@@ -23,8 +23,7 @@ gem 'rickshaw_rails'
 
 gem 'chronic'
 #gem 'pg'
-gem 'mongoid'#, '~> 3.0.2'
-
+gem 'mongoid'
 gem 'cancan', '1.6.7'
 gem 'resque', :require => "resque/server"
 
@@ -51,6 +50,7 @@ group :assets do
   gem 'sass-rails', '~> 3.1'
   gem 'bootstrap-sass', '~> 2.0.4.1'
   gem 'bootswatch-rails'
+  gem 'jquery-ui-rails'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 

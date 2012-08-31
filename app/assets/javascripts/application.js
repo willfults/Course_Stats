@@ -12,7 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.datepicker
 //= require jquery.Jcrop
 //= require bootstrap
 //= require bootstrap.min
+//= require rickshaw_with_d3
 //= require_tree .
+
