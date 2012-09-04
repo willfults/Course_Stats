@@ -21,6 +21,14 @@ FirstApp::Application.routes.draw do
     end
   end
   
+  resources :conversations, only: [:index, :show, :new, :create] do
+    member do
+      post :reply
+      post :trash
+      post :untrash
+    end
+  end
+  
   resources :courses do
     get :autocomplete_tag_name, :on => :collection
     resources :course_modules    

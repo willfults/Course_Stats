@@ -1,0 +1,8 @@
+<%= render 'courses/courses_menu', :highlight => 'Messages'%>
+<ul>
+  <%= content_tag_for(:li, conversation.receipts_for(current_user)) do |receipt| %>
+    <h3><%= receipt.message.subject %> </h3>
+    <p> <%= receipt.message.body %> </p>
+	<%= render 'messages/form', conversation: conversation %>
+  <% end %>
+</ul>

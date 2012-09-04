@@ -10,6 +10,7 @@ gem 'mini_magick', '~> 3.4'
 gem 'carrierwave-mongoid'
 gem 'mongo', '1.6.2'
 gem 'railties', '~> 3.2.5'
+gem 'mailboxer'
 gem 'devise', '~> 2.1.2'
 gem "friendly_id", "~> 4.0.1"
 gem 'omniauth', '~> 1.1.0'
