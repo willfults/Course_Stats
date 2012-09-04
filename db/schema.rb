@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120829220659) do
+ActiveRecord::Schema.define(:version => 20120904185127) do
 
   create_table "course_histories", :force => true do |t|
     t.integer  "user_id"
@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(:version => 20120829220659) do
     t.string   "unconfirmed_email"
     t.string   "slug"
     t.string   "avatar"
+    t.string   "twitter_username"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

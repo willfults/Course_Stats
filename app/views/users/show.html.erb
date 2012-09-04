@@ -32,7 +32,7 @@
 </div>
 <div class="row">
   <div class="span8">
-    <% if @linkedin_profile %>
+    <% if @linkedin_profile && (@linkedin_profile.name || @linkedin_profile.headline || @linkedin_profile.summary) %>
       <h3>Linked In Profile</h3>
       Name: <%= @linkedin_profile.name %><br/><br/>
       Headline: <%= @linkedin_profile.headline %><br/><br/>
