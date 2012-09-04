@@ -73,6 +73,7 @@ class CoursesController < ApplicationController
   
   def my_courses
     @course_histories = current_user.course_histories
+    @courses = Course.all
   end
   
   def video

@@ -1,29 +1,86 @@
 <%= render 'courses_menu' %> 
-<ul class="courses my_courses">
-  <% 
-  if @course_histories.empty? 
-    %>
-      No Courses. 
-    <%
-  end
-@course_histories.each do |course_history| 
-  course = course_history.course
-  %>
-  
-  <li class="<%=course_history.status %>">
-    <div class="title">
-     <span><%= link_to course.name, course_path(course) %></span>
+
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      <h3>In Progress</h3>
     </div>
-    <div class="description"><%= course.description %></div>
-    <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
-    <div class="commands">
-      <ul>
-        <li>
-          <%= link_to course_history.status == "completed"?'Review Course':'Resume Course', course_path(course) %>
-        </li>
-      </ul>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <table class="table table-hover">
+        <tbody>
+          <% 
+          if @course_histories.empty? 
+            %>
+              <tr><td>No Courses.</td></tr> 
+            <%
+          end
+          @course_histories.each do |course_history| 
+            course = course_history.course
+            %>  
+            <tr>
+              <td>
+                <div class="title"><%= link_to course.name, course_path(course) %></div>
+                <div class="description"><%= course.description %></div>
+                <span class="status"><%= course_history.status %></span> - <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
+              </td>
+              <td>
+                <div class="commands">
+                  <ul>
+                    <li>
+                      <%= link_to course_history.status == "completed"?'Review Course':'Resume Course', course_path(course) %>
+                    </li>
+                  </ul>
+                </div>
+                
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
-  </li>
-  
-<% end %>
-</ul>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      <h3>Course Library</h3>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <table class="table table-hover">
+        <tbody>
+          <% 
+          if @courses.empty? 
+            %>
+              <tr><td>No Courses.</td></tr> 
+            <%
+          end
+          @courses.each do |course| %>
+            <tr>
+              <td>
+                <div class="title"><%= link_to course.name, course_path(course) %></div>
+                <div class="description"><%= course.description %></div>
+              </td>
+              <td>
+                <div class="commands">
+                  <ul>
+                    <li>
+                      <%= link_to 'Start Course', course_path(course) %>
+                    </li>
+                  </ul>
+                </div>
+                
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>      
+    </div>
+  </div>
+</div>
+

@@ -1,57 +1,59 @@
 <div class="container-fluid">
-<%= form_for @course, :html => {:multipart => true} do |f| %>
+  <%= form_for @course, :html => {:multipart => true} do |f| %>
 
-  
-  
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <%= link_to 'Basic Info', edit_course_path(@course) %>
-      </li>
-      <li>
-        <%= link_to 'Modules', course_course_modules_path(@course) %>
-      </li>
-    </ul>
-    <div class="row-fluid">
-      <div class="span6">
-              <% if @course.errors.any? %>
-              <div id="error_explanation">
-                <ul>
-                <% @course.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-                <% end %>
-                </ul>
-              </div>
-            <% end %>
-               <%= f.label :name %>
-               <%= f.text_field :name, :class=>'input-full' %>
-              
-                <%= f.label :description %>
-                <%= f.text_area :description, :class=>'input-full' %>
-                
-                </div>
-      
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <% if @course.id%>
+      <%= link_to 'Basic Info', edit_course_path(@course) %>
+      <% else %>
+      <%= link_to 'Basic Info', new_course_path %>
+      <% end %>
+    </li>
+    <% if @course.id%>
+    <li>
+      <%= link_to 'Modules', course_course_modules_path(@course) %>
+    </li>
+    <% end %>
+  </ul>
+  <% if @course.errors.any? %>
+  <div class="row-fluid"><div class="span12">
+    <div id="error_explanation">
+      <ul>
+        <% @course.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div></div>
+  <% end %>
+  <div class="row-fluid">
+    <div class="span6">
+      <%= f.label :name %>
+      <%= f.text_field :name, :class=>'input-full' %>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, :class=>'input-full' %>
+
+    </div>
+
     <div class="span6">
 
-                <%= f.label 'Tag List (Delimiter = ,)'%>
-                <%= f.autocomplete_field :tag_list, courses_path, :"data-delimiter" => ', ', :class=>'input-full'  %>
+      <%= f.label 'Tag List (Delimiter = ,)'%>
+      <%= f.autocomplete_field :tag_list, courses_path, :"data-delimiter" => ', ', :class=>'input-full'  %>
 
-                <%= f.label :category %>
-                <%= select :course, :category, [['Choose One', ''], ['Comedy', 'Comedy'], ['Education', 'Education'], ['Entertainment', 'Entertainment']],{}, { :class => 'input-full' } %>
-                
-                <%= f.label :privacy %>
-                <%= select :course, :privacy, [["Choose One", ""], ["Public", "Public"], ["Private", "Private"]],{},{ :class => 'input-full' } %>
+      <%= f.label :category %>
+      <%= select :course, :category, [['Choose One', ''], ['Comedy', 'Comedy'], ['Education', 'Education'], ['Entertainment', 'Entertainment']],{}, { :class => 'input-full' } %>
+
+      <%= f.label :privacy %>
+      <%= select :course, :privacy, [["Choose One", ""], ["Public", "Public"], ["Private", "Private"]],{},{ :class => 'input-full' } %>
     </div>
-          <div class="actions">
-    <%= f.submit :class => "btn btn-primary" %>
+    <div class="actions">
+      <%= f.submit :class => "btn btn-primary" %>
+    </div>
+
   </div>
 
-
-            
-
-
-
-      </div>
-    
-  
-<% end %>
+  <% end %>
 </div>

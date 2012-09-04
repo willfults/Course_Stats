@@ -41,12 +41,11 @@
                 <%= quiz.text_field :passing_score, :class => 'input-full'%>
               
               <%= quiz.fields_for :quiz_questions do |question| %>
-                <%=question.label :question, "Question " + i.to_s%>
+                <%=question.label :question, "Question " + i.to_s, :class => "question_label"%><span style="float:left;">(Check the correct answer)</span>
                 <% i += 1 %>
                 <%=question.text_field :question, :class => 'input-full'%>
-                <span style="float:left;">(Check the correct answer)</span>
                 <%= question.fields_for :quiz_answers do |answer| %>
-                  <%= answer.label :answer, :class => 'answer'%>
+                  <%= answer.label :answer, :class => 'answer', :class => "answer_label"%>
                   <%= answer.check_box :correct_answer, :class => 'input-check correct_answer'%>
                   <%= answer.text_field :answer, :class => 'input-full answer'%>
                 <% end %>
@@ -56,7 +55,7 @@
         <% end %>
         <div class="actions">
           <% if @course_module.class_type == "Quiz" %>
-            <%= f.submit 'Add question', :name => "add_question" %>
+            <%= f.submit 'Add question', :name => "add_question", :class => 'btn btn-primary'  %>
           <% end %>
           <%= f.submit :class => 'btn btn-primary' %>
         </div>
