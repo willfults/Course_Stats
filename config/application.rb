@@ -61,5 +61,10 @@ module FirstApp
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     
+    # default rails generators to active record instead of mongoid
+    config.generators do |g|
+      g.orm      :active_record
+    end 
+    
   end
 end
