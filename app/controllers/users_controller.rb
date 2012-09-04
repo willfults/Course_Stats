@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'linkedin'
+
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :correct_user,   only: [:edit, :update, :crop]
@@ -16,6 +19,7 @@ class UsersController < ApplicationController
     if request.path != user_path(@user)
       redirect_to @user, status: :moved_permanently
     end
+    linkedin_profile
   end
 
   def create
@@ -81,6 +85,21 @@ class UsersController < ApplicationController
 
     def admin_user
       redirect_to(root_path) unless current_user.admin?
+    end
+    
+    def linkedin_profile
+      @linkedin_profile = @user.linkedin_profile ||= LinkedinProfile.new
+      if $LINKEDIN_HASH
+        token = $LINKEDIN_HASH["credentials"]["token"]
+        secret = $LINKEDIN_HASH["credentials"]["secret"]
+        client = LinkedIn::Client.new($LINKEDIN_APP_KEY, $LINKEDIN_APP_SECRET)
+        client.authorize_from_access(token, secret)
+        linkedin = client.profile(:fields => [:headline, :first_name, :last_name, :summary, :educations, :positions])
+        @linkedin_profile.name = linkedin[:first_name] + " " + linkedin[:last_name]
+        @linkedin_profile.headline = linkedin[:headline]
+        @linkedin_profile.summary = linkedin[:summary]
+        @linkedin_profile.user_id = @user.id
+      end
     end
 
 end

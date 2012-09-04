@@ -35,8 +35,11 @@ class User < ActiveRecord::Base
   attr_accessible :password, :password_confirmation, :remember_me, :confirmed_at
   attr_accessible :avatar
   
+  has_one :linkedin_profile
   has_many :courses
   has_many :course_histories
+  
+  accepts_nested_attributes_for :linkedin_profile
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

@@ -1,5 +1,6 @@
 class ServicesController < ApplicationController
   before_filter :authenticate_user!, :except => [:create]
+  $LINKEDIN_HASH = nil
   
   def index
     # get all authentication services assigned to the current user
@@ -35,6 +36,7 @@ class ServicesController < ApplicationController
         omniauth['info']['name'] ? name =  omniauth['info']['name'] : name = ''
         omniauth['uid'] ?  uid =  omniauth['uid'] : uid = ''
         omniauth['provider'] ? provider =  omniauth['provider'] : provider = ''
+        $LINKEDIN_HASH = omniauth
       else
         # we have an unrecognized service, just output the hash that has been returned
         render :text => omniauth.to_yaml
