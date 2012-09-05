@@ -76,6 +76,10 @@ class CoursesController < ApplicationController
     @courses = Course.all
   end
   
+  def search
+    @courses = Course.search(params[:q])
+  end
+  
   def video
     @course = Course.find(params[:id])
   end

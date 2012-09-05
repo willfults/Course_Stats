@@ -23,7 +23,7 @@
             <tr>
               <td>
                 <div class="title"><%= link_to course.name, course_path(course) %></div>
-                <div class="description"><%= course.description %></div>
+                <div class="description"><%= truncate course.description, :length => 300 %></div>
                 <span class="status"><%= course_history.status %></span> - <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
               </td>
               <td>
@@ -64,7 +64,7 @@
             <tr>
               <td>
                 <div class="title"><%= link_to course.name, course_path(course) %></div>
-                <div class="description"><%= course.description %></div>
+                <div class="description"><%= truncate course.description, :length => 300 %></div>
               </td>
               <td>
                 <div class="commands">
