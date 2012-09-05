@@ -13,7 +13,7 @@
               <i class="icon-home icon-white"></i>Dashboard
             <% end %>  
           </li>
-          <li class="active">
+          <li <% if highlight != 'Messages'%> class="active" <% end %>>
             <%= link_to my_courses_path do %> 
               <i class="icon-book icon-white"></i>Courses Library
             <% end %>  
@@ -23,8 +23,9 @@
               <i class="icon-star icon-white"></i>Achievements
             <% end %>
           </li>
-          <li>
-            <%= link_to '#' do %>
+          
+          <li <% if highlight == 'Messages'%> class="active" <% end %>>
+            <%= link_to :conversations do %>
               <i class="icon-comment icon-white"></i>Messages
             <% end %>
           </li>
