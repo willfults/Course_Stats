@@ -17,7 +17,7 @@ class Course < ActiveRecord::Base
   has_many :course_modules, :order => "position"
 
   def self.search(query)
-    find_by_sql [ "SELECT * FROM courses WHERE MATCH (name, description) AGAINST ('"+ query +"')"]
+    find_by_sql [ "SELECT * FROM courses WHERE MATCH (name, description) AGAINST ('"+ query +"') "]
   end
 
 end

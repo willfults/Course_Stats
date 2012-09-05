@@ -27,9 +27,10 @@ gem 'chronic'
 gem 'mongoid'
 gem 'cancan', '1.6.7'
 gem 'resque', :require => "resque/server"
+gem 'mysql2'
 
 group :development do
-  gem 'sqlite3', '~> 1.3.5'
+  #gem 'sqlite3', '~> 1.3.5'
   gem 'annotate', '~> 2.4.1.beta'
   gem 'rspec-rails', '~> 2.10.1'
 end
