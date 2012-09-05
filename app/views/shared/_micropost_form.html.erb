@@ -1,3 +1,7 @@
+<div class="twitter">
+  <%= render :partial => 'shared/twitter_feed'%>
+  <%= render :partial => 'shared/tweet' %>
+</div>
 <%= form_for(@micropost) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
@@ -5,7 +9,3 @@
   </div>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>
-<div class="twitter">
-  <%= render :partial => 'shared/twitter_feed'%>
-  <%= render :partial => 'shared/tweet' %>
-</div>
