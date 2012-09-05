@@ -1,6 +1,4 @@
 class CourseModulesController < ApplicationController
-  layout "full_center_layout"
-
   before_filter(:get_class)
   
     
@@ -56,6 +54,13 @@ class CourseModulesController < ApplicationController
     
   end
   
+  def edit
+    get_class
+    @course_module = @course.course_modules.where(:id => params[:id]).first
+    
+    render 'edit'
+  end
+  
   def update
       @course = current_user.courses.where(:id => params[:course_id]).first
       @course_module = @course.course_modules.where(:id => params[:id]).first
@@ -64,7 +69,7 @@ class CourseModulesController < ApplicationController
         # add empty ingredient associated with @recipe
         question = @course_module.quiz.quiz_questions.build
         4.times { question.quiz_answers.build }
-        render 'new'
+        render 'edit'
       else 
         if @course_module.update_attributes(params[:course_module])
            redirect_to course_course_modules_path(@course);

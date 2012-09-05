@@ -1,19 +1,25 @@
-<p id="notice"><%= notice %></p>
-
-<h2><%= @course.name + " - " + @course_module.name %></h2>
-
-<p>
-  <%= @course_module.summary %>
-</p>
-<div class="video_wrapper">
-  <div id="videoPage">
-    <video class="jwplayer" src="<%=@course_module.file %>" id="container"></video>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      <p id="notice"><%= notice %></p>
+      
+      <h3><%= @course.name + " - " + @course_module.name %></h3>
+      
+      <p>
+        <%= @course_module.summary %>
+      </p>
+      <div class="video_wrapper">
+        <div id="videoPage">
+          <video class="jwplayer" src="<%=@course_module.file %>" id="container"></video>
+        </div>
+      </div>
+      
+      
+      <%= link_to 'Back to Course Summary', course_path(@course) %>
+      
+      <%= javascript_tag do %>
+        window.video_id = "<%= params[:id]%>";
+      <% end %>
+    </div>
   </div>
 </div>
-
-
-<%= link_to 'Back to Course Summary', course_path(@course) %>
-
-<%= javascript_tag do %>
-  window.video_id = "<%= params[:id]%>";
-<% end %>

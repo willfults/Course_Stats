@@ -1,0 +1,18 @@
+.question_label, .answer_label {
+  float:left;
+  margin-right:10px;
+}
+
+.answer_label {
+  margin-left:30px;
+}
+
+input.answer {
+  margin-left:30px;
+}
+
+.correct_answer {
+  float:left;
+}
+
+ul.quiz_answers { list-style-type: none; }

@@ -1,22 +1,32 @@
-<p id="notice"><%= notice %></p>
+<%= render 'courses/courses_admin_menu' %>
 
-<h2><%= @course.name + " - " + @course_module.name %></h2>
-
-<div class="quiz">
-  
-  <h3>Results</h3>
-  
-  <p>
-    <% 
-    if @course_module.quiz.passing_score > 0 && @correctAnswers >= @course_module.quiz.passing_score
-    %>
-      Congratulations you passed! 
-    <% end %>
-    
-    You got <%= @correctAnswers %> out of <%= @course_module.quiz.quiz_questions.size%> correct!
-    
-    </p>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+      
+      <p id="notice"><%= notice %></p>
+      
+      <h3><%= @course.name + " - " + @course_module.name %></h3>
+      
+      <div class="quiz">
+        
+        <b>Results</b>
+        
+        <p>
+          <% 
+          if @course_module.quiz.passing_score > 0 && @correctAnswers >= @course_module.quiz.passing_score
+          %>
+            Congratulations you passed! 
+          <% end %>
+          
+          You got <%= @correctAnswers %> out of <%= @course_module.quiz.quiz_questions.size%> correct!
+          
+          </p>
+      </div>
+      
+      
+      <%= link_to 'Back to Course Summary', course_path(@course) %>
+      
+    </div>
+  </div>
 </div>
-
-
-<%= link_to 'Back to Course Summary', course_path(@course) %>

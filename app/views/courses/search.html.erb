@@ -1,0 +1,28 @@
+<%= render 'courses_menu' %>
+<div class="container-fluid ">
+  <form class="form-search">
+    <input type="text" class="input-large search-query" value="<%=params[:q] %>" name="q">
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+  <div class="row-fluid">
+    <div class="span12">
+      <table class="table table-hover">
+        <% 
+        if @courses.empty? 
+          %>
+            <tr><td>No Courses.</td></tr> 
+          <%
+        end
+        @courses.each do |course| %>
+          <tr>
+            <td>
+              <div class="title"><%= link_to course.name, course_path(course) %></div>
+              <div class="description"><%= truncate course.description, :length => 300 %></div>
+              <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

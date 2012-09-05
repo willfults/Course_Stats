@@ -1,0 +1,14 @@
+<%= content_tag_for(:li, conversation) do |conversation| %>
+  <p>
+  	
+  	<i class="icon-envelope"></i>
+    <%= link_to conversation.subject, conversation %>
+    
+    <% if conversation.is_completely_trashed?(current_user) %>
+      <%= link_to 'Untrash', [:untrash, conversation], method: :post %>
+    <% else %>
+    <i class="icon-trash"></i>
+      <%= link_to 'Move to trash', [:trash, conversation], method: :post %>
+    <% end %>  
+  </p>
+<% end %> 

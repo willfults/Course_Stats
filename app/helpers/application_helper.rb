@@ -9,4 +9,12 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
+  
+  def notice
+    flash[:notice]
+  end
+
+  def alert
+    flash[:alert]
+  end
 end

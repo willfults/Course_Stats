@@ -32,8 +32,8 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :name
-  attr_accessible :password, :password_confirmation, :remember_me, :confirmed_at
-  attr_accessible :avatar
+  attr_accessible :password, :password_confirmation, :remember_me, :confirmed_at, :avatar
+  acts_as_messageable
   
   has_many :courses
   has_many :course_histories
@@ -73,6 +73,10 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     relationships.find_by_followed_id(other_user.id).destroy
+  end
+  
+  def name
+    email
   end
   
   private
