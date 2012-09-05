@@ -56,6 +56,9 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
 
+  has_many :topics
+  has_many :forumposts
+
   def feed
     Micropost.from_users_followed_by(self)
   end

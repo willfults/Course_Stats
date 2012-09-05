@@ -1,0 +1,20 @@
+
+<div>
+	<h2> Postings for topic - <%= @topic.name %> </h2>
+</div>
+
+</br></br>
+
+<% for forumpost in @topic.forumposts %>
+	<div class="forumpost">
+		<span class="left"><%= forumpost.user.slug %><br /></span>
+		<span class="right"><%= forumpost.content %></span>
+	</div>
+<% end %>
+
+</br> 
+
+<div>
+	<%= link_to "Reply", "#{new_forumpost_path}?topic=#{@topic.id}" %> |
+  	<%= link_to "View All Topics", forum_path(@topic.forum_id) %>
+</div>

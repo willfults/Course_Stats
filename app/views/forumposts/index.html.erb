@@ -1,0 +1,15 @@
+<h2> Posts </h2>
+<table>
+  <tr>
+    <th>Posted By</th>
+    <th>Content</th>
+  </tr>
+  <% for forumpost in @forumposts %>
+    <tr>
+	<td><%= forumpost.user.slug %></td>
+      <td><%= forumpost.content %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Post", new_forumpost_path %></p>

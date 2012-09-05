@@ -1,0 +1,25 @@
+<div>
+	<h2> Topics </h2>
+</div>
+
+<div>
+<table>
+  <tr>
+    <th width="50%">Name</th>
+    <th width="10%">Last Poster</th>
+    <th width="40%">Last Post At</th>
+  </tr>
+  <% for topic in @topics %>
+    <tr>
+      <td><%= topic.name %></td>
+      <td><%= topic.last_poster_id %></td>
+      <td><%= topic.last_post_at %></td>
+      <td><%= link_to "Show", @topic %></td>
+    </tr>
+  <% end %>
+</table>
+</div>
+
+<div>
+	<p><%= link_to "New Topic", new_topic_path %></p>
+</div>

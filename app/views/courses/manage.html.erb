@@ -17,16 +17,20 @@
 	  <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
 	  <div class="commands">
       <ul>
-      	<li>
+        <li>
           <%= link_to 'View Statistics', :controller => "statistics", :action => "index", :id => course%>
         </li>
         <li>
           <%= link_to 'Edit', :controller => "courses", :action => "edit", :id => course%>
         </li>
         <li>
-          <%= link_to "Delete", course, method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: course.name %> </span>
+          <%= link_to "Delete", course, method: :delete, data: { confirm: "You sure?" }, title: course.name %> </span>
+        </li>
+	  <li>
+          <%= link_to 'Create Course Forum', :controller => "forums", :action => "new", :course_id => course %>
+        </li>
+	  <li>
+          <%= link_to 'List Course Forums', :controller => "forums", :action => "index", :course_id => course %>
         </li>
       </ul>
     </div>

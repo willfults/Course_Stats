@@ -1,0 +1,33 @@
+
+<div>
+	<h2> Forum - <%= @forum.name %> </h2>
+</div>
+
+</br></br>
+<div>
+<table>
+	<tr>
+		<th width="60%">Topic Title</th>
+		<th width="10%">Replies</th>
+		<th width="30%">Last Posts</th>
+	</tr>
+	<% for topic in @forum.topics %>
+	<tr>
+		<td><%= link_to h(topic.name), topic_path(topic.id) %>
+		<td>><%= topic.forumposts.count %></td>
+		<td class="right">
+			<%= distance_of_time_in_words_to_now topic.last_post_at %> ago by
+			<%= topic.user.slug %>
+		</td>
+		
+	</tr>
+	<% end %>
+</table>
+</div>
+
+</br>
+
+<div>
+	<p><%= link_to "New Topic", "/topics/new?forum=#{@forum.id}" %></p>
+</div>
+

@@ -1,0 +1,29 @@
+<div>
+<%= form_for @forum do |f| %>
+	<% if @forum.errors.any? %>
+              <div id="error_explanation">
+                <ul>
+                <% @forum.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+                </ul>
+              </div>
+	<% end %>
+	<% if @course.id %>
+		<input type="hidden" id="course_id" name="forum[course_id]" value="<%= @course.id %>" />
+  	<% end %>
+</div>	
+</br>
+</br>
+<div>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+</div>

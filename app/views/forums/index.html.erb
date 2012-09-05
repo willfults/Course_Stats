@@ -1,0 +1,40 @@
+<div>
+<% if @course.id %>
+	<h2> <%= @course.name %> - Forums </h2>
+<% else %>
+	<h2> Forums </h2>
+<% end %>
+
+<table>
+  <tr>
+    <th width="70%">Forum Name</th>
+    <th width="30%">Last Topic</th>
+  </tr>
+
+  <% for forum in @forums %>
+    <tr>
+	<td><h4><%= link_to h(forum.name), forum_path(forum.id) %></h4>
+		<small><%= forum.topics.count %> topics </small><br />
+		<%=h forum.description %></td>
+	<td class="right">
+		<% if forum.most_recent_topic %>
+			<%= distance_of_time_in_words_to_now forum.most_recent_topic.created_at %> ago by
+			<%= forum.most_recent_topic.user.slug %>
+		<% else %>
+			No Topics
+		<% end %>
+	</td>
+	
+    </tr>
+  <% end %>
+      
+</table>
+</div>
+
+</br></br>
+
+<% if !@course.id %>
+	<div>
+		<p><%= link_to "New Forum", new_forum_path %></p>
+	</div>
+<% end %>
