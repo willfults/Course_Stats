@@ -28,11 +28,13 @@
       </ol>
       <%= will_paginate @microposts %>
     <% end %>
-    <div class="twitter">
-      <%= render :partial => 'shared/twitter_feed'%>
-      <%= render :partial => 'shared/tweet' %>
-    </div>
   </div>
+</div>
+<div class="row">
+  <div class="span8">
+    <%= render :partial => 'shared/twitter_feed'%>
+    <%= render :partial => 'shared/tweet' %>
+  <div>
 </div>
 <div class="row">
   <div class="span8">
