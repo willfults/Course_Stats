@@ -7,9 +7,9 @@
           <span class="icon-bar"></span>
         </a>
         <%= link_to "Social University", root_path, id: "logo", :class=>"brand" %>
-          <form class="navbar-search pull-left">
-            <input type="text" class="search-query" placeholder="Search for Courses">
-          </form>
+          <%= form_tag("/search", :method => "get", :class => "navbar-search pull-left") do %>
+            <input type="text" class="search-query" placeholder="Search for Courses" name="q">
+          <% end %>
       <nav class="nav-collapse">
         <ul class="nav pull-right">
           <% if signed_in? %>

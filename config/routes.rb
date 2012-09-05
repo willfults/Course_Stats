@@ -45,8 +45,9 @@ FirstApp::Application.routes.draw do
   match 'statistics/:id' => 'statistics#index'
   mount Resque::Server, :at => "/resque"
   match 'course_landing' => 'courses#course_landing', :as => 'course_landing'
+  match 'search' => 'courses#search'
   match 'courses' => 'courses#index'
-
+  
   match 'my_courses' => 'courses#my_courses'
   match 'manage/courses' => 'courses#manage'
 
