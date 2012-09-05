@@ -12,6 +12,17 @@ class Course < ActiveRecord::Base
   validates :category, presence: true
   validates :privacy, presence: true
   validates :user_id, presence: true
+  validate :publish
+  
+  def publish
+    if published == true && self.course_modules.size == 0
+      errors[:base] << "Unable to publish courses that have no modules."
+      self.published = false
+
+    end
+  end
+
+  
   
   belongs_to :user
   has_many :course_modules, :order => "position"

@@ -49,6 +49,14 @@ class CoursesController < ApplicationController
   
   def update
       @course = current_user.courses.where(:id => params[:id]).first
+      
+      # Is there a better way of doing this?
+      if params[:publish] 
+        @course.published = true
+      elsif params[:un_publish]
+        @course.published = false
+      end 
+      
       if @course.update_attributes(params[:course])
          flash[:success] = "Course saved!"
          redirect_to edit_course_path(@course);
