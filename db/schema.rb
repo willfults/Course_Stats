@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904203550) do
+ActiveRecord::Schema.define(:version => 20120905193205) do
 
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(:version => 20120904203550) do
     t.string   "privacy"
     t.boolean  "published"
   end
+
+  add_index "courses", ["name", "description"], :name => "fulltext_courses"
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
@@ -201,5 +203,9 @@ ActiveRecord::Schema.define(:version => 20120904203550) do
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["slug"], :name => "index_users_on_slug"
+
+  add_foreign_key "notifications", "conversations", :name => "notifications_on_conversation_id"
+
+  add_foreign_key "receipts", "notifications", :name => "receipts_on_notification_id"
 
 end
