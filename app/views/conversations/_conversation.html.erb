@@ -2,6 +2,9 @@
   <p>
   	
   	<i class="icon-envelope"></i>
+  	<% if !conversation.read %>
+  	<strong>
+    <% end %>
     <%= link_to conversation.subject, conversation %>
     
     <% if conversation.is_completely_trashed?(current_user) %>
@@ -10,5 +13,8 @@
     <i class="icon-trash"></i>
       <%= link_to 'Move to trash', [:trash, conversation], method: :post %>
     <% end %>  
+    <% if !conversation.read %>
+    <strong>
+    <% end %>
   </p>
 <% end %> 

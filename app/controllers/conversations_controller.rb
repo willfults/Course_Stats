@@ -2,6 +2,10 @@ class ConversationsController < ApplicationController
   before_filter :authenticate_user!
   helper_method :mailbox, :conversation
   
+  def show
+    mark_as_read
+  end
+
   def index
     
   end
@@ -57,5 +61,10 @@ class ConversationsController < ApplicationController
       else subkeys.map{|k| self[k] }
       end
     end
+  end
+  
+  def mark_as_read
+    conversation.read = true
+    conversation.save
   end
 end
