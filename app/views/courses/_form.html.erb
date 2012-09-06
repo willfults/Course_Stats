@@ -56,6 +56,12 @@
       <% elsif @course.id && @course.published %>
         <%= f.submit "Un-Publish and Save", :name => "un_publish", :class => "btn btn-warning", :confirm => "Are you sure you want to Un-Publish?" %>
       <% end %>
+      
+      <% if @course.id %>
+        <%= render :partial => 'courses/share_on_facebook' %>
+      <% else %>
+        <%= "You can share on Facebook after you save." %>
+      <% end %>
     </div>
 
   </div>

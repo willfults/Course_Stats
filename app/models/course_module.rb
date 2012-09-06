@@ -35,3 +35,18 @@ class CourseModule < ActiveRecord::Base
 
   
 end
+# == Schema Information
+#
+# Table name: course_modules
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  summary    :text
+#  class_type :string(255)
+#  file       :string(255)
+#  course_id  :integer
+#  created_at :datetime        not null
+#  updated_at :datetime        not null
+#  position   :integer         default(0)
+#
+

@@ -21,6 +21,9 @@
       <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
       <%= f.password_field :current_password %></div>
       
+      <div><%= f.label :twitter_username %> <i>(for displaying recent tweets)</i><br />
+      <%= f.text_field :twitter_username %></div>
+
       <div><%= link_to "Edit Authentication Services", services_path %></div><br/>
 
       <div><%= f.submit "Update", class: "btn btn-large btn-primary" %></div>

@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(:version => 20120905193205) do
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
+  create_table "linkedin_profiles", :force => true do |t|
+    t.string   "name"
+    t.string   "headline"
+    t.string   "summary"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "microposts", :force => true do |t|
     t.string   "content"
     t.integer  "user_id"
@@ -196,6 +205,7 @@ ActiveRecord::Schema.define(:version => 20120905193205) do
     t.string   "unconfirmed_email"
     t.string   "slug"
     t.string   "avatar"
+    t.string   "twitter_username"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

@@ -29,3 +29,18 @@ class Course < ActiveRecord::Base
   end
 
 end
+# == Schema Information
+#
+# Table name: courses
+#
+#  id          :integer         not null, primary key
+#  name        :string(255)
+#  description :text
+#  user_id     :integer
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
+#  category    :string(255)
+#  privacy     :string(255)
+#  published   :boolean
+#
+
