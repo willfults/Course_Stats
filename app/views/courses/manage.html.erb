@@ -24,20 +24,8 @@
                 <% end %>
                 <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
               </td>
-              <td>
-                <div class="commands">
-                  <ul>
-                    <li>
-                      <%= link_to 'View Statistics', :controller => "statistics", :action => "index", :id => course%>
-                    </li>
-                    <li>
-                      <%= link_to "Delete", course, method: :delete,
-                                                 data: { confirm: "You sure?" },
-                                                 title: course.name %> </span>
-                    </li>
-                  </ul>
-                </div>
-                
+              <td class="commands">
+                <%= link_to 'View Statistics', :controller => "statistics", :action => "index", :id => course%>
               </td>
             </tr>
           <% end %>
@@ -45,7 +33,7 @@
       </table>      
     </div>
     <div class="span3">
-      <%= link_to image_tag("plus-icon.png", :border => 0) + 'Create New Course', {:controller => "courses", :action => "new"}, :class => 'image-link' %>    
+      <%= link_to 'Create New Course', {:controller => "courses", :action => "new"}, :class => 'btn btn-primary' %>    
     </div>
   </div>
 </div>
