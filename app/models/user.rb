@@ -31,9 +31,9 @@ class User < ActiveRecord::Base
   friendly_id :username, use: [:slugged, :history]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :name
-  attr_accessible :password, :password_confirmation, :remember_me, :confirmed_at, :avatar
-  acts_as_messageable
+  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :confirmed_at, :avatar
+  acts_as_messageable # for mailbox
+  ajaxful_rater # for star rating
   
   has_many :courses
   has_many :course_histories

@@ -25,6 +25,7 @@
                 <div class="title"><%= link_to course.name, course_path(course) %></div>
                 <div class="description"><%= truncate course.description, :length => 300 %></div>
                 <span class="status"><%= course_history.status %></span> - <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
+                <%= ratings_for course, :static %>
               </td>
               <td>
                 <div class="commands">
@@ -65,6 +66,7 @@
               <td>
                 <div class="title"><%= link_to course.name, course_path(course) %></div>
                 <div class="description"><%= truncate course.description, :length => 300 %></div>
+                <%= ratings_for course, :static %>
               </td>
               <td>
                 <div class="commands">

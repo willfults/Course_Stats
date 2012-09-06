@@ -84,4 +84,12 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
   end
   
+  def rate
+    @course = Course.find(params[:id])
+    @course.rate(params[:stars], current_user, params[:dimension])
+    respond_to do |format|
+      format.js
+    end
+  end
+  
 end
