@@ -25,13 +25,15 @@ class TopicsController < ApplicationController
 
 		if@forumpost.save
 			flash[:notice] = "Successfully created topic."
- 	      	redirect_to "/forums/#{@topic.forum_id}" 
+			redirect_to "/forums/#{@topic.forum_id}" 
 		else
-			render :action => 'new'
+			render 'new'
 		end
-    	else
-      	render :action => 'new'
+	else 
+		render 'new'
     	end
+
+	
    
   end
 

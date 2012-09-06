@@ -1,6 +1,9 @@
 
 <div>
-	<h2> Forum - <%= @forum.name %> </h2>
+	<% if @course.id %>
+		<h2>Course Name: <%= @course.name %></h2>
+	<% end %>
+	<h2> Forum: <%= @forum.name %> </h2>
 </div>
 
 </br></br>

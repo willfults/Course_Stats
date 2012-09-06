@@ -1,6 +1,6 @@
 class ForumsController < ApplicationController
   def index
-    @forums = Forum.all
+    @forums = Forum.where("course_id is NULL")
     @course = Course.new
     if params[:course_id]
 		@course = Course.find(params[:course_id])
@@ -11,6 +11,10 @@ end
 
   def show
     @forum = Forum.find(params[:id])
+    @course = Course.new
+    if @forum.course_id
+	@course = Course.find(@forum.course_id)
+    end
   end
 
   def new
