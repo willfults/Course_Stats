@@ -14,6 +14,7 @@
 	  </div>
 	  <div class="description"><%= course.description %></div>
 	  <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
+	  <%= ratings_for course, :static %>
 	  <div class="commands">
       <ul>
         <li>

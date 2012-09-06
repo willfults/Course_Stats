@@ -25,6 +25,8 @@
                 <div class="title"><%= link_to course.name, :controller => "courses", :action => "start", :id => course %></div>
                 
                 <div class="description"><%= truncate course.description, :length => 300 %></div>
+                <span class="status"><%= course_history.status %></span> - <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
+                <%= ratings_for course, :static %>
                   
                 <span class="status">
                   <%
@@ -38,6 +40,7 @@
                 <span class="created_at">
                   <%= course.created_at.to_formatted_s(:long) %>
                 </span>
+
               </td>
               <td nowrap>
                 <%= link_to course_history.status == "completed"?'Review Course':'Resume Course', :controller => "courses", :action => "start", :id => course %>
@@ -71,6 +74,7 @@
               <td>
                 <div class="title"><%= link_to course.name, course_path(course) %></div>
                 <div class="description"><%= truncate course.description, :length => 300 %></div>
+                <%= ratings_for course, :static %>
               </td>
               <td nowrap>
                 <%= link_to 'View Course', course_path(course) %>

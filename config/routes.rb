@@ -30,9 +30,14 @@ FirstApp::Application.routes.draw do
   end
   
   resources :courses do
+    member do
+      post :rate
+    end
     get :autocomplete_tag_name, :on => :collection
     resources :course_modules    
   end
+  
+
   
   match "/images/uploads/*path" => "gridfs#serve"
   resources :avatars

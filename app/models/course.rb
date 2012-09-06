@@ -2,7 +2,7 @@ class Course < ActiveRecord::Base
   attr_accessible :description, :name, :privacy, :category, :published, :user_id, :tag_list
   
  
-  
+  ajaxful_rateable :stars => 5
   # acts as taggable on roids
   acts_as_taggable
   

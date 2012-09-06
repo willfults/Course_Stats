@@ -7,7 +7,10 @@
       <p>
         <%= @course.description %>
       </p>
-      
+      <p>
+      	<b>Course Rating:</b> <%= ratings_for @course, current_user %>	
+      </p>
+
     </div>
   </div>
   <div class="row-fluid">
