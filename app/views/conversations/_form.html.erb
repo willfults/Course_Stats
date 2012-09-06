@@ -1,0 +1,16 @@
+<%= form_for :conversation, url: :conversations do |f| %>
+
+  <%= f.label :recipients, 'Email Addresses (use commas to send to multiple addresses)' %>
+  <%= f.text_field :recipients %>
+  
+  <%= f.label :subject %>
+  <%= f.text_field :subject %>
+  
+  <%= f.label :body %>
+  <%= f.text_area  :body, :class => 'input-full' %>
+  
+  <div>	
+  	<%= f.submit :class => "btn btn-primary" %>
+  </div>	
+
+<% end %>

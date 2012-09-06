@@ -1,6 +1,4 @@
 class CoursesController < ApplicationController
-  layout "full_center_layout"
-  
   before_filter :authenticate_user!
   
   autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag' # <- New
@@ -75,6 +73,11 @@ class CoursesController < ApplicationController
   
   def my_courses
     @course_histories = current_user.course_histories
+    @courses = Course.all
+  end
+  
+  def search
+    @courses = Course.search(params[:q])
   end
   
   def video
