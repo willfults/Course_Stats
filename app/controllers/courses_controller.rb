@@ -13,6 +13,15 @@ class CoursesController < ApplicationController
   
   def show
       @course = Course.find(params[:id])
+      
+      respond_to do |format|
+        format.html # new.html.erb
+        format.xml  { render :xml => @course }
+      end
+  end
+   
+  def start
+      @course = Course.find(params[:id])
       @statistics = Statistic.where(:user_id => current_user.id).where(:course_id => @course.id).where(:status => "done")
       
       @course_history = current_user.course_histories.where(:course_id => @course.id).first
@@ -26,7 +35,7 @@ class CoursesController < ApplicationController
         format.html # new.html.erb
         format.xml  { render :xml => @course }
       end
-  end
+  end 
    
   def new
     @course = Course.new
@@ -81,11 +90,15 @@ class CoursesController < ApplicationController
   
   def my_courses
     @course_histories = current_user.course_histories
-    @courses = Course.all
+    @courses = Course.where("published = 1 and privacy='Public'")
   end
   
   def search
-    @courses = Course.search(params[:q])
+    if(params[:q].empty?)
+      @courses = Course.where("published = 1 and privacy='Public'")
+    else
+      @courses = Course.search(params[:q])
+    end
   end
   
   def video

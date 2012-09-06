@@ -16,3 +16,16 @@ input.answer {
 }
 
 ul.quiz_answers { list-style-type: none; }
+
+.course-view {
+  h3 {
+    float:left;
+  }
+  a.btn-success {
+    float:right;
+    width:70px;
+  }
+  p {
+    clear:both;
+  }
+}

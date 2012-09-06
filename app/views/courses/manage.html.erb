@@ -16,6 +16,12 @@
             <tr>
               <td>
                 <div class="title"><%= link_to course.name, :controller => "courses", :action => "edit", :id => course%></div>
+                
+                <% if course.published %>
+                  <span class="label label-success">Published</span>
+                <% else %>
+                  <span class="label">Draft</span>
+                <% end %>
                 <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
               </td>
               <td>

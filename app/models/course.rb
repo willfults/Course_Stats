@@ -18,17 +18,14 @@ class Course < ActiveRecord::Base
     if published == true && self.course_modules.size == 0
       errors[:base] << "Unable to publish courses that have no modules."
       self.published = false
-
     end
   end
 
-  
-  
   belongs_to :user
   has_many :course_modules, :order => "position"
 
   def self.search(query)
-    find_by_sql [ "SELECT * FROM courses WHERE MATCH (name, description) AGAINST ('"+ query +"') "]
+    find_by_sql [ "SELECT * FROM courses WHERE privacy='Public' and published=1 and MATCH (name, description) AGAINST ('"+ query +"') "]
   end
 
 end
