@@ -34,6 +34,7 @@ GEM
     ajaxful_rating (3.0.0.beta8)
     annotate (2.4.1.beta1)
     arel (3.0.2)
+    bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
     bootstrap-sass (2.0.4.2)
     bootstrap-will_paginate (0.0.8)
@@ -43,7 +44,7 @@ GEM
     bson (1.6.4)
     bson_ext (1.6.4)
       bson (~> 1.6.4)
-    builder (3.0.0)
+    builder (3.0.1)
     cancan (1.6.7)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -103,6 +104,8 @@ GEM
     foreigner (1.2.1)
       activerecord (>= 3.0.0)
     friendly_id (4.0.8)
+    gherkin (2.11.2)
+      json (>= 1.4.6)
     gherkin (2.11.2-x86-mingw32)
       json (>= 1.4.6)
     hashie (1.2.0)
@@ -157,7 +160,9 @@ GEM
       tzinfo (~> 0.3.22)
     multi_json (1.3.6)
     multipart-post (1.1.5)
+    mysql2 (0.3.11)
     mysql2 (0.3.11-x86-mingw32)
+    nokogiri (1.5.5)
     nokogiri (1.5.5-x86-mingw32)
     oauth (0.4.7)
     oauth2 (0.8.0)
@@ -275,6 +280,7 @@ GEM
       nokogiri (~> 1.3)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
