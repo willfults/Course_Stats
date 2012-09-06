@@ -41,14 +41,16 @@
                 <%= quiz.text_field :passing_score, :class => 'input-full'%>
               
               <%= quiz.fields_for :quiz_questions do |question| %>
-                <%=question.label :question, "Question " + i.to_s, :class => "question_label"%><span style="float:left;">(Check the correct answer)</span>
-                <% i += 1 %>
-                <%=question.text_field :question, :class => 'input-full'%>
-                <%= question.fields_for :quiz_answers do |answer| %>
-                  <%= answer.label :answer, :class => 'answer', :class => "answer_label"%>
-                  <%= answer.check_box :correct_answer, :class => 'input-check correct_answer'%>
-                  <%= answer.text_field :answer, :class => 'input-full answer'%>
-                <% end %>
+                <fieldset>
+                  <%=question.label :question, "Question " + i.to_s, :class => "question_label"%><span style="float:left;">(Check the correct answer)</span>
+                  <% i += 1 %>
+                  <%=question.text_field :question, :class => 'input-full'%>
+                  <%= question.fields_for :quiz_answers do |answer| %>
+                    <%= answer.label :answer, :class => 'answer', :class => "answer_label"%>
+                    <%= answer.check_box :correct_answer, :class => 'input-check correct_answer'%>
+                    <%= answer.text_field :answer, :class => 'input-full answer'%>
+                  <% end %>
+                </fieldset>
               <% end %>
             <% end %>
           
