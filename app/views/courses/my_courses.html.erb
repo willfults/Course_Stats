@@ -39,15 +39,8 @@
                   <%= course.created_at.to_formatted_s(:long) %>
                 </span>
               </td>
-              <td>
-                <div class="commands">
-                  <ul>
-                    <li>
-                      <%= link_to course_history.status == "completed"?'Review Course':'Resume Course', :controller => "courses", :action => "start", :id => course %>
-                    </li>
-                  </ul>
-                </div>
-                
+              <td nowrap>
+                <%= link_to course_history.status == "completed"?'Review Course':'Resume Course', :controller => "courses", :action => "start", :id => course %>
               </td>
             </tr>
           <% end %>
@@ -79,15 +72,8 @@
                 <div class="title"><%= link_to course.name, course_path(course) %></div>
                 <div class="description"><%= truncate course.description, :length => 300 %></div>
               </td>
-              <td>
-                <div class="commands">
-                  <ul>
-                    <li>
-                      <%= link_to 'View Course', course_path(course) %>
-                    </li>
-                  </ul>
-                </div>
-                
+              <td nowrap>
+                <%= link_to 'View Course', course_path(course) %>
               </td>
             </tr>
           <% end %>
