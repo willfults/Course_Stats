@@ -27,6 +27,9 @@
           <li>
             <%= link_to :conversations do %>
               <i class="icon-comment icon-white"></i>Messages
+              <% if @unread_message_count > 0 %>
+              (<%= @unread_message_count %>)
+              <% end %>
             <% end %>
           </li>
         </ul>
