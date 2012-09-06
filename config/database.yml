@@ -12,7 +12,7 @@ development:
   database: demo_dev
   pool: 5
   username: root
-  password: 
+  password: sairam
   #password is password if necessary
   socket: /tmp/mysql.sock
   host: 127.0.0.1
