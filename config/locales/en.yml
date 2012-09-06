@@ -21,4 +21,10 @@ en:
             question: "Question"
             quiz_answers:
               answer: "Answer"
+
+  frontpage:
+    main_title: "Social University"
+
+  site:
+    name: "Social University"
         

@@ -64,7 +64,7 @@ FirstApp::Application.routes.draw do
   match 'my_courses' => 'courses#my_courses'
   match 'manage/courses' => 'courses#manage'
 
-  match 'courses/:id/video' => 'courses#video'
+  match 'courses/:id/start' => 'courses#start'
   match 'courses/:course_id/course_modules/:id/quiz/' => 'course_modules#quiz_answers'
   match 'courses/:course_id/course_modules/:id/:status/' => 'course_modules#update_stat'
 

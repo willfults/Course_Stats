@@ -50,7 +50,18 @@
       <%= select :course, :privacy, [["Choose One", ""], ["Public", "Public"], ["Private", "Private"]],{},{ :class => 'input-full' } %>
     </div>
     <div class="actions">
-      <%= f.submit :class => "btn btn-primary" %>
+      <%= f.submit "Save", :class => "btn btn-primary" %>
+      <% if @course.id && !@course.published %>
+        <%= f.submit "Publish and Save", :name => "publish", :class => "btn btn-success", :confirm => "Are you sure you want to Publish?" %>
+      <% elsif @course.id && @course.published %>
+        <%= f.submit "Un-Publish and Save", :name => "un_publish", :class => "btn btn-warning", :confirm => "Are you sure you want to Un-Publish?" %>
+      <% end %>
+      
+      <% if @course.id %>
+        <%= render :partial => 'courses/share_on_facebook' %>
+      <% else %>
+        <%= "You can share on Facebook after you save." %>
+      <% end %>
     </div>
 
   </div>

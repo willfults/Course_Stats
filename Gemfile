@@ -21,7 +21,9 @@ gem 'carrierwave', '0.6.2'
 gem 'acts-as-taggable-on', '~> 2.2.2'
 gem 'rails3-jquery-autocomplete'
 gem 'rickshaw_rails'
+
 gem 'ajaxful_rating' , '>= 3.0.0.beta8'
+gem 'linkedin', '~> 0.3.7'
 
 gem 'chronic'
 #gem 'pg'
