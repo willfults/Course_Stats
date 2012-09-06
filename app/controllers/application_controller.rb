@@ -11,9 +11,11 @@ class ApplicationController < ActionController::Base
   
   def getUnreadMessageCount
     count = 0
-    current_user.mailbox.conversations.each do |conversation|
-      if ! conversation.read
-        count += 1
+    if current_user && current_user.mailbox && current_user.mailbox.conversations
+      current_user.mailbox.conversations.each do |conversation|
+        if ! conversation.read
+          count += 1
+        end
       end
     end
     @unread_message_count = count
