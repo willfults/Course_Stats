@@ -16,7 +16,7 @@ class ConversationsController < ApplicationController
 
     conversation = current_user.
       send_message(recipients, *conversation_params(:body, :subject)).conversation
-
+      
     redirect_to conversation
   end
 
@@ -64,7 +64,10 @@ class ConversationsController < ApplicationController
   end
   
   def mark_as_read
-    conversation.read = true
-    conversation.save
+    message = Notification.find_by_conversation_id(conversation.id);
+    if current_user.id != message.sender_id
+      conversation.read = true
+      conversation.save
+    end
   end
 end
