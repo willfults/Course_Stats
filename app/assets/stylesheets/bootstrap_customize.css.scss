@@ -122,3 +122,38 @@ form {
 .dropdown-menu > .active > a > [class*=" icon-"] {
   background-image: url("glyphicons-halflings-white.png");
 }
+
+/* global changes */
+.container.main
+{
+  padding-top:70px; /* not sure why I need to do this */
+}
+
+.controls.remember_me
+{
+  .checkbox
+  {
+    min-height:inherit;
+    margin-bottom:20px;
+  }
+}
+
+.devise_shared_links
+{
+  margin-top:20px;
+}
+
+/* landing page css */
+.home {
+  .hero-unit {
+    padding:20px 60px;
+    min-height: 230px;
+    margin-bottom: 30px;
+    margin-top:0px;
+  }
+}
+
+.services
+{
+  margin-top:10px;
+}
