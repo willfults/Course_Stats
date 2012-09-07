@@ -1,4 +1,4 @@
-<div class="navbar navbar-static-top">
+<div class="navbar navbar-static-top courses_navbar">
   <div class="navbar-inner sub-nav">
     <div class="container">
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -27,12 +27,15 @@
           <li>
             <%= link_to :conversations do %>
               <i class="icon-comment icon-white"></i>Messages
+              <% if @unread_message_count > 0 %>
+              (<%= @unread_message_count %>)
+              <% end %>
             <% end %>
           </li>
         </ul>
         <ul class="nav pull-right">
           <li>
-            <%= link_to "Switch to Course Admin View", manage_courses_path, :class => 'btn btn-success btn-mini'%>
+            <%= link_to "Switch to Course Admin View", manage_courses_path, :class => 'btn btn-success btn-mini admin_swtich_btn'%>
           </li>
         </ul>
       </nav>

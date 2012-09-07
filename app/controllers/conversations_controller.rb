@@ -2,6 +2,10 @@ class ConversationsController < ApplicationController
   before_filter :authenticate_user!
   helper_method :mailbox, :conversation
   
+  def show
+    mark_as_read
+  end
+
   def index
     
   end
@@ -12,7 +16,7 @@ class ConversationsController < ApplicationController
 
     conversation = current_user.
       send_message(recipients, *conversation_params(:body, :subject)).conversation
-
+      
     redirect_to conversation
   end
 
@@ -56,6 +60,14 @@ class ConversationsController < ApplicationController
       when 1 then self[subkeys.first]
       else subkeys.map{|k| self[k] }
       end
+    end
+  end
+  
+  def mark_as_read
+    message = Notification.find_by_conversation_id(conversation.id);
+    if current_user.id != message.sender_id
+      conversation.read = true
+      conversation.save
     end
   end
 end

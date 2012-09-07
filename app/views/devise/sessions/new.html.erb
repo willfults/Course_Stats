@@ -1,26 +1,47 @@
 <% provide(:title, "Sign in") %>
-<h2>Sign in</h2>
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-      <div><%= f.label :email %><br />
-      <%= f.email_field :email %></div>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal well"}) do |f| %>
+      <h3>Sign in</h3>
 
-      <div><%= f.label :password %><br />
-      <%= f.password_field :password %></div>
+			<% flash.each do |name, msg| %>
+				<%= content_tag :div, msg, :style => "color: red", :id => "flash_#{name}" if msg.is_a?(String) %>
+			<% end %>
 
-      <% if devise_mapping.rememberable? -%>
-        <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-      <% end -%>
+      <%= devise_error_messages! %>
 
-      <div>
-        <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
-        <a href="/auth/facebook" title="Sign in with Facebook" class="services"><%= image_tag "facebook_32.png", :size => "32x32",  :alt => "Facebook" %>Facebook</a>
-        <a href="/auth/linkedin" title="Sign in with Linked In" class="services"><%= image_tag "linkedin_32.png", :size => "32x32",  :alt => "Linked In" %>Linked In</a><br/>
+      <div class="control-group">
+        <%= f.label :email, :class => "control-label" %>
+        <div class="controls">
+          <%= f.email_field :email %>
+        </div>    
+      </div>
+
+      <div class="control-group">
+        <%= f.label :password, :class => "control-label" %>
+        <div class="controls">
+          <%= f.password_field :password %>
+        </div>    
+      </div>
+
+       <% if devise_mapping.rememberable? %>
+          <div class="controls remember_me">
+            <label class="checkbox">
+              <%= f.check_box :remember_me, :class => "checkbox" %>
+              <span>Remember Me</span>
+            </label>
+          </div>    
+      <% end %>
+
+      <div class="controls">
+        <%= f.submit "Sign in", class: "btn btn-primary" %>
+
+        <%= render "shared/login_authentication_links" %>
+
+        <%= render "devise/shared/links" %>
       </div>
     <% end %>
 
-    <%= render "devise/shared/links" %>
   </div>
 </div>

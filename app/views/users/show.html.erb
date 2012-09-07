@@ -43,6 +43,9 @@
       Name: <%= @linkedin_profile.name %><br/><br/>
       Headline: <%= @linkedin_profile.headline %><br/><br/>
       Summary: <%= @linkedin_profile.summary %><br/><br/>
+      <%= button_to 'Update From Linked In', '/auth/linkedin', :class => 'btn btn-primary' %>
+    <% else %>
+      <%= button_to 'Get Linked In Profile', '/auth/linkedin', :class => 'btn btn-primary' %>
     <% end %>
   </div>
 </div>

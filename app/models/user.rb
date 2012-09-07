@@ -78,10 +78,6 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id).destroy
   end
   
-  def name
-    email
-  end
-  
   private
 
     def isCropped?

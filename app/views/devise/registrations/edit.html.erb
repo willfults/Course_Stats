@@ -1,38 +1,66 @@
 <% provide(:title, "Edit user") %> 
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => "form-horizontal well" }) do |f| %>
       <%= devise_error_messages! %>
 
-    	<div><%= f.label :name %><br />
-      <%= f.text_field :name %></div>
+      <h3>Edit Settings</h3>
 
-      <div><%= f.label :email %><br />
-      <%= f.email_field :email %></div>
+      <div class="control-group">
+        <%= f.label :name, :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :name %>
+        </div>    
+      </div>
 
-      <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-      <%= f.password_field :password, :autocomplete => "off" %></div>
+      <div class="control-group">
+        <%= f.label :email, :class => "control-label" %>
+        <div class="controls">
+          <%= f.email_field :email %>
+        </div>    
+      </div>
 
-      <div><%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation %></div>
+      <div class="control-group">
+        <%= f.label :password, :class => "control-label" %>
+        <div class="controls">
+          <%= f.password_field :password, :autocomplete => "off" %>
+          <span class="help-inline">(leave blank if you don't want to change it)</span>
+        </div>    
+      </div>
 
-      <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password %></div>
-      
-      <div><%= f.label :twitter_username %> <i>(for displaying recent tweets)</i><br />
-      <%= f.text_field :twitter_username %></div>
+      <div class="control-group">
+        <%= f.label :password_confirmation, :class => "control-label" %>
+        <div class="controls">
+          <%= f.password_field :password_confirmation, :autocomplete => "off" %>
+        </div>    
+      </div>
 
-      <div><%= link_to "Edit Authentication Services", services_path %></div><br/>
 
-      <div><%= f.submit "Update", class: "btn btn-large btn-primary" %></div>
+      <div class="control-group">
+        <%= f.label :current_password, :class => "control-label" %>
+        <div class="controls">
+          <%= f.password_field :current_password, :autocomplete => "off" %>
+          <span class="help-inline">(needed to confirm your changes)</span>
+        </div>    
+      </div>
+
+      <div class="control-group">
+        <%= f.label :twitter_username, :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :twitter_username, :autocomplete => "off" %>
+          <span class="help-inline">(for displaying recent tweets)</span>
+        </div>    
+      </div>
+
+      <div class="controls">
+        <%= f.submit "Update", class: "btn btn-primary" %>
+        <%= link_to "Cancel", :back %>
+      </div>
     <% end %>
-
-    <h3>Cancel my account</h3>
 
     <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
 
-    <%= link_to "Back", :back %>
+    
   </div>
 </div>
