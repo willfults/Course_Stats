@@ -29,11 +29,8 @@
                                                  title: course.name %> </span>
                     </li>
                      <li>
-          			<%= link_to 'List Course Forums', :controller => "forums", :action => "index", :course_id => course %>
-        		   </li>
-			   <li>
-          			<%= link_to 'Create Course Forum', :controller => "forums", :action => "new", :course_id => course %>
-        		   </li>
+				<li><%= link_to "Course Forums", :controller => "forums", :action => "index", :course_id => course %>
+			   </li>
 	            </ul>
                 </div>
                 

@@ -3,6 +3,8 @@ class Forum < ActiveRecord::Base
 	attr_accessible :description, :name, :course_id
  
 	has_many :topics, :dependent => :destroy
+
+	belongs_to :course
 	
 	validates :name, :presence => true, :uniqueness => true, 
 				:length => { :maximum => 255, :too_long => "%{count} characters is the max allowed" }

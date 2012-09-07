@@ -11,7 +11,9 @@ class ForumpostsController < ApplicationController
 
   def new
     @forumpost = Forumpost.new
-    @topic = Topic.new
+    @course = Course.new
+    @topic = Topic.find(params[:topic_id])
+    @forum = Forum.where(:id=>@topic.forum_id)	
   end
 
 
@@ -19,8 +21,8 @@ class ForumpostsController < ApplicationController
    @forumpost = Forumpost.new(:content => params[:forumpost][:content], 
 	:topic_id => params[:forumpost][:topic_id], :user_id => current_user.id)
    if @forumpost.save
-	@topic = Topic.find(@forumpost.topic_id)
-	@topic.update_attributes(:last_poster_id => current_user.id, :last_post_at => Time.now)
+	@topic = Topic.where(:id=>@forumpost.topic_id)
+	@topic.update_all(:last_poster_id => current_user.id, :last_post_at => Time.now)
 	flash[:notice] = "Successfully created post."
       redirect_to "/topics/#{@forumpost.topic_id}"
     else

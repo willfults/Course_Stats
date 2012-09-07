@@ -1,13 +1,23 @@
+<div class="container-fluid">
+</br>
 
-<div>
-	<% if @course.id %>
-		<h2>Course Name: <%= @course.name %></h2>
-	<% end %>
-	<h2> Forum: <%= @forum.name %> </h2>
+<div class="row-fluid">
+<div class="span6">
+<% if @course.id %>
+	<h3>Course Name: <%= @course.name %></h2>
+<% end %>
+<h4> Forum Name: <%= @forum.name %> </h2>
+</br>
+<h4>Topics</h4>
+</div>
 </div>
 
 </br></br>
-<div>
+
+<div class="row-fluid">
+<div class="span12">
+<div class="table table-hover">
+<body>
 <table>
 	<tr>
 		<th width="60%">Topic Title</th>
@@ -17,7 +27,7 @@
 	<% for topic in @forum.topics %>
 	<tr>
 		<td><%= link_to h(topic.name), topic_path(topic.id) %>
-		<td>><%= topic.forumposts.count %></td>
+		<td><%= topic.forumposts.count %></td>
 		<td class="right">
 			<%= distance_of_time_in_words_to_now topic.last_post_at %> ago by
 			<%= topic.user.slug %>
@@ -26,11 +36,21 @@
 	</tr>
 	<% end %>
 </table>
+</body>
+</div>
+</div>
 </div>
 
-</br>
+</br></br>
 
 <div>
-	<p><%= link_to "New Topic", "/topics/new?forum=#{@forum.id}" %></p>
+	<%= link_to "New Topic", :controller=>"topics", :action=>"new", :forum_id=>@forum %>
+	
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	
+	<%= link_to "Back to Forum List", :controller=>"forums", :action=>"index", :course_id=>@forum.course_id %>
+
+</div>
+
 </div>
 

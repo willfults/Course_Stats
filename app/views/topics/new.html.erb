@@ -1,5 +1,24 @@
-<h2> Create new topic </h2>
+<div class="container-fluid">
+</br>
+<div class="row-fluid">
+<div class="span6">
+<% if !@course.name.blank? %>
+	<h3>Course Name: <%= @course.name %></h2>
+<% end %>
+<h4> Forum Name: <%= @forum.name %> </h2>
+</br>
+<h4> Create Topic </h2>
+</div>
+</div>
 
-<%= render 'form' %>
+</br>
 
-<p><%= link_to "Back to List", topics_path %></p>
+<div class="container">
+	<%= render 'form' %>
+</div>
+
+<div>
+<%= link_to "Back to Forum", :controller=>"forums", :action=>"show", :id=>@forum.id %></p>
+</div>
+
+</div>

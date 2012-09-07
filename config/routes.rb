@@ -70,6 +70,7 @@ FirstApp::Application.routes.draw do
 
   match 'forums' => 'forums#index'
   match 'forums/:id' => 'forums#show'
+  match 'show_forum' => 'forums#show'
   match 'new_forum' => 'forums#new'
   match 'topics' => 'topics#index'
   match 'topics/:id' => 'topics#show'

@@ -6,10 +6,20 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
+    @forum = Forum.find(@topic.forum)
+    @course = Course.new
+    if @forum.course_id
+	@course = Course.where(:id=>@forum.course_id)
+    end
   end
 
   def new
     @topic = Topic.new
+    @course = Course.new
+    @forum = Forum.find(params[:forum_id])
+   if @forum.course_id
+	@course = Course.where(:id=>@forum.course_id)
+    end
     @forumpost = Forumpost.new
   end
 
@@ -17,24 +27,22 @@ class TopicsController < ApplicationController
   def create
       @topic = Topic.new( :name => params[:topic][:name], :last_poster_id => current_user.id, :last_post_at => Time.now, 
 		:forum_id => params[:topic][:forum_id], :user_id => current_user.id)
+
+	@forum = Forum.find(params[:topic][:forum_id])
     
 	if @topic.save
-		@forumpost = Forumpost.new(:content => params[:forumpost][:content], :topic_id => @topic.id, :user_id => current_user.id)
+		@forumpost = Forumpost.new(:content => params[:topic][:description], :topic_id => @topic.id, :user_id => current_user.id)
 		@topic = Topic.new(:name => params[:topic][:name], :last_poster_id => current_user.id, :last_post_at => Time.now, 
 		:forum_id => params[:topic][:forum_id])
 
 		if@forumpost.save
-			flash[:notice] = "Successfully created topic."
-			redirect_to "/forums/#{@topic.forum_id}" 
+			redirect_to show_forum_path(:id => @topic.forum_id ), :notice => "Successfully created forum topic."
 		else
-			render 'new'
+			redirect_to show_forum_path(:id => @topic.forum_id ), :notice => "Error while creating forum topic."
 		end
 	else 
-		render 'new'
+		redirect_to show_forum_path(:id => @topic.forum_id ), :notice => "Error while creating forum topic."
     	end
-
-	
-   
   end
 
 

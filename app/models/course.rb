@@ -12,5 +12,6 @@ class Course < ActiveRecord::Base
   
   belongs_to :user
   has_many :course_modules, :order => "position"
+  has_many :forums
   
 end
