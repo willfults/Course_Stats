@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   
   def getUnreadMessageCount
     count = 0
-    if current_user && current_user.mailbox && current_user.mailbox.conversations
+    if user_signed_in?
       current_user.mailbox.conversations.each do |conversation|
         message = Notification.find_by_conversation_id(conversation.id);
         if ! conversation.read && current_user.id != message.sender_id
