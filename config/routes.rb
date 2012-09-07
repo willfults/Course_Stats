@@ -37,7 +37,8 @@ FirstApp::Application.routes.draw do
     resources :course_modules    
   end
   
-
+  resources :linkedin_profile
+  match 'linkedin_profile/:slug/edit' => 'linkedin_profile#edit'
   
   match "/images/uploads/*path" => "gridfs#serve"
   resources :avatars

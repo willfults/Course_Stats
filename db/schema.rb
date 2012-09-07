@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120906204925) do
+ActiveRecord::Schema.define(:version => 20120907223815) do
 
   create_table "conversations", :force => true do |t|
     t.string   "subject",    :default => ""
@@ -75,10 +75,10 @@ ActiveRecord::Schema.define(:version => 20120906204925) do
   create_table "linkedin_profiles", :force => true do |t|
     t.string   "name"
     t.string   "headline"
-    t.string   "summary"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.text     "summary"
   end
 
   create_table "microposts", :force => true do |t|

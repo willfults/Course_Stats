@@ -88,6 +88,7 @@ class UsersController < ApplicationController
     end
     
     def linkedin_profile
+      @profile = LinkedinProfile.find_by_user_id(@user.id);
       @linkedin_profile = @user.linkedin_profile ||= LinkedinProfile.new
       if $LINKEDIN_HASH
         token = $LINKEDIN_HASH["credentials"]["token"]

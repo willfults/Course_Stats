@@ -1,2 +1,0 @@
-class LinkedProfileController < ApplicationController
-end
