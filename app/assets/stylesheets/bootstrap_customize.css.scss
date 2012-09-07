@@ -1,0 +1,110 @@
+body {
+  padding-left:0px;
+  padding-right:0;
+}
+
+header.navbar, footer.navbar {
+  margin-bottom:0px;
+}
+
+.navbar-inner {
+    border-radius:0px;
+    
+    .navbar-search {
+      .search-query {
+        border-color: white;
+        background-color:white;
+        color: black;
+      }
+      .search-query:-moz-placeholder {
+        color: black;
+      } 
+    }
+    
+    .nav > li > a.btn-success:focus,
+    .nav > li > a.btn-success:hover {
+      background-color:#98b64d;
+    }
+}
+
+.navbar-inner.sub-nav {
+}
+
+
+
+.navbar .nav li a.btn {
+  padding: 4px 10px;
+}
+
+i {
+  margin-right: 3px;
+}
+
+.main-container {
+  width:100%;
+}
+
+td.commands {
+  text-align:right;
+}
+
+
+.signin .controls {
+  margin-left:0;
+}
+
+.home {
+  .hero-unit {
+    padding:10px 40px;
+    min-height: 220px;
+    margin-bottom: 20px;
+    margin-top:0px;
+  }
+  .row-fluid {
+    margin: 0px 0 0 0;
+  }
+}
+
+div.title a {
+  font-size:1.2em;
+}
+
+div.commands{
+  text-align:right;
+  ul{
+    display:inline;
+    list-style:none;
+    list-style-type:none;
+    margin:0px;
+    padding:0px;
+  }
+  li{
+    width:173px;
+    display:inline;
+    list-style:none;
+    list-style-type:none;
+    margin:0px;
+    border:none;
+    border-left: 1px solid;
+    line-height: 13px;
+    padding: 0px 5px 0px 5px;
+  }
+  li:first-child{
+    border-left:none;
+    padding:0px;
+  }
+}
+
+form {
+  .input-full {
+    width: 90%;  
+  }
+  textarea.input-full {
+    height: 80px;  
+  }
+  .actions {
+    clear:both;
+    float:right;
+  }
+}
+
