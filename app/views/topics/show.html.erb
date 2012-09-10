@@ -30,8 +30,8 @@
 <% for forumpost in @topic.forumposts %>
 	
 	<tr>
-		<td><%= forumpost.user.slug %>
-		<td><%= forumpost.created_at.in_time_zone("Pacific Time (US & Canada)")%>
+		<td><%= forumpost.user.name %>
+		<td><%= forumpost.created_at.strftime("%b %d, %Y %I:%M %p") %>
 		<td class="right"><%= forumpost.content %></td>
 	</tr>
 <% end %>
