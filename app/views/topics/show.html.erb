@@ -1,0 +1,52 @@
+<div class="container-fluid">
+</br>
+
+<div class="row-fluid">
+<div class="span6">
+<% if @forum.course_id %>
+	<h3>Course Name: <%= @course.name %></h3>
+<% end %>
+<h4> Forum Name: <%= @forum.name %> </h4>
+<h4> Topic Name: <%= @topic.name %> </h4>
+</br>
+<h4>Topic Posts</h4>
+</div>
+</div>
+
+
+</br></br>
+
+<div class="row-fluid">
+<div class="span12">
+<div class="table table-hover">
+<body>
+<table>
+	<tr>
+		<th width="30%">Posted By</th>
+		<th width="20%">Post Date</th>
+		<th width="50%">Post Content</th>
+	</tr>
+
+<% for forumpost in @topic.forumposts %>
+	
+	<tr>
+		<td><%= forumpost.user.slug %>
+		<td><%= forumpost.created_at.in_time_zone("Pacific Time (US & Canada)")%>
+		<td class="right"><%= forumpost.content %></td>
+	</tr>
+<% end %>
+
+</table>
+</body>
+</div>
+</div>
+</div>
+
+
+</br> 
+
+<div>
+	<%= link_to "Reply", :controller=>"forumposts", :action=>"new", :topic_id=>@topic %>
+	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  	<%= link_to "View All Topics", forum_path(@topic.forum_id) %>
+</div>

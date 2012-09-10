@@ -1,4 +1,3 @@
-
 <%= render 'courses_admin_menu' %>
 
 <div class="container-fluid user_courses_container">
@@ -27,6 +26,10 @@
               <td class="commands">
                 <%= link_to 'View Statistics', :controller => "statistics", :action => "index", :id => course%>
               </td>
+		  <td class="commands">
+			<%= link_to "Course Forums", :controller => "forums", :action => "index", :course_id => course %>
+		  </td>
+
             </tr>
           <% end %>
         </tbody>

@@ -1,6 +1,5 @@
 <%= render 'courses_menu' %> 
 
-
 <div class="container-fluid user_courses_container">
   <div class="row-fluid">
     <div class="span12">
@@ -79,6 +78,9 @@
               <td nowrap>
                 <%= link_to 'View Course', course_path(course) %>
               </td>
+		   <td nowrap>
+			<%= link_to "Course Forums", :controller => "forums", :action => "index", :course_id => course %>
+		   </td>
             </tr>
           <% end %>
         </tbody>

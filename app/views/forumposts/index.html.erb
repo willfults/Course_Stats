@@ -1,0 +1,28 @@
+<h2> Posts </h2>
+
+
+<div class="row-fluid">
+<div class="span12">
+<div class="table table-hover">
+<body>
+<table>
+  <tr>
+	<th width="30%">Posted By</th>
+	<th width="20%">Post Date</th>
+	<th width="50%">Content</th>
+  </tr>
+  <% for forumpost in @forumposts %>
+    <tr>
+	<td><%= forumpost.user.slug %></td>
+	<td><%= forumpost.created_at %></td>
+      <td><%= forumpost.content %></td>
+    </tr>
+  <% end %>
+</table>
+</body>
+</div>
+</div>
+</div>
+
+
+<p><%= link_to "New Post", new_forumpost_path %></p>

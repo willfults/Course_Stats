@@ -1,0 +1,29 @@
+<div class="container-fluid">
+
+<div class="row-fluid">
+<div class="span6">
+</br>
+<% if @course.id %>
+	<h3>Course Name: <%= @course.name %></h2>
+<% end %>
+</br>
+<h4>Create Forum </h2>
+</div>
+</div>
+
+</br>
+<div class="container">
+	<%= render 'form' %>
+</div>
+
+<div class="row-fluid">
+<div class="span6">
+<% if @course.id %>
+	<p><%= link_to "Back to Forums", :controller => "forums", :action => "index", :course_id => @course %></p>
+<% else %>
+	<p><%= link_to "Back to Forums", :controller => "forums", :action => "index" %></p>
+<% end %>
+</div>
+</div>
+
+</div>

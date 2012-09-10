@@ -1,0 +1,23 @@
+<div class="container-fluid">
+</br>
+
+<div class="row-fluid">
+<div class="span6">
+<h4> Forum Name: <%= @forum.name %> </h4>
+<h4> Topic Name: <%= @topic.name %> </h4>
+</br>
+<h4>New Post</h4>
+</div>
+</div>
+
+</br></br>
+
+<div class="container">
+	<%= render 'form' %>
+</div>
+
+<div>
+<%= link_to "Back to Topic", :controller=>"topics", :action=>"show", :id=>@topic %>
+</div>
+
+</div>
