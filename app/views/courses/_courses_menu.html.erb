@@ -9,7 +9,7 @@
       <nav class="nav-collapse">
         <ul class="nav pull-left">
           <li class="">
-            <%= link_to '#' do %> 
+            <%= link_to dashboard_user_path(current_user) do %> 
               <i class="icon-home icon-white"></i>Dashboard
             <% end %>  
           </li>
@@ -19,7 +19,7 @@
             <% end %>  
           </li>
           <li>
-            <%= link_to '#' do %>
+            <%= link_to achievements_user_path(current_user) do %>
               <i class="icon-star icon-white"></i>Achievements
             <% end %>
           </li>
