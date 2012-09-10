@@ -48,6 +48,13 @@ ActiveRecord::Schema.define(:version => 20120907223815) do
     t.integer  "position",   :default => 0
   end
 
+  create_table "courseforums", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "forum_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.text     "description"
@@ -60,6 +67,22 @@ ActiveRecord::Schema.define(:version => 20120907223815) do
   end
 
   add_index "courses", ["name", "description"], :name => "fulltext_courses"
+
+  create_table "forumposts", :force => true do |t|
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "topic_id"
+    t.integer  "user_id"
+  end
+
+  create_table "forums", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "course_id"
+  end
 
   create_table "friendly_id_slugs", :force => true do |t|
     t.string   "slug",                         :null => false
@@ -193,6 +216,16 @@ ActiveRecord::Schema.define(:version => 20120907223815) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "topics", :force => true do |t|
+    t.string   "name"
+    t.integer  "last_poster_id"
+    t.datetime "last_post_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "forum_id"
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|
