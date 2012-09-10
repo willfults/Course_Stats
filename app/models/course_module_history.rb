@@ -7,6 +7,7 @@ class CourseModuleHistory < ActiveRecord::Base
   has_one :user
 
   belongs_to :course_history
+  belongs_to :course_module
 
 end
 # == Schema Information
