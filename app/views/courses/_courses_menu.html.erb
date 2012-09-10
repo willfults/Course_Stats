@@ -8,23 +8,23 @@
         </a>
       <nav class="nav-collapse">
         <ul class="nav pull-left">
-          <li class="">
-            <%= link_to '#' do %> 
+          <li class="dashboard <%= highlight == "dashboard" ? "active" : "" %>">
+            <%= link_to dashboard_user_path(current_user) do %> 
               <i class="icon-home icon-white"></i>Dashboard
             <% end %>  
           </li>
-          <li  class="active">
+          <li  class="courses <%= highlight == "courses" ? "active" : "" %>">
             <%= link_to my_courses_path do %> 
               <i class="icon-book icon-white"></i>Courses Library
             <% end %>  
           </li>
-          <li>
-            <%= link_to '#' do %>
+          <li  class="achievements <%= highlight == "achievements" ? "active" : "" %>">
+            <%= link_to achievements_user_path(current_user) do %>
               <i class="icon-star icon-white"></i>Achievements
             <% end %>
           </li>
           
-          <li>
+          <li  class="messages <%= highlight == "messages" ? "active" : "" %>">
             <%= link_to :conversations do %>
               <i class="icon-comment icon-white"></i>Messages
               <% if @unread_message_count > 0 %>

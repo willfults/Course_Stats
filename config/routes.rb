@@ -18,14 +18,14 @@ FirstApp::Application.routes.draw do
     member do
       get :following, :followers
       get :crop
+      get :dashboard
+      get :achievements
     end
   end
   
   resources :conversations, only: [:index, :show, :new, :create] do
     member do
       post :reply
-      post :trash
-      post :untrash
     end
   end
   
