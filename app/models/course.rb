@@ -23,6 +23,7 @@ class Course < ActiveRecord::Base
 
   belongs_to :user
   has_many :course_modules, :order => "position"
+  has_many :forums
 
   def self.search(query)
     find_by_sql [ "SELECT * FROM courses WHERE privacy='Public' and published=1 and MATCH (name, description) AGAINST ('"+ query +"') "]

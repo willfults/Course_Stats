@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <%= render 'courses_admin_menu' %>
 
@@ -27,6 +28,10 @@
               <td class="commands">
                 <%= link_to 'View Statistics', :controller => "statistics", :action => "index", :id => course%>
               </td>
+		  <td class="commands">
+			<%= link_to "Course Forums", :controller => "forums", :action => "index", :course_id => course %>
+		  </td>
+
             </tr>
           <% end %>
         </tbody>
@@ -37,3 +42,52 @@
     </div>
   </div>
 </div>
+=======
+<%= render 'courses_admin_menu' %>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span9">
+      <table class="table table-hover">
+        <tbody>
+          <% 
+          if @courses.empty? 
+            %>
+              <tr><td>No Courses.</td></tr> 
+            <%
+          end
+          @courses.each do |course| %>
+            <tr>
+              <td>
+                <div class="title"><%= link_to course.name, :controller => "courses", :action => "edit", :id => course%></div>
+                <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
+              </td>
+              <td>
+                <div class="commands">
+                  <ul>
+                    <li>
+                      <%= link_to 'View Statistics', :controller => "statistics", :action => "index", :id => course%>
+                    </li>
+                    <li>
+                      <%= link_to "Delete", course, method: :delete,
+                                                 data: { confirm: "You sure?" },
+                                                 title: course.name %> </span>
+                    </li>
+                     <li>
+				<%= link_to "Course Forums", :controller => "forums", :action => "index", :course_id => course %>
+			   </li>
+	            </ul>
+                </div>
+                
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>      
+    </div>
+    <div class="span3">
+      <%= link_to image_tag("plus-icon.png", :border => 0) + 'Create New Course', {:controller => "courses", :action => "new"}, :class => 'image-link' %>    
+    </div>
+  </div>
+</div>
+>>>>>>> 0b4dd1c1ff216178b652c0c639fe2c17ae665a90

@@ -1,0 +1,59 @@
+<div class="container-fluid">
+</br>
+<div class="row-fluid">
+<div class="span6">
+<% if @course.id %>
+	<h3>Course Name: <%= @course.name %></h2>
+<% end %>
+</br>
+<h4>Forums</h4>
+</div>
+</div>
+
+</br>
+
+<div class="row-fluid">
+<div class="span12">
+<div class="table table-hover">
+<body>
+<table>
+  <tr>
+    <th width="70%">Forum Name</th>
+    <th width="30%">Last Topic</th>
+  </tr>
+
+  <% for forum in @forums %>
+    <tr>
+	<td><h4><%= link_to h(forum.name), forum_path(forum.id) %></h4>
+		<small><%= forum.topics.count %> topics </small><br />
+		<%=h forum.description %></td>
+	<td class="right">
+		<% if forum.most_recent_topic %>
+			<%= distance_of_time_in_words_to_now forum.most_recent_topic.created_at %> ago by
+			<%= forum.most_recent_topic.user.slug %>
+		<% else %>
+			No Topics
+		<% end %>
+	</td>
+	
+    </tr>
+  <% end %>
+      
+</table>
+</body>
+</div>
+</div>
+</div>
+
+</br></br>
+
+<div>
+	<% if @course.id %>
+		<p><%= link_to "New Forum", :controller => "forums", :action => "new", :course_id => @course %></p>
+	<% else %>
+		<p><%= link_to "New Forum", new_forum_path %></p>
+	<% end %>
+</div>
+
+</div>
+

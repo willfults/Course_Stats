@@ -1,0 +1,13 @@
+
+<h2> Post Content </h2>
+
+<p>
+  <strong>Content:</strong>
+  <%= @forumpost.content %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_forumpost_path(@forumpost) %> |
+  <%= link_to "Destroy", @forumpost, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", forumposts_path %>
+</p>
