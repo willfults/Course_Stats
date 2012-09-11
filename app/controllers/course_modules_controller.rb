@@ -182,4 +182,53 @@ class CourseModulesController < ApplicationController
       course_history.course_module_histories.where(:course_module_id => module_id).first
   end
 
+  def next
+    get_class
+    @course_module = @course.course_modules.where(:id => params[:id]).first   
+    course_history = get_course_history(@course.id)
+    course_module_history = get_course_module_history(course_history, @course_module)
+    
+    # THIS CODE COULD BE SIMPLER IF WE GUARENTEE MODULE POSITIONS ARE SEQUENTIAL. 
+    position_in_modules = 0
+    if course_module_history.status != "completed"
+      redirect_to course_course_module_path(@course, @course_module), :flash => { :error => "You have not completed this module." }
+    else
+      @course.course_modules.each_with_index do |course_module, index|
+        if @course_module.position == course_module.position
+          position_in_modules = index
+          break
+        end
+      end
+      
+      if @course.course_modules.size == position_in_modules+1
+        redirect_to course_path(@course) + "/start"
+      else
+        redirect_to course_course_module_path(@course, @course.course_modules[position_in_modules+1])
+      end
+    end
+      
+  end
+  
+  def previous
+    get_class
+    @course_module = @course.course_modules.where(:id => params[:id]).first   
+    course_history = get_course_history(@course.id)
+    course_module_history = get_course_module_history(course_history, @course_module)
+    
+    # THIS CODE COULD BE SIMPLER IF WE GUARENTEE MODULE POSITIONS ARE SEQUENTIAL. 
+    position_in_modules = 0
+    @course.course_modules.each_with_index do |course_module, index|
+      if @course_module.position == course_module.position
+        position_in_modules = index
+        break
+      end
+    end
+    
+    if position_in_modules == 0
+      redirect_to course_path(@course) + "/start"
+    else
+      redirect_to course_course_module_path(@course, @course.course_modules[position_in_modules-1])
+    end
+      
+  end
 end

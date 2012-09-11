@@ -66,7 +66,10 @@ FirstApp::Application.routes.draw do
 
   match 'courses/:id/start' => 'courses#start'
   match 'courses/:course_id/course_modules/:id/quiz/' => 'course_modules#quiz_answers'
+  match 'courses/:course_id/course_modules/:id/next' => 'course_modules#next'
+  match 'courses/:course_id/course_modules/:id/previous' => 'course_modules#previous'
   match 'courses/:course_id/course_modules/:id/:status/' => 'course_modules#update_stat'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
