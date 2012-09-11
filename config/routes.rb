@@ -67,6 +67,8 @@ FirstApp::Application.routes.draw do
 
   match 'courses/:id/start' => 'courses#start'
   match 'courses/:course_id/course_modules/:id/quiz/' => 'course_modules#quiz_answers'
+  match 'courses/:course_id/course_modules/:id/next' => 'course_modules#next'
+  match 'courses/:course_id/course_modules/:id/previous' => 'course_modules#previous'
   match 'courses/:course_id/course_modules/:id/:status/' => 'course_modules#update_stat'
 
   get "forums/index"
@@ -79,7 +81,6 @@ FirstApp::Application.routes.draw do
 
   match 'new_forumpost' => 'forumposts#new'
   match 'edit_forumpost' => 'forumposts#edit'
-
 
 
   # The priority is based upon order of creation:

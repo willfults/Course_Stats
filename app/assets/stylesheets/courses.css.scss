@@ -29,3 +29,24 @@ ul.quiz_answers { list-style-type: none; }
     clear:both;
   }
 }
+
+.module-content {
+  margin-top:10px;
+  margin-bottom:20px;
+}
+
+.course-play-container {
+  table {
+    tr.completed {
+      background-color:#D3FFBF;
+    }
+    tr.unavailable {
+      background-color:whitesmoke;
+      color: #999999;
+    }
+    tr.in_progress {
+      background-color:#E39D64;
+    }
+    
+  }
+}
