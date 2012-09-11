@@ -1,5 +1,7 @@
 
 <h2>Course Statistics - <%= @course.name %></h2>
+<%= link_to 'Back to Course Statistics', :controller => "statistics", :action => "index", :id => @course%>
+
 <div id="chart_main">
 <% # for some reason rickshaw can't render a graph if I use a rails form tag %>
 <form action="<%= statistic_path%>">

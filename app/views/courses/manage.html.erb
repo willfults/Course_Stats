@@ -21,7 +21,7 @@
                 <% else %>
                   <span class="label">Draft</span>
                 <% end %>
-                <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
+                <span class="created_at"><%= course.created_at.strftime("%b %d, %Y %I:%M %p") %></span>
               </td>
               <td class="commands">
                 <%= link_to 'View Statistics', :controller => "statistics", :action => "index", :id => course%>

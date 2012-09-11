@@ -5,7 +5,7 @@
         <ul class="tabs">
             <li class="tab-header classes-tab selected">
               <span>
-                <%= link_to 'Classes', course_course_modules_path(@course) %>
+                <%= link_to 'Courses', manage_courses_path %>
               </span>
             </li>
         </ul>
@@ -20,11 +20,10 @@
               You have no course classes, you must create a course class before you can view it's statistics.
             <%
           end
-          $i = 1;
-          @course_modules.each do |course_modules| %>
+          @course_modules.each_with_index do |course_modules, index| %>
             <li>
               <div class="part">
-                Part <%=$i %>
+                Part <%= index + 1 %>
               </div>
               <div class="summary">
                 <div class="title">
@@ -32,7 +31,6 @@
                 </div>
               </div>
             </li>
-            <% $i +=1%>
           <% end %>
         </ul>
 
