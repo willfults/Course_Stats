@@ -1,7 +1,7 @@
 <%= render_course_subnav( 'dashboard') %>
 
 <% if admin_mode? %>
-  Admin Dashboard for <%= @user.display_name %>
+  Admin Dashboard for <%= @user.name %>
 <% else %>
-  User Dashboard for <%= @user.display_name %>
+  User Dashboard for <%= @user.name %>
 <% end %>
