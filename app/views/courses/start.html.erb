@@ -1,5 +1,5 @@
-<%= render 'courses_menu' %>
-<div class="container-fluid">
+<%= render 'courses_menu', :highlight => "courses"  %>
+<div class="container-fluid course-play-container">
   <div class="row-fluid">
     <div class="span12">
       <h3><%=@course.name %></h3>
@@ -15,23 +15,33 @@
       <table class="table table-hover">
         <tbody>
           <% 
+          lastCompletedModule = @course_history.lastCompletedModule
+          foundStartModule = false;
           @course.course_modules.each_with_index do |course_module, index|
             @module_history = @course_history.course_module_histories.where(:course_module_id => course_module.id).first
             if !@module_history
               @module_history = CourseModuleHistory.new
             end
+            
+            statusClass = @module_history.status
+            if foundStartModule && !@module_history.id
+              statusClass = "unavailable"
+            end
           %>
-          <tr class="<%= @module_history.status %>">
+          <tr class="<%= statusClass %>">
             <td><span>Part <%= index + 1 %></span> - <%= course_module.name %> (<%=course_module.class_type %>)</td>
             <td>
+              <% if !foundStartModule || @module_history.id %>
               <div class="commands">
                 <%= link_to @module_history.status == "in_progress" ? 'Resume':@module_history.status == "completed" ?"Review":"Start", course_course_module_path(@course, course_module) %>
-                <% if(@module_history.status == "completed") %>
-                   - Completed <%=@module_history.created_at.to_formatted_s(:long) %>
-                <% end %>
               </div>
+              <% end %>
             </td>
           </tr>
+            <% if lastCompletedModule < course_module.position 
+              foundStartModule = true
+             end
+            %>
           <% end %>
         </tbody>
       </table>
