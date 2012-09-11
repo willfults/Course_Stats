@@ -3,7 +3,7 @@ body {
   padding-right:0;
 }
 
-header.navbar, footer.navbar {
+header.navbar, footer.navbar, .navbar{
   margin-bottom:0px;
 }
 
@@ -32,9 +32,31 @@ textarea {
     }
 }
 
-.navbar-inner.sub-nav {
+.container.main {
+  width:100%;
+}
+.courses_navbar {
+  .navbar-inner.sub-nav {
+      background-color: #2D82B5;
+      background-image:none;
+      .nav > li > a {
+        color:white;
+      }
+      .nav > li > a:hover,
+      .nav > li > a:focus {
+        color:#C4C4C4;
+      }
+      .nav > .active > a, 
+      .nav > .active > a:hover, 
+      .nav > .active > a:focus {
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3) inset;
+      }
+  }
 }
 
+div.headers {
+  margin-bottom:20px;
+}
 
 
 .navbar .nav li a.btn {
@@ -128,12 +150,6 @@ form {
   background-image: url("glyphicons-halflings-white.png");
 }
 
-/* global changes */
-.container.main
-{
-  padding-top:70px; /* not sure why I need to do this */
-}
-
 .controls.remember_me
 {
   .checkbox
@@ -174,9 +190,4 @@ form {
 .courses_navbar .admin_swtich_btn
 {
   margin-right:30px;
-}
-
-.user_courses_container
-{
-  margin-top:20px;
 }

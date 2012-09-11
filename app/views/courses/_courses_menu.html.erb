@@ -1,3 +1,4 @@
+<% content_for :sub_menu do %>
 <div class="navbar navbar-static-top courses_navbar">
   <div class="navbar-inner sub-nav">
     <div class="container">
@@ -44,4 +45,5 @@
 </div>
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
 <% end %>
