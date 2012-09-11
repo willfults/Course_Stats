@@ -7,7 +7,11 @@
         <%= @course.description %>
       </p>
       <p>
-      	<b>Course Rating:</b> <%= ratings_for @course, current_user %>	
+		<% if @course.user_id != current_user.id %>
+	      	<b>Course Rating:</b> <%= ratings_for @course, current_user %>
+		<% else %>
+			<b>Course Rating:</b> <%= ratings_for @course, :static %>
+		<% end %>
       </p>
 
     </div>
