@@ -8,9 +8,16 @@
       <h3>Edit Settings</h3>
 
       <div class="control-group">
-        <%= f.label :name, :class => "control-label" %>
+        <%= f.label :name, "Full Name", :class => "control-label" %>
         <div class="controls">
           <%= f.text_field :name %>
+        </div>    
+      </div>
+
+      <div class="control-group">
+        <%= f.label :display_name, "Display Name", {:class => "control-label"} %>
+        <div class="controls">
+          <%= f.text_field :display_name, :readOnly => true %>
         </div>    
       </div>
 
@@ -55,7 +62,7 @@
 
       <div class="controls">
         <%= f.submit "Update", class: "btn btn-primary" %>
-        <%= link_to "Cancel", :back %>
+        <%= link_to "Cancel", :root %>
       </div>
     <% end %>
 

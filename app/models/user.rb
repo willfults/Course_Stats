@@ -34,9 +34,12 @@ class User < ActiveRecord::Base
   friendly_id :username, use: [:slugged, :history]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :confirmed_at, :avatar, :twitter_username
+  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :confirmed_at, :avatar, :twitter_username, :display_name
   acts_as_messageable # for mailbox
   ajaxful_rater # for star rating
+  
+  attr_readonly :display_name
+  validates :display_name, :presence => true
 
   has_one :linkedin_profile
   has_many :courses
@@ -51,7 +54,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   has_many :services, :dependent => :destroy
-  has_many :microposts, dependent: :destroy
   mount_uploader :image, ImageUploader
 
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
@@ -64,11 +66,7 @@ class User < ActiveRecord::Base
 
   has_many :topics, :dependent => :destroy
   has_many :forumposts, :dependent => :destroy
-
-
-  def feed
-    Micropost.from_users_followed_by(self)
-  end
+ 
 
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)

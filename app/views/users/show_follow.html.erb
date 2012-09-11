@@ -5,7 +5,6 @@
       <%= image_tag @user.image_url(:thumb).to_s if @user.image?%>
       <h1><%= @user.name %></h1>
       <span><%= link_to "view my profile", @user %></span>
-      <span><b>Microposts:</b> <%= @user.microposts.count %></span>
     </section>
     <section>
       <%= render 'shared/stats' %>

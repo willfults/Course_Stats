@@ -3,8 +3,18 @@ require 'linkedin'
 
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :correct_user,   only: [:edit, :update, :crop]
+  before_filter :correct_user,   only: [:edit, :update, :crop, :dashboard, :achievements]
   before_filter :admin_user,     only: :destroy
+  
+  def dashboard
+    @user = User.find(params[:id])
+    # we will be doing something here later
+  end
+
+  def achievements
+    @user = User.find(params[:id])
+    # we will be doing something here later
+  end
   
   def new
     @user = User.new
@@ -12,7 +22,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
     if @user.avatar? 
       @avatar = Avatar.find(@user.avatar)
     end
@@ -78,8 +87,6 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      logger.info "1 #{@user.id}"
-      logger.info "1 #{current_user.id}"
       redirect_to(root_path) unless current_user == (@user)
     end
 
