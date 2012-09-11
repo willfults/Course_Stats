@@ -34,7 +34,7 @@
 <% for forumpost in @topic.forumposts %>
 	
 	<tr>
-		<td><%= link_to forumpost.user.name, forumpost.user %></td>
+		<td><%= link_to forumpost.user.display_name, forumpost.user %></td>
 		<td><%= forumpost.created_at.strftime("%b %d, %Y %I:%M %p") %>
 		<td class="right"><%= forumpost.content %></td>
 	</tr>
