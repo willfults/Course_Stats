@@ -27,16 +27,16 @@
 <table class="table-bordered table-striped">
 	<tr>
 		<th width="20%">Posted By</th>
-		<th width="20%">Created</th>
 		<th width="60%">Post Content</th>
+		<th width="20%">Created</th>
 	</tr>
 
 <% for forumpost in @topic.forumposts %>
 	
 	<tr>
 		<td><%= link_to forumpost.user.display_name, forumpost.user %></td>
-		<td><%= forumpost.created_at.strftime("%b %d, %Y %I:%M %p") %>
 		<td class="right"><%= forumpost.content %></td>
+		<td><%= forumpost.created_at.strftime("%b %d, %Y %I:%M %p") %>
 	</tr>
 <% end %>
 
