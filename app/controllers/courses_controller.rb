@@ -84,11 +84,13 @@ class CoursesController < ApplicationController
     redirect_to courses_path
   end
   
-  def manage 
+  def manage
+    set_admin_mode(true)
     @courses = current_user.courses
   end
   
   def my_courses
+    set_admin_mode(false)
     @course_histories = current_user.course_histories
     @courses = Course.where("published = 1 and privacy='Public'")
   end

@@ -1,3 +1,7 @@
-<%= render 'courses/courses_menu', :highlight => 'dashboard'%>
+<%= render_course_subnav( 'dashboard') %>
 
-Dashboard for <%= @user.name %>
+<% if admin_mode? %>
+  Admin Dashboard for <%= @user.display_name %>
+<% else %>
+  User Dashboard for <%= @user.display_name %>
+<% end %>

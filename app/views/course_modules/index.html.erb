@@ -22,16 +22,24 @@
               <tr><td>No Course Modules.</td></tr> 
             <%
           end
-          $i = 1;
-          @course_modules.each do |course_module| %>
+            @course_modules.each_with_index do |course_module, index| %>
             <tr>
               <td>
                 <div class="part">
-                  Part <%=$i %>
+                  Part <%= index + 1 %>
                 </div>
                 <div class="title">
-                  <%= course_module.name %> (<%=course_module.class_type %>)
+                  Name:&nbsp;<%= course_module.name %> (<%=course_module.class_type %>)
                 </div>
+                <div class="title">
+                  Description:&nbsp;<%= course_module.summary %>
+                </div>
+                
+                <% if course_module.class_type == "Image" %>
+                  <div>
+                    <%= image_tag course_module.file.url, :width => "200",  :alt => "Image" %>
+                  </div>
+                <% end %>
               </td>
               <td>
                 <div class="commands">
@@ -46,7 +54,6 @@
                 </div>
               </td>
             </li>
-            <% $i +=1%>
             </tr>
           <% end %>
       

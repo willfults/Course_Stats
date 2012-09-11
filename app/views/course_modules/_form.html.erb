@@ -24,12 +24,18 @@
         <%= f.hidden_field :class_type%>
         <%= f.label :name, @course_module.class_type + " Module Name" %>
         <%= f.text_field :name, :class => 'input-full'%>
-        <%= f.label :summary %>
+        <%= f.label :summary, "Description" %>
         <%= f.text_area :summary, :class => 'input-full' %>
+
+        <% if @course_module.class_type == "Image" && @course_module.file.present? %>
+          <div>
+            <%= image_tag @course_module.file.url, :width => "200",  :alt => "Image" %>
+          </div>
+        <% end %>
             
         <% if @course_module.class_type != "Quiz" %>
            <%= f.label :file %>
-           <%= f.file_field :file, :class=>'input-full'%>
+           <%= f.file_field :file, :class=>'input-full', :value => @course_module.file %>
            <%= f.hidden_field :file_cache %>
         <% end %>
         <% 
