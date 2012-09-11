@@ -1,5 +1,9 @@
 <%= render_course_subnav( 'stats') %>
 
-<% if admin_mode? %>
-  Admin stats for <%= @user.name %>
-<% end %>
+<div class="container-fluid user_courses_container">
+
+  <% if admin_mode? %>
+    Admin stats for <%= @user.name %>
+  <% end %>
+
+</div>
