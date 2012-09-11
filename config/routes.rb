@@ -20,6 +20,7 @@ FirstApp::Application.routes.draw do
       get :crop
       get :dashboard
       get :achievements
+      get :stats
     end
   end
   
