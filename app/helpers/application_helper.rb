@@ -17,4 +17,10 @@ module ApplicationHelper
   def alert
     flash[:alert]
   end
+  
+  def activate_menu(menu_class, selected_menu)
+    class_list = menu_class
+    class_list += (selected_menu == menu_class) ? " active" : ""
+  end
+  
 end
