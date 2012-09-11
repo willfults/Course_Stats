@@ -34,17 +34,13 @@ class User < ActiveRecord::Base
   friendly_id :username, use: [:slugged, :history]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :confirmed_at, :avatar, :twitter_username, :display_name
+  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :confirmed_at, :avatar, :twitter_username
   acts_as_messageable # for mailbox
   ajaxful_rater # for star rating
   
-  attr_readonly :display_name
-  validates :display_name, :presence => true
-
   has_one :linkedin_profile
   has_many :courses
   has_many :course_histories
-  after_initialize :handle_after_initialize
   
   accepts_nested_attributes_for :linkedin_profile
   
@@ -81,9 +77,6 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(other_user.id).destroy
   end
   
-  def handle_after_initialize
-    self.display_name ||= self.slug # if the display_name is not set, use the slug as a default value
-  end
   
   private
 
