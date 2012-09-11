@@ -12,12 +12,9 @@
           
           <div style="float:right;">
             <a href="<%=course_course_module_path(@course, @course_module) %>" class="btn btn-small btn-primary"><i class="icon-backward icon-white"></i>Previous</a>
-            <%= link_to options = {:controller => "courses", :action => "start", :id => @course}, html_options = {:class => "btn btn-small btn-primary"} do %> 
-            <i class="icon-list icon-white"></i>Summary
-            <% end %>
             
             <% 
-            if @course_module.quiz.passing_score > 0 && @correctAnswers >= @course_module.quiz.passing_score
+            if @course_module.quiz.passing_score > 0 && @score >= @course_module.quiz.passing_score
             %>
             <a href="<%=course_course_module_path(@course, @course_module) + "/next" %>" class="btn btn-small btn-primary">Next<i class="icon-forward icon-white"></i></a>
             <% end %>
@@ -27,18 +24,20 @@
       
       <div class="row-fluid module-content" style="">
         <div class="span8" style="min-width:580px">
-          <b>Results</b>
+          <h3>Results</h3>
         
           <p>
             <% 
-            if @course_module.quiz.passing_score > 0 && @correctAnswers >= @course_module.quiz.passing_score
+            if @course_module.quiz.passing_score > 0 && @score >= @course_module.quiz.passing_score
             %>
-              Congratulations you passed! 
-            <% else %>
+              Congratulations you passed!
+              You got <%= @score %>% correct! The passing score was <%=@course_module.quiz.passing_score %>%. 
+            <% elsif @course_module.quiz.passing_score > 0 %>
               To continue you must pass the quiz!
+              You got <%= @score %>% correct! The passing score was <%=@course_module.quiz.passing_score %>%.
+            <% else %>
+              You got <%= @score %>% correct!
             <% end %>
-            
-            You got <%= @correctAnswers %> out of <%= @course_module.quiz.quiz_questions.size%> correct!
             
           </p>
         </div>

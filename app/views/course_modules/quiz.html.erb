@@ -12,9 +12,6 @@
           
           <div style="float:right;">
             <a href="<%=course_course_module_path(@course, @course_module) + "/previous" %>" class="btn btn-small btn-primary"><i class="icon-backward icon-white"></i>Previous</a>
-            <%= link_to options = {:controller => "courses", :action => "start", :id => @course}, html_options = {:class => "btn btn-small btn-primary"} do %> 
-            <i class="icon-list icon-white"></i>Summary
-            <% end %>
             <a href="<%=course_course_module_path(@course, @course_module) + "/next" %>" onclick="document.forms['quiz'].submit();return false;" class="btn btn-small btn-primary">Next<i class="icon-forward icon-white"></i></a>
           </div>
         </div>
@@ -23,7 +20,7 @@
       <div class="row-fluid module-content" style="">
         <div class="span8" style="min-width:580px">
           <p>
-            Passing Score: <%= @course_module.quiz.passing_score %> / <%= @course_module.quiz.quiz_questions.size %>
+            Passing Score: <%= @course_module.quiz.passing_score %>%
           </p>
           
           <div class="quiz">

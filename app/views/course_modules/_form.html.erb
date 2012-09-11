@@ -43,7 +43,7 @@
         if @course_module.class_type == "Quiz" %>
           
             <%= f.fields_for :quiz do |quiz| %>
-                <%= quiz.label :passing_score%>
+                <%= quiz.label :passing_score, "Passing Score %"%>
                 <%= quiz.text_field :passing_score, :class => 'input-full'%>
               
               <%= quiz.fields_for :quiz_questions do |question| %>
