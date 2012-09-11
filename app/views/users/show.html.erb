@@ -1,27 +1,31 @@
+<div class="container-fluid">
+</br>
+
+
+Edit Profile
+
 <% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="span4">
-    <section>
+<div class="row-fluid">
+<div class="span2"></div>
+<div class="span4">
       <h1>
       	<% if current_user == @user %>
     	   	<%= link_to image_tag(@avatar.image.url(:thumb)), edit_avatar_path(@avatar) if @user.avatar? %>
-    	   	<%= link_to image_tag('default_avatar.jpg'), new_avatar_path if !@user.avatar? %>
-    	  	<%= @user.name %>
+    	   	<%= render :partial => 'avatars/form' %>
+    	   	
         <% else %>
         	<%= image_tag(@avatar.image.url(:thumb)) if @user.avatar? %>
     	   	<%= image_tag('default_avatar.jpg') if !@user.avatar? %>
-    	  	<%= @user.name %>
    		<% end %>      
-      </h1>
-    </section>
-    <section>
-      <%= render 'shared/stats' %>
-    </section>
-  </aside>
-  
+   		<%= @user.name %>
+   		</h1>
+        <%= render 'shared/stats' %>
+    </div>
+    <div class="span4"></div>
 </div>
-<div class="row">
-  <div class="span3">
+<div class="row-fluid">
+  <div class="span2"></div>
+  <div class="span4">
       <%= render :partial => 'shared/twitter_feed'%>
       <%= render :partial => 'shared/tweet' %>
   </div>
@@ -43,4 +47,6 @@
       <%= button_to 'Get Linked In Profile', '/auth/linkedin', :class => 'btn btn-primary' %>
     <% end %>
   </div>
+</div>
+
 </div>
