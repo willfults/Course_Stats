@@ -10,7 +10,10 @@
   <%= stylesheet_link_tag('ajaxful_rating') %>
 </head>
 <body>
-  <%= render 'layouts/header' %>
+  <div class="headers">
+    <%= render 'layouts/header' %>
+    <%= yield :sub_menu%>
+  </div>
   <div class="container main">
     <%= yield %>
   </div>
