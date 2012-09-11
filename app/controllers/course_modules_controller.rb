@@ -96,6 +96,12 @@ class CourseModulesController < ApplicationController
         render 'show'
       elsif @course_module.class_type == "Image"
         update_module_as_complete @course_module_history
+        Statistic.create(
+          class_id: @course_module.id,
+          course_id: @course.id,
+          user_id: current_user.id,
+          action: "done"
+        )
         render 'image'        
       elsif @course_module.class_type == "Quiz"
         render 'quiz'        
