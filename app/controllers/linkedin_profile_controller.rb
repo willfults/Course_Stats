@@ -23,7 +23,7 @@ class LinkedinProfileController < ApplicationController
   
     def get_linkedin_profile
       linkedin_profile = current_user.linkedin_profile ||= LinkedinProfile.new
-      if $LINKEDIN_HASH && !current_user.linkedin_profile
+      if $LINKEDIN_HASH && profile_not_saved
         token = $LINKEDIN_HASH["credentials"]["token"]
         secret = $LINKEDIN_HASH["credentials"]["secret"]
         client = LinkedIn::Client.new($LINKEDIN_APP_KEY, $LINKEDIN_APP_SECRET)
@@ -35,6 +35,13 @@ class LinkedinProfileController < ApplicationController
         linkedin_profile.user_id = current_user.id
       end
       linkedin_profile
+    end
+    
+    def profile_not_saved
+      !current_user.linkedin_profile || 
+      (!current_user.linkedin_profile.name && 
+      !current_user.linkedin_profile.headline && 
+      !current_user.linkedin_profile.summary)
     end
   
 end
