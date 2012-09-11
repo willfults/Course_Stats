@@ -28,6 +28,7 @@
               <div class="summary">
                 <div class="title">
                   <%= course_modules.name %> (<%= course_modules.class_type %>) - <%= link_to 'View Statistics', statistic_path(@course, course_modules) %>
+                  - <%= image_tag('stat.gif') %> <%= course_modules.total_views %>
                 </div>
               </div>
             </li>

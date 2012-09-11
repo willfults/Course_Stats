@@ -15,6 +15,10 @@ class CourseModule < ActiveRecord::Base
     class_type !="Quiz"
   end
   
+  def total_views
+    statistics = Statistic.where(:course_id => self.course_id).where(:class_id => self.id).where(:status => "play").count  
+  end
+  
   validates_format_of :file, :with => %r{\.(png|jpg|jpeg)$}i, :if => :validate_image?, :message =>"Invalid image was entered. You can use either png or jpg/jpeg."
   def validate_image?
     class_type =="Image"
