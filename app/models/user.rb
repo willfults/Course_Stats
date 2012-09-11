@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   has_one :linkedin_profile
   has_many :courses
   has_many :course_histories
+  after_initialize :handle_after_initialize
   
   accepts_nested_attributes_for :linkedin_profile
   
@@ -78,6 +79,10 @@ class User < ActiveRecord::Base
 
   def unfollow!(other_user)
     relationships.find_by_followed_id(other_user.id).destroy
+  end
+  
+  def handle_after_initialize
+    self.display_name ||= self.slug # if the display_name is not set, use the slug as a default value
   end
   
   private

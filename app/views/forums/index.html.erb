@@ -43,7 +43,7 @@
 	<td class="right">
 		<% if forum.most_recent_topic %>
 			<%= distance_of_time_in_words_to_now forum.most_recent_topic.created_at %> ago by
-			<%= link_to forum.most_recent_topic.user.name, forum.most_recent_topic.user %>
+			<%= link_to forum.most_recent_topic.user.display_name, forum.most_recent_topic.user %>
 		<% else %>
 			No Topics
 		<% end %>
