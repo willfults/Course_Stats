@@ -34,6 +34,13 @@
         </div>    
       </div>
 
+      <div class="control-group">
+        <%= f.label :display_name, "Display Name", {:class => "control-label"} %>
+        <div class="controls">
+          <%= f.text_field :display_name %>
+        </div>    
+      </div>
+
       <div class="controls">
         <%= f.submit "Sign up", class: "btn btn-primary" %>&nbsp;or <%= link_to "Sign in", new_session_path(resource_name) %>
 

@@ -34,9 +34,12 @@ class User < ActiveRecord::Base
   friendly_id :username, use: [:slugged, :history]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :confirmed_at, :avatar, :twitter_username
+  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :confirmed_at, :avatar, :twitter_username, :display_name
   acts_as_messageable # for mailbox
   ajaxful_rater # for star rating
+  
+  attr_readonly :display_name
+  validates :display_name, :presence => true
 
   has_one :linkedin_profile
   has_many :courses
