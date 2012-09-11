@@ -20,12 +20,12 @@
             <% end %>  
           </li>
           <li class="<%= activate_menu("followers", highlight) %>">
-            <%= link_to '#' do %>
+            <%= link_to followers_user_path(current_user) do %>
               <i class="icon-user icon-white"></i>Followers
             <% end %>
           </li>
           <li class="<%= activate_menu("stats", highlight) %>">
-            <%= link_to '#' do %>
+            <%= link_to stats_user_path(current_user) do %>
               <i class="icon-signal icon-white"></i>Stats
             <% end %>
           </li>

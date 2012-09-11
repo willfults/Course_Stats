@@ -1,0 +1,5 @@
+<%= render_course_subnav( 'stats') %>
+
+<% if admin_mode? %>
+  Admin stats for <%= @user.name %>
+<% end %>
