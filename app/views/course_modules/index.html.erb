@@ -40,6 +40,13 @@
                     <%= image_tag course_module.file.url, :width => "200",  :alt => "Image" %>
                   </div>
                 <% end %>
+                <% if course_module.class_type == "Audio" || course_module.class_type == "Video" %>
+                  <div>
+                    <div id="video">
+                      <video width="200" height="133" class="jwplayer" src="<%=course_module.file %>"></video>
+                    </div>
+                  </div>
+                <% end %>
               </td>
               <td nowrap>
                 <div class="commands">

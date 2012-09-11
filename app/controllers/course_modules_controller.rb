@@ -16,6 +16,7 @@ class CourseModulesController < ApplicationController
     
     if @course_module.class_type == "Quiz" 
       quiz = @course_module.build_quiz
+      quiz.passing_score = 70
       question = quiz.quiz_questions.build
       4.times { question.quiz_answers.build }
     end
@@ -118,16 +119,21 @@ class CourseModulesController < ApplicationController
     quiz = @course_module.quiz
     quiz_questions = quiz.quiz_questions
     
-    @correctAnswers = 0
+    correctAnswers = 0
     quiz_questions.each do |question|
       correctAnswer = question.quiz_answers.where(:correct_answer => true).first
       answer = params["question_" + question.id.to_s]
       if correctAnswer.id.to_s == answer
-        @correctAnswers += 1
+        correctAnswers += 1
       end
     end
+    puts "Correct Answers = " + correctAnswers.to_s
+    puts "Correct Answers = " + quiz_questions.size.to_s
+    puts "Correct Answers2 = " +  ((correctAnswers / quiz_questions.size)).to_s
+    puts "Correct Answers3 = " +  ((correctAnswers / quiz_questions.size) * 100).to_s
+    @score = ((correctAnswers.to_f / quiz_questions.size) * 100).to_i 
     
-    if quiz.passing_score <= @correctAnswers
+    if quiz.passing_score <= @score
       course_history = get_course_history @course.id
       course_module_history = get_course_module_history course_history, @course_module.id
       update_module_as_complete(course_module_history)
