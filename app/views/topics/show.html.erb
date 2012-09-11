@@ -17,20 +17,24 @@
 </br></br>
 
 <div class="row-fluid">
+    <div class="span10"></div>
+	<div class="span2">
+		<%= link_to "Reply", :controller => "forumposts", :action => "new", :topic_id => @topic %>
+    </div>
 <div class="span12">
 <div class="table table-hover">
 <body>
-<table>
+<table class="table-bordered table-striped">
 	<tr>
-		<th width="30%">Posted By</th>
-		<th width="20%">Post Date</th>
-		<th width="50%">Post Content</th>
+		<th width="20%">Posted By</th>
+		<th width="20%">Created</th>
+		<th width="60%">Post Content</th>
 	</tr>
 
 <% for forumpost in @topic.forumposts %>
 	
 	<tr>
-		<td><%= forumpost.user.name %>
+		<td><%= link_to forumpost.user.name, forumpost.user %></td>
 		<td><%= forumpost.created_at.strftime("%b %d, %Y %I:%M %p") %>
 		<td class="right"><%= forumpost.content %></td>
 	</tr>
@@ -46,7 +50,5 @@
 </br> 
 
 <div>
-	<%= link_to "Reply", :controller=>"forumposts", :action=>"new", :topic_id=>@topic %>
-	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
   	<%= link_to "View All Topics", forum_path(@topic.forum_id) %>
 </div>

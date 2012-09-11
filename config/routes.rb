@@ -26,8 +26,6 @@ FirstApp::Application.routes.draw do
   resources :conversations, only: [:index, :show, :new, :create] do
     member do
       post :reply
-      post :trash
-      post :untrash
     end
   end
   
@@ -76,21 +74,12 @@ FirstApp::Application.routes.draw do
   resources :topics
   resources :forumposts
 
-  match 'forums' => 'forums#index'
-  match 'forums/:id' => 'forums#show'
   match 'show_forum' => 'forums#show'
   match 'new_forum' => 'forums#new'
-  match 'topics' => 'topics#index'
-  match 'topics/:id' => 'topics#show'
-  match 'forumposts' => 'forumposts#index'
-  match 'forumpost/:id' => 'forumposts#show'
+
   match 'new_forumpost' => 'forumposts#new'
   match 'edit_forumpost' => 'forumposts#edit'
 
-  match 'courseforums' => 'courseforums#new'
-  match 'createcourseforum' => 'courseforums#create'
-
-  resources :courseforums
 
 
   # The priority is based upon order of creation:

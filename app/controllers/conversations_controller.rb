@@ -17,22 +17,12 @@ class ConversationsController < ApplicationController
     conversation = current_user.
       send_message(recipients, *conversation_params(:body, :subject)).conversation
       
-    redirect_to conversation
+    redirect_to :conversations
   end
 
   def reply
     current_user.reply_to_conversation(conversation, *message_params(:body, :subject))
-    redirect_to conversation
-  end
-
-  def trash
-    conversation.move_to_trash(current_user)
-    redirect_to :conversations
-  end
-
-  def untrash
-    conversation.untrash(current_user)
-    redirect_to :conversations
+    redirect_to :conversation
   end
 
   private
