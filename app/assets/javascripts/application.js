@@ -17,5 +17,9 @@
 //= require bootstrap
 //= require bootstrap.min
 //= require rickshaw_with_d3
+//= require rickshaw_with_d3
+//= require course
 //= require_tree .
+
+
 

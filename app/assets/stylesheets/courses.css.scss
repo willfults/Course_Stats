@@ -31,9 +31,11 @@ ul.quiz_answers { list-style-type: none; }
   h3 {
     float:left;
   }
-  a.btn-success {
+  .actions {
     float:right;
-    width:70px;
+    a.btn-success {
+      width:70px;
+    }
   }
   p {
     clear:both;
@@ -58,5 +60,17 @@ ul.quiz_answers { list-style-type: none; }
       background-color:#E39D64;
     }
     
+  }
+}
+
+table.search-results {
+  .title {
+    float:left;
+  }
+  .action {
+    float:right;
+  }
+  .description {
+    clear:both;
   }
 }

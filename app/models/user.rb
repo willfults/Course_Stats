@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   has_one :linkedin_profile
   has_many :courses
   has_many :course_histories
+  has_many :bookmarks
   after_initialize :handle_after_initialize
   
   accepts_nested_attributes_for :linkedin_profile

@@ -32,6 +32,7 @@ FirstApp::Application.routes.draw do
   resources :courses do
     member do
       post :rate
+      get :bookmark
     end
     get :autocomplete_tag_name, :on => :collection
     resources :course_modules    
@@ -66,6 +67,7 @@ FirstApp::Application.routes.draw do
   match 'manage/courses' => 'courses#manage'
 
   match 'courses/:id/start' => 'courses#start'
+  #match 'courses/:id/bookmark' => 'bookmarks'
   match 'courses/:course_id/course_modules/:id/quiz/' => 'course_modules#quiz_answers'
   match 'courses/:course_id/course_modules/:id/next' => 'course_modules#next'
   match 'courses/:course_id/course_modules/:id/previous' => 'course_modules#previous'

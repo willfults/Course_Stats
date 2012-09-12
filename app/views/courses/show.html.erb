@@ -3,7 +3,16 @@
   <div class="row-fluid">
     <div class="span12">
       <h3><%=@course.name %></h3>
+      <div class="actions">
+        <% 
+        bookmark = current_user.bookmarks.where(:course_id => @course.id).first
+        if !bookmark %>
+          <%= link_to "Bookmark", course_path(@course)+"/bookmark", :class => "btn btn-primary bookmark", :remote => true %>
+        <% else %>
+          <span class="label">bookmarked</span>
+        <% end %>
       <%= link_to "Start", {:controller => "courses", :action => "start", :id => @course}, :class => "btn btn-success" %>
+      </div>
       <p>
         <%= @course.description %>
       </p>

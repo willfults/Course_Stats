@@ -92,7 +92,7 @@ class CoursesController < ApplicationController
   def my_courses
     set_admin_mode(false)
     @course_histories = current_user.course_histories
-    @courses = Course.where("published = 1 and privacy='Public'")
+    @bookmarks = current_user.bookmarks
   end
   
   def search
@@ -113,6 +113,22 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+  
+  def bookmark
+    puts request.method
+    if params[:remove]
+      bookmark = current_user.bookmarks.where(:course_id => params[:id]).first
+      bookmark.destroy
+    else
+      bookmark = current_user.bookmarks.build(:course_id => params[:id])
+      bookmark.save
+    end
+    respond_to do |format|
+      format.json { head :ok }
+      format.html { redirect_to my_courses_path }
+    end
+
   end
   
 end
