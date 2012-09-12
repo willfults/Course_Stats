@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911194242) do
+ActiveRecord::Schema.define(:version => 20120911233742) do
 
   create_table "bookmarks", :force => true do |t|
     t.integer  "user_id"
@@ -50,9 +50,10 @@ ActiveRecord::Schema.define(:version => 20120911194242) do
     t.string   "class_type"
     t.string   "file"
     t.integer  "course_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "position",   :default => 0
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "position",      :default => 0
+    t.integer  "display_order"
   end
 
   create_table "courses", :force => true do |t|
