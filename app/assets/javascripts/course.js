@@ -9,7 +9,6 @@ jQuery(function($) {
 function bookmarkBinding() {
   $('table.search-results a.bookmark, div.course-view a.bookmark')
     .bind("ajax:complete", function() { 
-      $(this).after('<span class="label">bookmarked</span>');
-      $(this).remove();
+      $(this).parent().html('<span class="label">bookmarked</span>');
     });
 }
