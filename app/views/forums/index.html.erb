@@ -14,9 +14,9 @@
 	<div class="span10"></div>
 	<div class="span2">
 	<% if @course.id %>
-		<p><%= link_to "Post a New Topic", :controller => "forums", :action => "new", :course_id => @course, :class => "btn" %></p>
+		<p><%= link_to "Create a New Forum", :controller => "forums", :action => "new", :course_id => @course, :class => "btn" %></p>
 	<% else %>
-		<p><%= link_to "Post a New Topic", new_forum_path, :class => "btn" %></p>
+		<p><%= link_to "Create a New Forum", new_forum_path, :class => "btn" %></p>
 	<% end %>
   </div>
 <div class="span12">
@@ -24,10 +24,10 @@
 <body>
 <table class=" table-bordered table-striped">
   <tr>
-    <th width="60%">Categories</th>
+    <th width="40%">Categories</th>
     <th width="10%">Topics</th>
     <th width="10%">Posts</th>
-    <th width="20%">Last Post</th>
+    <th width="40%">Last Post</th>
   </tr>
   
   <% for forum in @forums %>
