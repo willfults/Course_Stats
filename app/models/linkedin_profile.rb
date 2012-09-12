@@ -2,6 +2,8 @@ class LinkedinProfile < ActiveRecord::Base
   attr_accessible :headline, :name, :summary, :public_profile_url, :user_id
   
   belongs_to :user
+  has_many :linkedin_positions
+  has_many :linkedin_educations
 end
 # == Schema Information
 #

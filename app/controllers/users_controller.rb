@@ -114,6 +114,9 @@ class UsersController < ApplicationController
         @linkedin_profile.summary = linkedin[:summary]
         @linkedin_profile.public_profile_url = linkedin[:public_profile_url]
         @linkedin_profile.user_id = @user.id
+        @educations_hash = linkedin[:educations]
+        @positions_hash = linkedin[:positions]
+        
       end
     end
 
