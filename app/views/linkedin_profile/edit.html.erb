@@ -2,7 +2,7 @@
   <div class="span6 offset3 well">
 
   <%= form_for @linkedin_profile do |f| %>
-      <h2>Edit LinkedIn Profile</h2>
+      <h2>Edit Profile</h2>
       <%= f.hidden_field :user_id%>
       <%= f.label :name, "Name" %>
       <%= f.text_field :name, :class => 'input-full'%>
@@ -10,6 +10,8 @@
       <%= f.text_field :headline, :class => 'input-full'%>
       <%= f.label :summary, "Summary" %>
       <%= f.text_area :summary, :class => 'input-full'%>
+      <%= f.label :public_profile_url, "Public Profile URL" %>
+      <%= f.text_field :public_profile_url, :class => 'input-full'%>
       <%= f.submit "Update Profile", :class => 'btn btn-primary' %>
       <p>Changes will be updated on this site only, not on Linked In.</p>
   <% end %>

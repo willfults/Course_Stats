@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120911233742) do
+ActiveRecord::Schema.define(:version => 20120912144711) do
 
   create_table "bookmarks", :force => true do |t|
     t.integer  "user_id"
@@ -50,10 +50,9 @@ ActiveRecord::Schema.define(:version => 20120911233742) do
     t.string   "class_type"
     t.string   "file"
     t.integer  "course_id"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.integer  "position",      :default => 0
-    t.integer  "display_order"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "position",   :default => 0
   end
 
   create_table "courses", :force => true do |t|
@@ -100,9 +99,10 @@ ActiveRecord::Schema.define(:version => 20120911233742) do
     t.string   "name"
     t.string   "headline"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.text     "summary"
+    t.string   "public_profile_url"
   end
 
   create_table "notifications", :force => true do |t|

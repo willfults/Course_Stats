@@ -1,5 +1,5 @@
 class LinkedinProfile < ActiveRecord::Base
-  attr_accessible :headline, :name, :summary, :user_id
+  attr_accessible :headline, :name, :summary, :public_profile_url, :user_id
   
   belongs_to :user
 end
