@@ -1,4 +1,6 @@
 class LinkedinProfileController < ApplicationController
+ 
+  before_filter :authenticate_user!
   
   def edit
     @linkedin_profile = get_linkedin_profile
