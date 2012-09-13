@@ -47,6 +47,13 @@
                     </div>
                   </div>
                 <% end %>
+                <% if course_module.class_type == "Youtube" %>
+                  <div>
+                    <div id="video">
+                      <video width="200" height="133" class="jwplayer" src="<%=course_module.video_url %>"></video>
+                    </div>
+                  </div>
+                <% end %>
               </td>
               <td nowrap>
                 <div class="commands">
@@ -80,6 +87,7 @@
             <li><a href="<%=new_course_course_module_path %>?type=Image">Image</a></li>
             <li><a href="<%=new_course_course_module_path %>?type=Video">Video</a></li>
             <li><a href="<%=new_course_course_module_path %>?type=Quiz">Quiz</a></li>
+            <li><a href="<%=new_course_course_module_path %>?type=Youtube">Youtube Video</a></li>
           </ul>
         </div>
       </div>

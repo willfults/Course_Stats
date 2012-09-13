@@ -1,5 +1,6 @@
 class CourseModule < ActiveRecord::Base
-  attr_accessible :file_cache, :file, :name, :summary, :class_type, :course_id, :position
+  attr_accessible :file_cache, :file, :name, :summary, :class_type, :course_id, :position, :video_url 
+  #video url contains a youtube video url - supported formats - http://www.longtailvideo.com/support/jw-player/jw-player-for-flash-v5/12539/supported-video-and-audio-formats
   
   attr_accessible :completed_date, :completed, :quiz_attributes
   
@@ -12,7 +13,7 @@ class CourseModule < ActiveRecord::Base
   validates :class_type, presence: true
   validates :file, presence: true, :if => :validate_file?
   def validate_file?
-    class_type !="Quiz"
+    class_type !="Quiz" && class_type != "Youtube"
   end
   
   def total_views
