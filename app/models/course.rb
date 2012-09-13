@@ -1,3 +1,6 @@
+include Tire::Model::Search
+include Tire::Model::Callbacks
+
 class Course < ActiveRecord::Base
   attr_accessible :description, :name, :privacy, :category, :published, :user_id, :tag_list
   
@@ -25,8 +28,11 @@ class Course < ActiveRecord::Base
   has_many :course_modules, :order => "position"
   has_many :forums
 
-  def self.search(query)
-    find_by_sql [ "SELECT * FROM courses WHERE privacy='Public' and published=1 and MATCH (name, description) AGAINST ('"+ query +"') "]
+ 
+  def self.search(params)
+    tire.search(load: true) do
+      query { string params[:query], default_operator: "AND" } if params[:query].present?
+    end
   end
 
 end

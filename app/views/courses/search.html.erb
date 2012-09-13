@@ -4,11 +4,6 @@
     <div class="span12">
       <table class="table table-hover search-results">
         <% 
-        if @courses.empty? 
-          %>
-            <tr><td>No Courses.</td></tr> 
-          <%
-        end
         @courses.each do |course| 
           # Need to find a more effiecient way of doing this
           bookmark = current_user.bookmarks.where(:course_id => course.id).first
@@ -30,6 +25,7 @@
           </tr>
         <% end %>
       </table>
+      <%= will_paginate @courses %>
     </div>
   </div>
 </div>

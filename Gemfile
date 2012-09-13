@@ -31,6 +31,8 @@ gem 'cancan', '1.6.7'
 gem 'resque', :require => "resque/server"
 gem 'mysql2'
 
+gem 'tire'
+
 group :development do
   gem 'annotate', '~> 2.4.1.beta'
   gem 'rspec-rails', '~> 2.10.1'
@@ -53,7 +55,6 @@ group :assets do
   gem 'sass-rails', '~> 3.1'
   gem 'jquery-ui-rails'
   gem 'uglifier', '~> 1.2.3'
-
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 end
