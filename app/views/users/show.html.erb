@@ -47,7 +47,7 @@
             <%= school[:start_date][:year].to_s + '-' + school[:end_date][:year].to_s + ', ' + school[:degree] + ', ' + school[:field_of_study] + ', ' + school[:school_name] %><br/>
           <% end %>
           <br/>
-          Experience:<%= @positions_hash %><br/><br/>
+          Experience:<br/>
           <% @positions_hash[:all].each do |company| %>
             <strong><%= company[:start_date][:month].to_s + '/' + company[:start_date][:year].to_s %>
             <% if company[:is_current] %>
