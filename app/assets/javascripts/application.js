@@ -12,8 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.datepicker
+//= require jquery.ui.all
 //= require jquery.Jcrop
+//= require autocomplete-rails
 //= require bootstrap
 //= require bootstrap.min
 //= require highcharts 
