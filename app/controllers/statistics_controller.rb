@@ -1,5 +1,5 @@
 class StatisticsController < ApplicationController
-  before_filter :authenticate_user!, :isCreator
+  before_filter :authenticate_user!, :is_creator
   
   def index
     @course_modules = @course.course_modules
@@ -20,44 +20,63 @@ class StatisticsController < ApplicationController
       play_data = Hash.new
       completion_data = Hash.new
       statistics.each do |stat| 
-      if stat.status == "play"
-          @play_count += 1
-          combine_stat_data(stat,play_data)
-        else
-          @completion_count += 1
-          combine_stat_data(stat,completion_data)
-        end
+        combine_stat_data(stat,play_data,completion_data)
       end
-      @play_data = create_json(play_data)
-      @completion_data = create_json(completion_data)
+      #@play_data = create_json(play_data)
+      #@completion_data = create_json(completion_data)
       
       @start_date = start_date.strftime("%m-%d-%Y")
       @end_date = end_date.strftime("%m-%d-%Y")
+      @chart = LazyHighCharts::HighChart.new('graph') do |f|
+        f.title({ :text=> "Statistics"})
+        f.options[:xAxis][:categories] = get_dates_for_graph(play_data)    
+        f.series(:type=> 'spline',:name=> 'Views', :data=> play_data.values)
+        f.series(:type=> 'spline',:name=> 'Completions', :data=> completion_data.values)
+        f.options[:chart][:width] = 1200
+      end
   end
    
   private 
   
-    def combine_stat_data(stat,stat_data)
+    def combine_stat_data(stat,play_data, completion_data)
         date_of_stat = stat.created_at.strftime("%Y-%m-%d")
         #if same day...
         date_int = DateTime.parse(date_of_stat).to_i
-        if stat_data.has_key?(date_int)
-          stat_data[date_int] = stat_data[date_int] + 1
+        if stat.status == "play"
+          @play_count += 1
+          if play_data.has_key?(date_int)
+            play_data[date_int] = play_data[date_int] + 1
+          else
+            play_data[date_int] = 1;
+            if !completion_data.has_key?(date_int)
+              completion_data[date_int] = 0;
+            end
+          end
         else
-          stat_data[date_int] = 1;
+          @completion_count += 1
+          if completion_data.has_key?(date_int)
+            completion_data[date_int] = completion_data[date_int] + 1
+          else
+            completion_data[date_int] = 1;
+            if !play_data.has_key?(date_int)
+              play_data[date_int] = 0;
+            end
+          end
         end
     end
-  
-  
-    def create_json(stat_data)
-      graph_data = "["
-      stat_data.each do|key,value|
-        graph_data += "{x: " + key.to_s + ",y:" + value.to_s + "},"
-      end
-      graph_data +=  "]"
-    end
     
-    def isCreator
+    #returns array of dates
+    def get_dates_for_graph(play_data)
+      dates = Array.new
+      index = 0
+      play_data.keys.each do |key| 
+         dates[index] = Time.at(key).strftime("%m-%d-%Y")
+         index += 1
+      end
+      dates
+    end
+  
+    def is_creator
       @course = Course.find(params[:id])
       #check to see if the user is the creator of the course or an admin, if not disallow access
       if @course.user_id != current_user.id 
