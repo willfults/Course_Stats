@@ -43,6 +43,9 @@ class User < ActiveRecord::Base
   has_many :course_histories
   has_many :bookmarks
   
+  
+  
+  
   accepts_nested_attributes_for :linkedin_profile
   
   # Include default devise modules. Others available are:
@@ -65,7 +68,6 @@ class User < ActiveRecord::Base
   has_many :topics, :dependent => :destroy
   has_many :forumposts, :dependent => :destroy
  
-
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)
   end

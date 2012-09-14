@@ -1,10 +1,45 @@
 
 <div class="container-fluid ">
   <div class="row-fluid">
-    <div class="span12">
+    <div class="span2">
+      <div id="facets">
+        <h3>Rating</h3>
+        <ul>
+          <% @courses.facets['course_ratings']['terms'].each do |facet| %>
+            <li>
+              <%= facet['term'] %>
+              (<%= facet['count'] %>)
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div id="facets">
+        <h3>Course Creator</h3>
+        <ul>
+          <% @courses.facets['authors']['terms'].each do |facet| %>
+            <li>
+              <%= facet['term'] %>
+              (<%= facet['count'] %>)
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div id="facets">
+        <h3>Industry</h3>
+        <ul>
+          <% @courses.facets['industries']['terms'].each do |facet| %>
+            <li>
+              <%= facet['term'] %>
+              (<%= facet['count'] %>)
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="span10">
       <table class="table table-hover search-results">
         <% 
-        @courses.each do |course| 
+        @courses.results.each do |course| 
           # Need to find a more effiecient way of doing this
           bookmark = current_user.bookmarks.where(:course_id => course.id).first
         %>
@@ -19,13 +54,13 @@
                 <% end %>
               </div>
               <div class="description"><%= truncate course.description, :length => 300 %></div>
-              <span class="created_at"><%= course.created_at.to_formatted_s(:long) %></span>
-              <%= ratings_for course, :static %>
+              <div class="description">test: <%= truncate course.user_name, :length => 300 %></div>
+              <%= ratings_for Course.find(course.id), :static %>
+              CourseRate: <%=course.course_rating %>
             </td>
           </tr>
         <% end %>
       </table>
-      <%= will_paginate @courses %>
     </div>
   </div>
 </div>
