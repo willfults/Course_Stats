@@ -33,11 +33,18 @@
           </div>
         <% end %>
             
-        <% if @course_module.class_type != "Quiz" %>
+        <% if @course_module.class_type != "Quiz" && @course_module.class_type != "Youtube" %>
            <%= f.label :file %>
            <%= f.file_field :file, :class=>'input-full', :value => @course_module.file %>
            <%= f.hidden_field :file_cache %>
         <% end %>
+        
+        <% if @course_module.class_type == "Youtube" %>
+           <%= f.label :video_url %>
+           <%= f.text_field :video_url, :class=>'input-full', :value => @course_module.video_url %>
+        <% end %>
+        
+        
         <% 
         i = 1
         if @course_module.class_type == "Quiz" %>
