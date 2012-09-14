@@ -1,0 +1,29 @@
+<li id="<%= course_module.id %>">
+  <div class="part">
+    Part <span class="module_part_number"><%= course_module.position %></span>
+  </div>
+  <div class="title">
+    Name:&nbsp;<%= course_module.name %> (<%=course_module.class_type %>)
+  </div>
+  <div class="title">
+    Description:&nbsp;<%= course_module.summary %>
+  </div>
+
+  <% if course_module.class_type == "Image" %>
+    <div>
+      <%= image_tag course_module.file.url, :width => "200",  :alt => "Image" %>
+    </div>
+  <% elsif course_module.class_type == "Audio" || course_module.class_type == "Video" %>
+    <div>
+      <div id="video">
+        <video width="200" height="133" class="jwplayer" src="<%=course_module.file %>"></video>
+      </div>
+    </div>
+  <% elsif course_module.class_type == "Youtube" %>
+      <div>
+        <div id="video">
+          <video width="200" height="133" class="jwplayer" src="<%=course_module.video_url %>"></video>
+        </div>
+      </div>
+  <% end %>
+</li>
