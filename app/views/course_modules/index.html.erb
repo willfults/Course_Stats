@@ -21,20 +21,21 @@
             <%
           end
             @course_modules.each_with_index do |course_module, index| %>
-            <ul class="module_table">
-              <%= render :partial => "module_item", :locals => {:course_module => course_module}  %>
-            </ul>
-            
             <div class="commands">
               <ul>
                 <li>
                   <%= link_to 'Edit', edit_course_course_module_path(@course, course_module) %>
                 </li>
                 <li>
-                  <%= link_to 'Destroy', course_course_module_path(@course, course_module), confirm: 'Are you sure?', method: :delete %>
+                  <%= link_to 'Delete', course_course_module_path(@course, course_module), confirm: 'Are you sure?', method: :delete %>
                 </li>
               </ul>
             </div>
+            <ul class="module_table">
+              <%= render :partial => "module_item", :locals => {:course_module => course_module}  %>
+            </ul>
+            
+
           <% end %>
     </div>
   
