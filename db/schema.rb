@@ -50,9 +50,10 @@ ActiveRecord::Schema.define(:version => 20120913212140) do
     t.string   "class_type"
     t.string   "file"
     t.integer  "course_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "position",   :default => 0
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "position",      :default => 0
+    t.integer  "display_order"
     t.string   "video_url"
   end
 
