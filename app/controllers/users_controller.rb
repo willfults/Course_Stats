@@ -133,7 +133,6 @@ class UsersController < ApplicationController
         end
         @linkedin_profile.linkedin_educations = educations
         positions_hash = linkedin[:positions]
-        @position_hash = positions_hash #debug
         positions = Array.new
         positions_hash[:all].each do |company|
           position = LinkedinPosition.new
