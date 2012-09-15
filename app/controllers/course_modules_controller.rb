@@ -1,7 +1,22 @@
 class CourseModulesController < ApplicationController
   before_filter(:get_class)
   
-    
+  def reorder
+    @course = Course.find(params[:course_id])
+    @course_modules = @course.course_modules
+  end
+
+  def reorder_save
+    module_order = params[:module_order].split(",")
+    module_order.each_with_index do |module_id,index|
+      row = CourseModule.find(module_id)
+      row.position = index + 1
+      row.save
+    end
+    @course = Course.find(params[:course_id])
+    redirect_to course_course_modules_path(@course);
+  end
+ 
   def get_class
       @course = Course.find(params[:course_id])
   end

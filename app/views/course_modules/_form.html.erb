@@ -26,6 +26,15 @@
         <%= f.text_field :name, :class => 'input-full'%>
         <%= f.label :summary, "Description" %>
         <%= f.text_area :summary, :class => 'input-full' %>
+        
+        <% if @course_module.class_type == "Video" || @course_module.class_type == "Youtube" %>
+        	<label class="radio">
+        	    <%= f.radio_button :class_type, 'Video', :class => 'class_type', :checked => true %> Upload Video
+        	</label>
+        	<label class="radio">
+    			<%= f.radio_button :class_type, 'Youtube', :class => 'class_type' %> Embed YouTube Video
+    		</label>
+        <% end %>
 
         <% if @course_module.class_type == "Image" && @course_module.file.present? %>
           <div>
@@ -33,15 +42,20 @@
           </div>
         <% end %>
             
-        <% if @course_module.class_type != "Quiz" && @course_module.class_type != "Youtube" %>
-           <%= f.label :file %>
-           <%= f.file_field :file, :class=>'input-full', :value => @course_module.file %>
-           <%= f.hidden_field :file_cache %>
-        <% end %>
-        
-        <% if @course_module.class_type == "Youtube" %>
-           <%= f.label :video_url %>
-           <%= f.text_field :video_url, :class=>'input-full', :value => @course_module.video_url %>
+        <% if @course_module.class_type != "Quiz" %>
+          <div id="video_file_container">
+	        <%= f.label :file %>
+	        <%= f.file_field :file, :class=>'input-full', :value => @course_module.file %>
+	        <%= f.hidden_field :file_cache %>
+          </div>
+          <% if @course_module.class_type == "Video" || @course_module.class_type == "Youtube" %> 
+		      <div id="youtube_container">
+		      	<label>
+		        	<a href="http://youtube.com" class="icon-share" target="_blank"></a> YouTube Video URL
+		        </label>
+		        <%= f.text_field :video_url, :class=>'input-full', :value => @course_module.video_url %>
+		      </div>
+	      <% end %>
         <% end %>
         
         

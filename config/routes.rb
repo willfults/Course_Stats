@@ -36,7 +36,12 @@ FirstApp::Application.routes.draw do
       get :bookmark
     end
     get :autocomplete_tag_name, :on => :collection
-    resources :course_modules    
+    resources :course_modules do
+      collection do
+        get :reorder
+        put :reorder_save
+      end
+    end
   end
   
   resources :linkedin_profile

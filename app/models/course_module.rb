@@ -12,6 +12,12 @@ class CourseModule < ActiveRecord::Base
   validates :summary, presence: true
   validates :class_type, presence: true
   validates :file, presence: true, :if => :validate_file?
+  validates :video_url, presence: true, :format => URI::regexp(%w(http https)), :if => :validate_youtube?
+  
+  def validate_youtube?
+    class_type == "Youtube"
+  end
+  
   def validate_file?
     class_type !="Quiz" && class_type != "Youtube"
   end

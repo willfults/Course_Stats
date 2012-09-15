@@ -23,6 +23,9 @@ class Course < ActiveRecord::Base
 
   belongs_to :user
   has_many :course_modules, :order => "position"
+  accepts_nested_attributes_for :course_modules, :allow_destroy => true
+  attr_accessible :course_modules_attributes
+
   has_many :forums
 
   def self.search(query)

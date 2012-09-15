@@ -1,0 +1,46 @@
+
+<%= render 'courses/courses_admin_menu' , :highlight => "courses" %>
+<div class="container-fluid module_reorder">
+  <div id="flash">
+    <%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
+  </div>
+  <ul class="nav nav-tabs">
+    <li>
+      <%= link_to 'Basic Info', edit_course_path(@course) %>
+    </li>
+    <li class="active">
+      <%= link_to 'Modules', course_course_modules_path(@course) %>
+    </li>
+  </ul>
+  
+  <div>
+    Click on and then drag modules to re-order them. Then click Save.
+  </div>
+  
+  <div class="row-fluid">
+    <div class="span9">
+
+      <% if @course_modules.empty? %>
+          No Course Modules found.
+      <% else %>
+            <%= form_for @course, :url => {:action => :reorder_save } do |f| %>
+              <%= hidden_field(:course_modules, :order, :id => "module_order", :name => "module_order", :value => "") %>
+
+
+              <ul class="modules_list" id="sortable">
+                <%= f.fields_for :course_modules do |course_module| %>
+                  <%= render :partial => "module_item", :locals => {:course_module => course_module.object}  %>
+                <% end %>
+              </ul>
+
+              
+              <div class="actions">
+                <%= f.submit 'Save Module Order', :class => 'btn btn-primary' %>
+              </div>
+              
+            <% end %>
+        <% end %>
+    </div> 
+  </div>
+</div>
+
