@@ -1,7 +1,7 @@
 
 class Course < ActiveRecord::Base
  
-  attr_accessible :description, :name, :privacy, :category, :published, :user_id, :tag_list
+  attr_accessible :description, :name, :privacy, :category, :published, :user_id, :tag_list, :rating_average
   
  
   ajaxful_rateable :stars => 5
@@ -43,28 +43,45 @@ class Course < ActiveRecord::Base
     indexes :created_at, type: 'date'
   end
   
-  
-  
-  def self.search(params)
-    tire.search do
+  def self.facets(params) 
+    Tire.search ['courses'] do
       query do
         boolean do
           must { string params[:query], default_operator: "AND" } if params[:query].present?
         end
       end
-      facet "course_ratings" do
-        terms :course_rating, :order => 'term'
-      end
+      
       
       facet "authors" do
-        terms :user_id, :size => '50'
+        terms :user_id, :size => '50', :global => true
       end
       
       facet "industries" do
-        terms :category
+        terms :category, :global => true
+      end
+      
+      facet "course_ratings" do
+        terms :course_rating, :global => true
       end
       # raise to_curl
     end
+  end
+  
+  def self.search(params)
+    
+    
+    Tire.search ['courses'] do
+      query do
+        boolean do
+          must { string params[:query], default_operator: "AND" } if params[:query].present?
+          must { term :course_rating, params[:course_rating] } if params[:course_rating].present?
+        end
+      end
+      # raise to_curl
+    end
+    
+    
+    
   end
   
   def to_indexed_json
@@ -76,7 +93,7 @@ class Course < ActiveRecord::Base
   end
 
   def course_rating 
-    rand(1..5)
+    rating_average.to_int
   end
 end
 # == Schema Information

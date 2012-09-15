@@ -37,6 +37,14 @@ class CourseModule < ActiveRecord::Base
   has_one :quiz
   accepts_nested_attributes_for :quiz, :allow_destroy => true
 
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
+  mapping do
+    indexes :id, type: 'integer'
+    indexes :name, analyzer: 'snowball'
+    indexes :summary, analyzer: 'snowball'
+  end
   
 end
 # == Schema Information

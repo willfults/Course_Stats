@@ -3,20 +3,19 @@
   <div class="row-fluid">
     <div class="span2">
       <div id="facets">
-        <h3>Rating</h3>
+        <h3>Course Ratings</h3>
         <ul>
-          <% @courses.facets['course_ratings']['terms'].each do |facet| %>
-            <li>
-              <%= facet['term'] %>
-              (<%= facet['count'] %>)
-            </li>
+          <% @facets.results.facets['course_ratings']['terms'].each do |facet| %>
+            
+          
+            
           <% end %>
         </ul>
       </div>
       <div id="facets">
         <h3>Course Creator</h3>
         <ul>
-          <% @courses.facets['authors']['terms'].each do |facet| %>
+          <% @facets.results.facets['authors']['terms'].each do |facet| %>
             <li>
               <%= facet['term'] %>
               (<%= facet['count'] %>)
@@ -27,7 +26,7 @@
       <div id="facets">
         <h3>Industry</h3>
         <ul>
-          <% @courses.facets['industries']['terms'].each do |facet| %>
+          <% @facets.results.facets['industries']['terms'].each do |facet| %>
             <li>
               <%= facet['term'] %>
               (<%= facet['count'] %>)
