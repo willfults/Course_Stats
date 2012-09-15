@@ -48,6 +48,7 @@ class Course < ActiveRecord::Base
       query do
         boolean do
           must { string params[:query], default_operator: "AND" } if params[:query].present?
+          must { term :course_rating, params[:course_rating] } if params[:course_rating].present?
         end
       end
       
@@ -61,7 +62,7 @@ class Course < ActiveRecord::Base
       end
       
       facet "course_ratings" do
-        terms :course_rating, :global => true
+        terms :course_rating, :global => true, :order => :term
       end
       # raise to_curl
     end
@@ -69,13 +70,17 @@ class Course < ActiveRecord::Base
   
   def self.search(params)
     
-    
     Tire.search ['courses'] do
+    #tire.search :per_page => 2, :page => 1 do
       query do
         boolean do
           must { string params[:query], default_operator: "AND" } if params[:query].present?
           must { term :course_rating, params[:course_rating] } if params[:course_rating].present?
         end
+        page = (1 || 1).to_i
+        search_size = 5
+        from = (page -1) * search_size
+        size = search_size
       end
       # raise to_curl
     end

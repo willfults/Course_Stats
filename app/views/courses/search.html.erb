@@ -5,9 +5,19 @@
       <div id="facets">
         <h3>Course Ratings</h3>
         <ul>
-          <% @facets.results.facets['course_ratings']['terms'].each do |facet| %>
-            
           
+          <% @facets.results.facets['course_ratings']['terms'].each do |facet| %>
+            <li>
+            <%= link_to_unless_current facet['term'], params.merge(course_rating: facet['term']) %>
+            <% if params[:course_rating] == facet['term'].to_s 
+              params.delete :course_rating
+            %>
+              (<%= link_to "remove", params %>)
+            <% else %>
+              (<%= facet['count'] %>)
+            <% end %>
+            </li>
+            
             
           <% end %>
         </ul>
@@ -36,6 +46,7 @@
       </div>
     </div>
     <div class="span10">
+      <%= @courses.results.total %>
       <table class="table table-hover search-results">
         <% 
         @courses.results.each do |course| 
@@ -58,8 +69,10 @@
               CourseRate: <%=course.course_rating %>
             </td>
           </tr>
+          
         <% end %>
       </table>
+      
     </div>
   </div>
 </div>

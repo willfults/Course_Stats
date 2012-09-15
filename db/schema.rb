@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120912184442) do
+ActiveRecord::Schema.define(:version => 20120915055222) do
 
   create_table "bookmarks", :force => true do |t|
     t.integer  "user_id"
@@ -55,15 +55,23 @@ ActiveRecord::Schema.define(:version => 20120912184442) do
     t.integer  "position",   :default => 0
   end
 
+  create_table "courseforums", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "forum_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
     t.string   "category"
     t.string   "privacy"
     t.boolean  "published"
+    t.decimal  "rating_average", :precision => 5, :scale => 2, :default => 0.0
   end
 
   add_index "courses", ["name", "description"], :name => "fulltext_courses"
