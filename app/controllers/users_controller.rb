@@ -114,8 +114,47 @@ class UsersController < ApplicationController
         @linkedin_profile.summary = linkedin[:summary]
         @linkedin_profile.public_profile_url = linkedin[:public_profile_url]
         @linkedin_profile.user_id = @user.id
-        @educations_hash = linkedin[:educations]
-        @positions_hash = linkedin[:positions]
+        educations = Array.new
+        educations_hash = linkedin[:educations]
+        educations_hash[:all].each do |school|
+          education = LinkedinEducation.new
+          if school[:start_date] && school[:start_date][:year]
+            start_year = school[:start_date][:year]
+            education.start_date = Date.new(start_year, 1, 1)
+          end
+          if school[:end_date] && school[:end_date][:year]
+            end_year = school[:end_date][:year]
+            education.end_date = Date.new(end_year, 1, 1)
+          end
+          education.degree = school[:degree]
+          education.field_of_study = school[:field_of_study]
+          education.school_name = school[:school_name]
+          educations << education
+        end
+        @linkedin_profile.linkedin_educations = educations
+        positions_hash = linkedin[:positions]
+        @position_hash = positions_hash #debug
+        positions = Array.new
+        positions_hash[:all].each do |company|
+          position = LinkedinPosition.new
+          if company[:start_date] && company[:start_date][:year]
+            start_year = company[:start_date][:year]
+            start_month = company[:start_date][:month]
+            position.start_date = Date.new(start_year, start_month, 1)
+          end
+          if company[:end_date] && company[:end_date][:year]
+            end_year = company[:end_date][:year]
+            end_month = company[:end_date][:month]
+            position.end_date = Date.new(end_year, end_month, 1)
+          end
+          position.is_current = company[:is_current]
+          position.company_name = company[:company][:name]
+          position.industry = company[:company][:industry]
+          position.title = company[:title]
+          position.summary = company[:summary]
+          positions << position
+        end
+        @linkedin_profile.linkedin_positions = positions
         
       end
     end

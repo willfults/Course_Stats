@@ -1,0 +1,9 @@
+<% if @profile && (@profile.name || @profile.headline || @profile.summary) %>
+  <h3>Saved Profile</h3>
+  Name: <%= @profile.name %><br/><br/>
+  Headline: <%= @profile.headline %><br/><br/>
+  Summary: <%= @profile.summary %><br/><br/>
+  <% if @profile.public_profile_url %>
+    <%= link_to 'Public Profile', @profile.public_profile_url, :target => '_blank' %><br/><br/>
+  <% end %>
+<% end %>
