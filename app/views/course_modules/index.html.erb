@@ -40,20 +40,7 @@
     </div>
   
     <div class="span3">
-      <div class="btn-group">
-        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-          Add Module
-          <span class="caret"></span>
-        </a>
-        
-        <ul class="dropdown-menu">
-          <li><a href="<%=new_course_course_module_path %>?type=Audio">Audio</a></li>
-          <!--li><a href="<%=new_course_course_module_path %>?type=eBook">eBook</a></li-->
-          <li><a href="<%=new_course_course_module_path %>?type=Image">Image</a></li>
-          <li><a href="<%=new_course_course_module_path %>?type=Video">Video</a></li>
-          <li><a href="<%=new_course_course_module_path %>?type=Quiz">Quiz</a></li>
-        </ul>
-      </div>
+      	<%= link_to 'Add Module', new_course_course_module_path + '?type=Video', :class => 'btn btn-primary'%>
     </div>
       
     <div class="span3">
