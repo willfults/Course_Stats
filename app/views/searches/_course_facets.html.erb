@@ -51,7 +51,7 @@
   <ul>
     <% @facets.results.facets['industries']['terms'].each do |facet| %>
       <li>
-        <%= link_to_unless_current facet['term'], params.merge(industry: facet['term']) %>
+        <%= link_to_unless_current facet['term'].camelize, params.merge(industry: facet['term']) %>
         <% if params[:industry] == facet['term'].to_s 
           temp = params.dup
           
