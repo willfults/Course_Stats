@@ -1,18 +1,21 @@
 
-<div class="container-fluid ">
+<div class="container-fluid search-results">
   <div class="row-fluid">
-    <div class="span2">
+    <div class="span2" style="border: 1px solid #DDDDDD; padding:10px;-moz-border-radius: 6px;-webkit-border-radius: 6px;-khtml-border-radius: 6px;border-radius: 6px;">
+      <h3>Filters</h3>
       <div id="facets">
-        <h3>Course Ratings</h3>
+        <h4>Course Ratings</h4>
         <ul>
           
           <% @facets.results.facets['course_ratings']['terms'].each do |facet| %>
             <li>
             <%= link_to_unless_current facet['term'], params.merge(course_rating: facet['term']) %>
             <% if params[:course_rating] == facet['term'].to_s 
-              params.delete :course_rating
+              temp = params.dup
+              temp.delete :course_rating
+             
             %>
-              (<%= link_to "remove", params %>)
+              (<%= link_to "remove", temp %>)
             <% else %>
               (<%= facet['count'] %>)
             <% end %>
@@ -23,18 +26,41 @@
         </ul>
       </div>
       <div id="facets">
-        <h3>Course Creator</h3>
+        <h4>Course Creator</h4>
         <ul>
-          
+          <% @facets.results.facets['authors']['terms'].each do |facet| 
+            username = User.find(facet['term']).name
+            %>
+            <li>
+              <%= link_to_unless_current username, params.merge(author: facet['term']) %>
+              <% if params[:author] == facet['term'].to_s 
+                temp = params.dup
+                
+                temp.delete :author
+              %>
+                (<%= link_to "remove", temp %>)
+              <% else %>
+                (<%= facet['count'] %>)
+              <% end %>
+            </li>
+          <% end %>
         </ul>
       </div>
       <div id="facets">
-        <h3>Industry</h3>
+        <h4>Industry</h4>
         <ul>
           <% @facets.results.facets['industries']['terms'].each do |facet| %>
             <li>
-              <%= facet['term'] %>
-              (<%= facet['count'] %>)
+              <%= link_to_unless_current facet['term'], params.merge(industry: facet['term']) %>
+              <% if params[:industry] == facet['term'].to_s 
+                temp = params.dup
+                
+                temp.delete :industry
+              %>
+                (<%= link_to "remove", temp %>)
+              <% else %>
+                (<%= facet['count'] %>)
+              <% end %>
             </li>
           <% end %>
         </ul>
@@ -51,7 +77,7 @@
         %>
           <tr>
             <td>
-              <div class="title"><%= link_to course.name, course_path(course) %> - <%= link_to course.type %></div>
+              <div class="title"><%= link_to course.name, course_path(course) %></div>
               <div class="action" style="float:right;">
                 <% if !bookmark %>
                   <%= link_to "Bookmark", course_path(course)+"/bookmark", :class => "btn btn-small btn-primary bookmark", :remote => true %>
@@ -70,7 +96,7 @@
              %>
             <tr>
             <td>
-              <div class="title"><%= link_to course.name, user_path(course) %> - <%= link_to course.type %></div>
+              <div class="title"><%= link_to course.name, user_path(course) %> - User Bio will go here.</div>
             </td>
           </tr>
              <%

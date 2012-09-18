@@ -34,8 +34,9 @@ class Course < ActiveRecord::Base
     indexes :id, type: 'integer'
     indexes :name, analyzer: 'snowball'
     indexes :description, analyzer: 'snowball'
-    #indexes :user_name, analyzer: 'snowball'
+    indexes :category
     indexes :course_rating, type: 'integer'
+    indexes :user_id
     indexes :user do
       indexes :name
       indexes :email
@@ -48,7 +49,10 @@ class Course < ActiveRecord::Base
       query do
         boolean do
           must { string params[:query], default_operator: "AND" } if params[:query].present?
+          must { string "*", default_operator: "AND" } if !params[:query].present?
           must { term :course_rating, params[:course_rating] } if params[:course_rating].present?
+          must { term :user_id, params[:author] } if params[:author].present?
+          must { term :category, params[:industry] } if params[:industry].present?
         end
       end
       
@@ -66,27 +70,6 @@ class Course < ActiveRecord::Base
       end
       # raise to_curl
     end
-  end
-  
-  def self.search(params)
-    
-    Tire.search ['courses'] do
-    #tire.search :per_page => 2, :page => 1 do
-      query do
-        boolean do
-          must { string params[:query], default_operator: "AND" } if params[:query].present?
-          must { term :course_rating, params[:course_rating] } if params[:course_rating].present?
-        end
-        page = (1 || 1).to_i
-        search_size = 5
-        from = (page -1) * search_size
-        size = search_size
-      end
-      # raise to_curl
-    end
-    
-    
-    
   end
   
   def to_indexed_json
