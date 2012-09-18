@@ -1,0 +1,34 @@
+<%= link_to_unless_current "test", params.merge(course_rating: rating) %>
+<div id="ajaxful_rating_no-small_course_3" class="ajaxful-rating-wrapper">
+  <ul class="ajaxful-rating">
+    <li style="width: <%= (rating.to_f / 5)*100 %>%" class="show-value">
+      Global rating average: 0.0 out of 5
+    </li>
+    <li>
+      <span title="Global rating average: 0.0 out of 5" class="stars-1">0.0</span>
+    </li>
+    <li>
+      <span title="Global rating average: 0.0 out of 5" class="stars-2">0.0</span>
+    </li>
+    <li>
+      <span title="Global rating average: 0.0 out of 5" class="stars-3">0.0</span>
+    </li>
+    <li>
+      <span title="Global rating average: 0.0 out of 5" class="stars-4">0.0</span>
+    </li>
+    <li>
+      <span title="Global rating average: 0.0 out of 5" class="stars-5">0.0</span>
+    </li>
+  </ul>
+</div>
+<div class="rating-count">
+  
+  <% if params[:course_rating] == rating.to_s 
+    temp = params.dup
+    temp.delete :course_rating
+  %>
+    (<%= link_to "remove", temp %>)
+  <% else %>
+    (<%= count %>)
+  <% end %>  
+</div>

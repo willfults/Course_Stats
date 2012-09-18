@@ -67,7 +67,7 @@ FirstApp::Application.routes.draw do
   match 'statistics/:id' => 'statistics#index'
   mount Resque::Server, :at => "/resque"
   match 'course_landing' => 'courses#course_landing', :as => 'course_landing'
-  match 'search' => 'courses#search'
+  match 'search' => 'searches#index'
   match 'courses' => 'courses#index'
   
   match 'my_courses' => 'courses#my_courses'
@@ -79,6 +79,7 @@ FirstApp::Application.routes.draw do
   match 'courses/:course_id/course_modules/:id/next' => 'course_modules#next'
   match 'courses/:course_id/course_modules/:id/previous' => 'course_modules#previous'
   match 'courses/:course_id/course_modules/:id/:status/' => 'course_modules#update_stat'
+
 
   get "forums/index"
   resources :forums

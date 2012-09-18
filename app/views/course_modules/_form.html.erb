@@ -89,7 +89,22 @@
           <%= f.submit :class => 'btn btn-primary' %>
         </div>
       </div>
-      
+      <div class="span6">
+	      <div class="btn-group">
+	        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+	          Module Type
+	          <span class="caret"></span>
+	        </a>
+	        
+	        <ul class="dropdown-menu">
+	          <li><a href="<%=new_course_course_module_path %>?type=Audio">Audio</a></li>
+	          <!--li><a href="<%=new_course_course_module_path %>?type=eBook">eBook</a></li-->
+	          <li><a href="<%=new_course_course_module_path %>?type=Image">Image</a></li>
+	          <li><a href="<%=new_course_course_module_path %>?type=Video">Video</a></li>
+	          <li><a href="<%=new_course_course_module_path %>?type=Quiz">Quiz</a></li>
+	        </ul>
+	      </div>
+      </div>
     </div>
   <% end %>
 </div>
