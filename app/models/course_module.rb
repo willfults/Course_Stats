@@ -43,7 +43,6 @@ class CourseModule < ActiveRecord::Base
   
   has_one :quiz
   accepts_nested_attributes_for :quiz, :allow_destroy => true
-
   
 end
 # == Schema Information
