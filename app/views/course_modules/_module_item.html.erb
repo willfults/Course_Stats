@@ -22,13 +22,13 @@
   <% elsif course_module.class_type == "Audio" || course_module.class_type == "Video" %>
     <div>
       <div id="video">
-        <video width="200" height="133" class="jwplayer" src="<%=course_module.file %>"></video>
+        <video width="200" height="133" class="jwplayer" src="<%=course_module.file %>" id="mini_player<%= course_module.id%>"></video>
       </div>
     </div>
   <% elsif course_module.class_type == "Youtube" %>
       <div>
         <div id="video">
-          <video width="200" height="133" class="jwplayer" src="<%=course_module.video_url %>"></video>
+          <video width="200" height="133" class="jwplayer" src="<%=course_module.video_url %>" id="mini_player<%= course_module.id%>"></video>
         </div>
       </div>
   <% end %>

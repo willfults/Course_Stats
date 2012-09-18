@@ -29,6 +29,16 @@ $(document).ready(function() {
 	 });
 	 showHideArrows();
   }
+  
+
+  if ($("[id^=mini_player]").length){
+  	$("[id^=mini_player]").each(function(index, element){
+  		player_id = element.id
+		jwplayer(player_id).setup({
+			flashplayer : "/jwplayer/player.swf"
+		});  	
+	});
+  }
 	
 	if ($('#container').length){
 		var playStatTracked = false
