@@ -14,7 +14,7 @@
   </ul>
   
   <div>
-    Click on and then drag modules to re-order them. Then click Save.
+    Re-order the modules using the arrow keys. Then click Save.
   </div>
   
   <div class="row-fluid">
@@ -26,10 +26,9 @@
             <%= form_for @course, :url => {:action => :reorder_save } do |f| %>
               <%= hidden_field(:course_modules, :order, :id => "module_order", :name => "module_order", :value => "") %>
 
-
-              <ul class="modules_list" id="sortable">
+              <ul class="modules_list" id="modules_list">
                 <%= f.fields_for :course_modules do |course_module| %>
-                  <%= render :partial => "module_item", :locals => {:course_module => course_module.object}  %>
+                  <%= render :partial => "module_item", :locals => {:course_module => course_module.object, :module_page => 'true'} %>
                 <% end %>
               </ul>
 
