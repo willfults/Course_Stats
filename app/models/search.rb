@@ -1,6 +1,6 @@
 class Search < ActiveRecord::Base
   def self.search(params)
-    Tire.search do
+    Tire.search  do
     #tire.search :per_page => 2, :page => 1 do
       query do
         boolean do
@@ -14,8 +14,9 @@ class Search < ActiveRecord::Base
         
         
       end
-      from 3
-      size 2
+      # User from and size for pagination
+      #from 3
+      #size 2
       # raise to_curl
     end
   end

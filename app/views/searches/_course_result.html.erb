@@ -1,0 +1,18 @@
+<%
+  # Need to find a more effiecient way of doing this
+  bookmark = current_user.bookmarks.where(:course_id => result.id).first
+%>
+  <tr>
+    <td>
+      <div class="title"><%= link_to result.name, course_path(result) %></div>
+      <div class="action" style="float:right;">
+        <% if !bookmark %>
+          <%= link_to "Bookmark", course_path(result)+"/bookmark", :class => "btn btn-small btn-primary bookmark", :remote => true %>
+        <% else %>
+          <span class="label">bookmarked</span>
+        <% end %>
+      </div>
+      <div class="description"><%= truncate result.description, :length => 300 %></div>
+      CourseRate: <%=result.course_rating %> stars
+    </td>
+  </tr>

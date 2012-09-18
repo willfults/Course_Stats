@@ -1,0 +1,68 @@
+<h3>Filters</h3>
+<% if @facets.results.facets['course_ratings']['terms'].size > 0%>
+<div id="facets">
+  <h4>Course Ratings</h4>
+  <ul>
+    
+    <% @facets.results.facets['course_ratings']['terms'].each do |facet| %>
+      <li>
+      <%= link_to_unless_current facet['term'].to_s + " stars", params.merge(course_rating: facet['term']) %>
+      <% if params[:course_rating] == facet['term'].to_s 
+        temp = params.dup
+        temp.delete :course_rating
+      %>
+        (<%= link_to "remove", temp %>)
+      <% else %>
+        (<%= facet['count'] %>)
+      <% end %>
+      </li>
+      
+      
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<% if @facets.results.facets['authors']['terms'].size > 0%>
+<div id="facets">
+  <h4>Course Creator</h4>
+  <ul>
+    <% @facets.results.facets['authors']['terms'].each do |facet| 
+      username = User.find(facet['term']).name
+      %>
+      <li>
+        <%= link_to_unless_current username, params.merge(author: facet['term']) %>
+        <% if params[:author] == facet['term'].to_s 
+          temp = params.dup
+          
+          temp.delete :author
+        %>
+          (<%= link_to "remove", temp %>)
+        <% else %>
+          (<%= facet['count'] %>)
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<% if @facets.results.facets['industries']['terms'].size > 0%>
+<div id="facets">
+  <h4>Industry</h4>
+  <ul>
+    <% @facets.results.facets['industries']['terms'].each do |facet| %>
+      <li>
+        <%= link_to_unless_current facet['term'], params.merge(industry: facet['term']) %>
+        <% if params[:industry] == facet['term'].to_s 
+          temp = params.dup
+          
+          temp.delete :industry
+        %>
+          (<%= link_to "remove", temp %>)
+        <% else %>
+          (<%= facet['count'] %>)
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

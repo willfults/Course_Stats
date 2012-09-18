@@ -41,6 +41,10 @@ class Course < ActiveRecord::Base
       indexes :name
       indexes :email
     end
+    indexes :course_modules do
+      indexes :name
+      indexes :summary
+    end
     indexes :created_at, type: 'date'
   end
   
