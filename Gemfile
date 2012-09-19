@@ -29,6 +29,7 @@ gem 'lazy_high_charts'
 
 gem 'ajaxful_rating' , '>= 3.0.0.beta8'
 gem 'linkedin', '~> 0.3.7'
+gem 'koala', '~> 1.5.0'
 
 gem 'chronic'
 gem 'mongoid'

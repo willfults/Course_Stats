@@ -21,6 +21,7 @@ FirstApp::Application.routes.draw do
       get :dashboard
       get :achievements
       get :stats
+      get :facebook_friends
     end
   end
   

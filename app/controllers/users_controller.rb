@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'linkedin'
+require 'koala'
 
 class UsersController < ApplicationController
   before_filter :authenticate_user!
@@ -21,6 +22,10 @@ class UsersController < ApplicationController
     # we will be doing something here later
   end
   
+  def facebook_friends
+    facebook_profile
+  end
+
   def new
     @user = User.new
   end
@@ -34,6 +39,7 @@ class UsersController < ApplicationController
     if request.path != user_path(@user)
       redirect_to @user, status: :moved_permanently
     end
+    facebook_profile
     linkedin_profile
   end
 
@@ -103,9 +109,9 @@ class UsersController < ApplicationController
     def linkedin_profile
       @profile = LinkedinProfile.find_by_user_id(@user.id);
       @linkedin_profile = LinkedinProfile.new
-      if $LINKEDIN_HASH
-        token = $LINKEDIN_HASH["credentials"]["token"]
-        secret = $LINKEDIN_HASH["credentials"]["secret"]
+      if session[:linkedin_credentials]
+        token = session[:linkedin_credentials]['token']
+        secret = session[:linkedin_credentials]['secret']
         client = LinkedIn::Client.new($LINKEDIN_APP_KEY, $LINKEDIN_APP_SECRET)
         client.authorize_from_access(token, secret)
         linkedin = client.profile(:fields => [:headline, :first_name, :last_name, :summary, :educations, :positions, :public_profile_url])
@@ -155,6 +161,19 @@ class UsersController < ApplicationController
         end
         @linkedin_profile.linkedin_positions = positions
         
+      end
+    end
+    
+    def facebook_profile
+      if session[:facebook_credentials]
+        oauth_access_token = session[:facebook_credentials][:token]
+        graph = Koala::Facebook::API.new(oauth_access_token)
+        @facebook_profile = graph.get_object("me")
+        @facebook_friends = graph.get_connections("me", "friends")
+        @facebook_friends.each do |f|
+          f[:image] = graph.get_picture(f["id"])
+        end
+
       end
     end
 

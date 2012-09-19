@@ -25,9 +25,9 @@ class LinkedinProfileController < ApplicationController
   
     def get_linkedin_profile
       linkedin_profile = current_user.linkedin_profile ||= LinkedinProfile.new
-      if $LINKEDIN_HASH
-        token = $LINKEDIN_HASH["credentials"]["token"]
-        secret = $LINKEDIN_HASH["credentials"]["secret"]
+      if session[:linkedin_credentials]
+        token = session[:linkedin_credentials]['token']
+        secret = session[:linkedin_credentials]['secret']
         client = LinkedIn::Client.new($LINKEDIN_APP_KEY, $LINKEDIN_APP_SECRET)
         client.authorize_from_access(token, secret)
         linkedin = client.profile(:fields => [:headline, :first_name, :last_name, :summary, :educations, :positions, :public_profile_url])
