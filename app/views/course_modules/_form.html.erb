@@ -26,6 +26,15 @@
         <%= f.text_field :name, :class => 'input-full'%>
         <%= f.label :summary, "Description" %>
         <%= f.text_area :summary, :class => 'input-full' %>
+        
+        <% if @course_module.class_type == "Video" || @course_module.class_type == "Youtube" %>
+        	<label class="radio">
+        	    <%= f.radio_button :class_type, 'Video', :class => 'class_type', :checked => true %> Upload Video
+        	</label>
+        	<label class="radio">
+    			<%= f.radio_button :class_type, 'Youtube', :class => 'class_type' %> Embed YouTube Video
+    		</label>
+        <% end %>
 
         <% if @course_module.class_type == "Image" && @course_module.file.present? %>
           <div>
@@ -34,10 +43,22 @@
         <% end %>
             
         <% if @course_module.class_type != "Quiz" %>
-           <%= f.label :file %>
-           <%= f.file_field :file, :class=>'input-full', :value => @course_module.file %>
-           <%= f.hidden_field :file_cache %>
+          <div id="video_file_container">
+	        <%= f.label :file %>
+	        <%= f.file_field :file, :class=>'input-full', :value => @course_module.file %>
+	        <%= f.hidden_field :file_cache %>
+          </div>
+          <% if @course_module.class_type == "Video" || @course_module.class_type == "Youtube" %> 
+		      <div id="youtube_container">
+		      	<label>
+		        	<a href="http://youtube.com" class="icon-share" target="_blank"></a> YouTube Video URL
+		        </label>
+		        <%= f.text_field :video_url, :class=>'input-full', :value => @course_module.video_url %>
+		      </div>
+	      <% end %>
         <% end %>
+        
+        
         <% 
         i = 1
         if @course_module.class_type == "Quiz" %>
@@ -68,7 +89,22 @@
           <%= f.submit :class => 'btn btn-primary' %>
         </div>
       </div>
-      
+      <div class="span6">
+	      <div class="btn-group">
+	        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+	          Module Type
+	          <span class="caret"></span>
+	        </a>
+	        
+	        <ul class="dropdown-menu">
+	          <li><a href="<%=new_course_course_module_path %>?type=Audio">Audio</a></li>
+	          <!--li><a href="<%=new_course_course_module_path %>?type=eBook">eBook</a></li-->
+	          <li><a href="<%=new_course_course_module_path %>?type=Image">Image</a></li>
+	          <li><a href="<%=new_course_course_module_path %>?type=Video">Video</a></li>
+	          <li><a href="<%=new_course_course_module_path %>?type=Quiz">Quiz</a></li>
+	        </ul>
+	      </div>
+      </div>
     </div>
   <% end %>
 </div>

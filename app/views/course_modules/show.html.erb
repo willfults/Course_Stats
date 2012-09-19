@@ -20,7 +20,11 @@
         <div class="span8" style="min-width:580px">
           <div class="video_wrapper">
             <div id="videoPage">
-              <video width="580" height="435" class="jwplayer" src="<%=@course_module.file %>" id="container"></video>
+              <% if @course_module.class_type != "Youtube"%>	
+              	<video width="580" height="435" class="jwplayer" src="<%=@course_module.file %>" id="container"></video>
+              <% else %>
+              	<video width="580" height="435" class="jwplayer" src="<%=@course_module.video_url %>" id="container"></video>
+              <% end %>
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917163722) do
+ActiveRecord::Schema.define(:version => 20120915055222) do
 
   create_table "bookmarks", :force => true do |t|
     t.integer  "user_id"
@@ -50,20 +50,23 @@ ActiveRecord::Schema.define(:version => 20120917163722) do
     t.string   "class_type"
     t.string   "file"
     t.integer  "course_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "position",   :default => 0
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "position",      :default => 0
+    t.integer  "display_order"
+    t.string   "video_url"
   end
 
   create_table "courses", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
     t.string   "category"
     t.string   "privacy"
     t.boolean  "published"
+    t.decimal  "rating_average", :precision => 5, :scale => 2, :default => 0.0
   end
 
   add_index "courses", ["name", "description"], :name => "fulltext_courses"
@@ -94,6 +97,30 @@ ActiveRecord::Schema.define(:version => 20120917163722) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
+
+  create_table "linkedin_educations", :force => true do |t|
+    t.integer  "linkedin_profile_id"
+    t.string   "school_name"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "degree"
+    t.string   "field_of_study"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  create_table "linkedin_positions", :force => true do |t|
+    t.integer  "linkedin_profile_id"
+    t.string   "company_name"
+    t.string   "industry"
+    t.string   "title"
+    t.text     "summary"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "is_current"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
 
   create_table "linkedin_profiles", :force => true do |t|
     t.string   "name"
@@ -222,13 +249,13 @@ ActiveRecord::Schema.define(:version => 20120917163722) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.string   "email",                  :default => "",     :null => false
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.string   "email",                  :default => "",    :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",                  :default => false
-    t.string   "encrypted_password",     :default => "",     :null => false
+    t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"

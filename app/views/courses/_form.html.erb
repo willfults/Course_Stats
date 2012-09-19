@@ -40,8 +40,8 @@
 
     <div class="span6">
 
-      <%= f.label 'Tag List (Delimiter = ,)'%>
-      <%= f.autocomplete_field :tag_list, courses_path, :"data-delimiter" => ', ', :class=>'input-full'  %>
+      <%= f.label 'Tag List (Comma Separated)'%>
+      <%= f.autocomplete_field :tag_list, autocomplete_tag_name_courses_path, :"data-delimiter" => ', ', :class=>'input-text'  %>
 
       <%= f.label :category %>
       <%= select :course, :category, [['Choose One', ''], ['Comedy', 'Comedy'], ['Education', 'Education'], ['Entertainment', 'Entertainment']],{}, { :class => 'input-full' } %>

@@ -12,12 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.datepicker
+//= require jquery.ui.all
 //= require jquery.Jcrop
+//= require autocomplete-rails
 //= require bootstrap
 //= require bootstrap.min
-//= require rickshaw_with_d3
-//= require rickshaw_with_d3
+//= require highcharts 
 //= require course
 //= require_tree .
 

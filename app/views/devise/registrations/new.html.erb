@@ -4,8 +4,11 @@
   <div class="span6 offset3">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal well"}) do |f| %>
     <h3>Sign Up</h3>
-      <%= devise_error_messages! %>
 
+      <% devise_error_messages!.each do |key, value| %>
+          <div class="flash <%= key %>"><%= key %> <%= value %></div>
+      <% end %>
+      
       <div class="control-group">
         <%= f.label :name, "Full Name", :class => "control-label" %>
         <div class="controls">
@@ -43,6 +46,11 @@
 	</div>
 	
 	</br>
+
+      <div class="control-group captcha">
+        <%= @captcha_html.try(:html_safe)  %>
+      </div>
+      
       <div class="controls">
 
 	  </br>

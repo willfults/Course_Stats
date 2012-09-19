@@ -1,6 +1,5 @@
 class ServicesController < ApplicationController
   before_filter :authenticate_user!, :except => [:create]
-  $LINKEDIN_HASH = nil
   
   def index
     # get all authentication services assigned to the current user
@@ -13,6 +12,10 @@ class ServicesController < ApplicationController
     @service.destroy
 
     redirect_to services_path
+  end
+  
+  def new
+    
   end
 
   def create
@@ -31,12 +34,13 @@ class ServicesController < ApplicationController
         omniauth['info']['name'] ? name =  omniauth['info']['name'] : name = ''
         omniauth['uid'] ?  uid =  omniauth['uid'] : uid = ''
         omniauth['provider'] ? provider =  omniauth['provider'] : provider = ''
+        session[:facebook_credentials] = omniauth['credentials']
       elsif service_route == 'linkedin'
         email = '' # linkedin does not provide the email address
         omniauth['info']['name'] ? name =  omniauth['info']['name'] : name = ''
         omniauth['uid'] ?  uid =  omniauth['uid'] : uid = ''
         omniauth['provider'] ? provider =  omniauth['provider'] : provider = ''
-        $LINKEDIN_HASH = omniauth
+        session[:linkedin_credentials] = omniauth['credentials']
       else
         # we have an unrecognized service, just output the hash that has been returned
         render :text => omniauth.to_yaml
@@ -53,7 +57,8 @@ class ServicesController < ApplicationController
           auth = Service.find_by_provider_and_uid(provider, uid)
           if auth
             flash[:notice] = 'Signed in successfully via ' + provider.capitalize + '.'
-            sign_in_and_redirect(:user, auth.user)
+            sign_in(:user, auth.user)
+            redirect_to current_user
           else
             # check if this user is already registered with this email address; get out if no email has been provided
             if email != ''
@@ -63,25 +68,30 @@ class ServicesController < ApplicationController
                 # map this new login method via a service provider to an existing account if the email address is the same
                 existinguser.services.create(:provider => provider, :uid => uid, :uname => name, :uemail => email)
                 flash[:notice] = 'Sign in via ' + provider.capitalize + ' has been added to your account ' + existinguser.email + '. Signed in successfully!'
-                sign_in_and_redirect(:user, existinguser)
+                sign_in(:user, existinguser)
+                redirect_to current_user
               else
+                # TODO: Do not automatically register user. Send them to a resgistration page
+                flash[:notice] = 'You need to create an account to sign in with Facebook'
+                redirect_to new_user_registration_path
                 # let's create a new user: register this user and add this authentication method for this user
-                name = name[0, 39] if name.length > 39             # otherwise our user validation will hit us
+                # name = name[0, 39] if name.length > 39             # otherwise our user validation will hit us
 
                 # new user, set email, a random password and take the name from the authentication service
-                user = User.new :email => email, :password => SecureRandom.hex(10), :fullname => name
+                # user = User.new :email => email, :password => SecureRandom.hex(10), :fullname => name
 
                 # add this authentication service to our new user
-                user.services.build(:provider => provider, :uid => uid, :uname => name, :uemail => email)
+                # user.services.build(:provider => provider, :uid => uid, :uname => name, :uemail => email)
 
                 # do not send confirmation email, we directly save and confirm the new record
-                user.skip_confirmation!
-                user.save!
-                user.confirm!
+                # user.skip_confirmation!
+                # user.save!
+                # user.confirm!
 
                 # flash and sign in
-                flash[:myinfo] = 'Your account has been created via ' + provider.capitalize + '. In your profile you can change your personal information and add a local password.'
-                sign_in_and_redirect(:user, user)
+                # flash[:myinfo] = 'Your account has been created via ' + provider.capitalize + '. In your profile you can change your personal information and add a local password.'
+                # sign_in(:user, user)
+                # redirect_to current_user
               end
             else
               flash[:error] =  service_route.capitalize + ' can not be used to sign-up as no valid email address has been provided. Please use another authentication provider or use local sign-up. If you already have an account, please sign-in and add ' + service_route.capitalize + ' on your Authentication Services page.'

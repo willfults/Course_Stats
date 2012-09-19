@@ -8,12 +8,12 @@
         </a>
         <%= link_to "Social University", root_path, id: "logo", :class=>"brand" %>
           <%= form_tag("/search", :method => "get", :class => "navbar-search pull-left") do %>
-            <input type="text" class="search-query" placeholder="Search for courses" name="q" value="<%=params[:q] %>">
+            <input type="text" class="search-query" placeholder="Search for courses" name="query" value="<%=params[:query] %>">
           <% end %>
       <nav class="nav-collapse">
         <ul class="nav pull-right">
           <% if signed_in? %>
-            <li><%= link_to "Courses", my_courses_path %></li>
+            <li><%= link_to "Courses", admin_mode? ? manage_courses_path : my_courses_path %></li>
 		<li><%= link_to "Forums", forums_path%>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">

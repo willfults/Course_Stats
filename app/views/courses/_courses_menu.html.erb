@@ -34,19 +34,21 @@
             <% end %>
           </li>
         </ul>
-	
-	 <% if can? :create, Course %>
+	<% if can? :create, Course %>
         <ul class="nav pull-right">
-		<li>
-            	<%= link_to "Switch to Course Admin View", manage_courses_path, :class => 'btn btn-success btn-mini admin_swtich_btn'%>
-          	</li>
-	  </ul>
-      <% end %>
+          <li>
+            <%= link_to "Switch to Course Admin View", manage_courses_path, :class => 'btn btn-success btn-mini admin_swtich_btn'%>
+          </li>
+        </ul>
+	<% end %>
       </nav>
     </div>
   </div>
 </div>
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
+
+<script>
+	<% flash.each do |key, value| %>
+	    	$.jGrowl("<%= value %>");
+	<% end %>
+</script>
 <% end %>

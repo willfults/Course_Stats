@@ -96,10 +96,11 @@ class CoursesController < ApplicationController
   end
   
   def search
-    if(params[:q].empty?)
+    if(params[:query].empty?)
       @courses = Course.where("published = 1 and privacy='Public'")
     else
-      @courses = Course.search(params[:q])
+      @facets = Course.facets(params)
+      @courses = Course.search(params)
     end
   end
   

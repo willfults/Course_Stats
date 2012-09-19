@@ -13,79 +13,42 @@
     </li>
   </ul>
   <div class="row-fluid">
-  <div class="span9">
-    <table class="table table-hover">
-      <tbody>
+    <div class="span9">
           <% 
           if @course_modules.empty? 
             %>
-              <tr><td>No Course Modules.</td></tr> 
+              No Course Modules.
             <%
           end
             @course_modules.each_with_index do |course_module, index| %>
-            <tr>
-              <td>
-                <div class="part">
-                  Part <%= index + 1 %>
-                </div>
-                <div class="title">
-                  Name:&nbsp;<%= course_module.name %> (<%=course_module.class_type %>)
-                </div>
-                <div class="title">
-                  Description:&nbsp;<%= course_module.summary %>
-                </div>
-                
-                <% if course_module.class_type == "Image" %>
-                  <div>
-                    <%= image_tag course_module.file.url, :width => "200",  :alt => "Image" %>
-                  </div>
-                <% end %>
-                <% if course_module.class_type == "Audio" || course_module.class_type == "Video" %>
-                  <div>
-                    <div id="video">
-                      <video width="200" height="133" class="jwplayer" src="<%=course_module.file %>"></video>
-                    </div>
-                  </div>
-                <% end %>
-              </td>
-              <td nowrap>
-                <div class="commands">
-                  <ul>
-                    <li>
-                      <%= link_to 'Edit', edit_course_course_module_path(@course, course_module) %>
-                    </li>
-                    <li>
-                      <%= link_to 'Destroy', course_course_module_path(@course, course_module), confirm: 'Are you sure?', method: :delete %>
-                    </li>
-                  </ul>
-                </div>
-              </td>
-            </li>
-            </tr>
+            <div class="commands">
+              <ul>
+                <li>
+                  <%= link_to 'Edit', edit_course_course_module_path(@course, course_module) %>
+                </li>
+                <li>
+                  <%= link_to 'Delete', course_course_module_path(@course, course_module), confirm: 'Are you sure?', method: :delete %>
+                </li>
+              </ul>
+            </div>
+            <ul class="module_table">
+              <%= render :partial => "module_item", :locals => {:course_module => course_module, :module_page => 'false'}  %>
+            </ul>
+            
+
           <% end %>
-      
-        </tbody>
-      </table>
     </div>
   
-      <div class="span3">
-        <div class="btn-group">
-          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-            Add new module
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="<%=new_course_course_module_path %>?type=Audio">Audio</a></li>
-            <!--li><a href="<%=new_course_course_module_path %>?type=eBook">eBook</a></li-->
-            <li><a href="<%=new_course_course_module_path %>?type=Image">Image</a></li>
-            <li><a href="<%=new_course_course_module_path %>?type=Video">Video</a></li>
-            <li><a href="<%=new_course_course_module_path %>?type=Quiz">Quiz</a></li>
-          </ul>
-        </div>
+    <div class="span3">
+      	<%= link_to 'Add Module', new_course_course_module_path + '?type=Video', :class => 'btn btn-primary'%>
+    </div>
+      
+    <div class="span3">
+      <div class="btn-group">
+        <%= link_to 'ReOrder Modules', reorder_course_course_modules_path(@course), :class => "btn btn-primary" %>
       </div>
+    </div>
   </div>
           
-
-
 </div>
 

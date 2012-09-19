@@ -1,7 +1,7 @@
 class CreateFulltextSearchIndex < ActiveRecord::Migration
   def self.up
     execute 'ALTER TABLE courses ENGINE = MyISAM'
-    execute 'CREATE FULLTEXT INDEX fulltext_courses ON courses (name, description)'
+    execute 'CREATE FULLTEXT INDEX fulltext_courses ON courses (name, description(255))'
   end
   
   def self.down

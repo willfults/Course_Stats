@@ -43,6 +43,11 @@ class User < ActiveRecord::Base
   has_many :course_histories
   has_many :bookmarks
   
+  validates :username, presence: true
+  validates_length_of :username, :minimum =>6
+  
+  
+  
   accepts_nested_attributes_for :linkedin_profile
   
   # Include default devise modules. Others available are:
@@ -65,7 +70,24 @@ class User < ActiveRecord::Base
   has_many :topics, :dependent => :destroy
   has_many :forumposts, :dependent => :destroy
  
-
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+ 
+  mapping do
+    indexes :id, type: 'integer'
+    indexes :name, analyzer: 'snowball'
+  end
+ 
+  # this is a fix for tire:import's feature being broken on models that are linked to Devise
+  def password_digest(*args)
+    my_password = ''
+    if args.length == 1
+      password = args[0]
+      my_password = ::BCrypt::Password.create("#{password}#{self.class.pepper}", :cost => self.class.stretches).to_s
+    end
+    my_password
+  end
+ 
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id)
   end

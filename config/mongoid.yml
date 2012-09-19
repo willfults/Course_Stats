@@ -8,3 +8,7 @@ development:
 test:
   <<: *defaults
   database: appname_test
+  
+production:
+  <<: *defaults
+  database: appname_prods

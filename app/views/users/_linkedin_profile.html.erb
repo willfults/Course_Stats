@@ -1,0 +1,43 @@
+<% if @linkedin_profile && (@linkedin_profile.name || @linkedin_profile.headline || @linkedin_profile.summary) %>
+  <h3>Linked In Profile</h3>
+  Name: <%= @linkedin_profile.name %><br/><br/>
+  Headline: <%= @linkedin_profile.headline %><br/><br/>
+  Summary: <%= @linkedin_profile.summary %><br/><br/>
+  <% if @linkedin_profile.linkedin_educations %>
+    Education:<br/>
+    <% @linkedin_profile.linkedin_educations.each do |education| %>
+      <% if education.start_date && education.start_date.year %>
+        <%= education.start_date.year.to_s + ' - ' %>
+      <% end %>
+      <% if education.end_date && education.end_date.year %>
+        <%= education.end_date.year.to_s + ', ' %>
+      <% end %>
+      <%= education.degree + ', ' + education.field_of_study + ', ' + education.school_name %><br>
+    <% end %>
+  <% end %>
+  <br/>
+  <% if @linkedin_profile.linkedin_positions %>
+    Experience:<br/>
+    <% @linkedin_profile.linkedin_positions.each do |company| %>
+      <% if company.start_date && company.start_date.year %>
+        <%= company.start_date.strftime("%m/%Y") + ' - ' %>
+      <% end %>
+      <% if company.end_date && company.end_date.year %>
+        <% if company.is_current %>
+          present, 
+        <% else %>
+          <%= company.end_date.strftime("%m/%Y") + ', ' %>
+        <% end %>
+      <% end %>
+      <%= company.company_name + ', ' + company.title %><br>
+    <% end %>
+  <% end %>
+  <br/>
+  <% if @linkedin_profile.public_profile_url %>
+    <%= link_to 'Public Profile', @linkedin_profile.public_profile_url, :target => '_blank' %><br/><br/>
+  <% end %>
+  <%= button_to 'Update From Linked In', '/auth/linkedin', :class => 'btn btn-primary' %>
+  <%= button_to 'Edit', edit_linkedin_profile_path, :class => 'btn btn-primary' %>
+<% else %>
+  <%= button_to 'Get Linked In Profile', '/auth/linkedin', :class => 'btn btn-primary' %>
+<% end %>

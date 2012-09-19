@@ -1,0 +1,22 @@
+<%= link_to "Back to Profile", current_user %>
+<% if @facebook_friends %>
+  <% num = 0 %>
+  <h3>Facebook Friends (<%=@facebook_friends.length%>)</h3>
+  <% @facebook_friends.each do |friend| %>
+    <% if num%2 == 0 %>
+      <div class="row-fluid">
+    <% end %>
+    <div class="span1"></div>
+    <div class="span3"><%= image_tag(friend[:image], :size => "32x32") %> <%= friend["name"] + '  ' %></div>
+    <div class="span1"><%= link_to 'http://www.facebook.com/dialog/send?app_id='+$FACEBOOK_APP_ID+'&name=Social%20University&link=http://callsource.plu.com/plu&redirect_uri='+request.protocol+request.host+':'+request.port.to_s+'/users/'+current_user.slug+'&to='+friend["id"]+'&description=Here you are able to take and create courses easily. Its a revolutionizing way to take courses. It will help you get the job you have always wanted!' do %>
+      <%= image_tag 'facebook_32.png' %>send  
+    <% end %></div>
+    <% if num%2 == 1 %>
+      </div><br/>
+    <% end %>
+    <% num += 1 %>
+  <% end %>
+  <br/>
+<% else %>
+  <%= button_to 'Show Facebook Friends', '/auth/facebook', :class => 'btn btn-primary' %>
+<% end %>

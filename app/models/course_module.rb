@@ -1,5 +1,6 @@
 class CourseModule < ActiveRecord::Base
-  attr_accessible :file_cache, :file, :name, :summary, :class_type, :course_id, :position
+  attr_accessible :file_cache, :file, :name, :summary, :class_type, :course_id, :position, :video_url 
+  #video url contains a youtube video url - supported formats - http://www.longtailvideo.com/support/jw-player/jw-player-for-flash-v5/12539/supported-video-and-audio-formats
   
   attr_accessible :completed_date, :completed, :quiz_attributes
   
@@ -11,8 +12,14 @@ class CourseModule < ActiveRecord::Base
   validates :summary, presence: true
   validates :class_type, presence: true
   validates :file, presence: true, :if => :validate_file?
+  validates :video_url, presence: true, :format => URI::regexp(%w(http https)), :if => :validate_youtube?
+  
+  def validate_youtube?
+    class_type == "Youtube"
+  end
+  
   def validate_file?
-    class_type !="Quiz"
+    class_type !="Quiz" && class_type != "Youtube"
   end
   
   def total_views
@@ -36,7 +43,6 @@ class CourseModule < ActiveRecord::Base
   
   has_one :quiz
   accepts_nested_attributes_for :quiz, :allow_destroy => true
-
   
 end
 # == Schema Information

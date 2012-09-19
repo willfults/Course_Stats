@@ -15,7 +15,7 @@
             <tr>
               <td>
                 <div class="title"><%= link_to course.name, :controller => "courses", :action => "edit", :id => course%></div>
-                
+                <div><%= course.course_modules.size%> Modules</div>
                 <% if course.published %>
                   <span class="label label-success">Published</span>
                 <% else %>

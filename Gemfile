@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'ayah_integration'
 gem 'bson_ext', '~> 1.6.4'
 gem 'rails', '~> 3.2.5'
 gem 'bcrypt-ruby', '~> 3.0.1'
@@ -19,17 +20,24 @@ gem 'omniauth-linkedin', '~> 0.0.6'
 gem 'mongodb_logger'
 gem 'carrierwave', '0.6.2'
 gem 'acts-as-taggable-on', '~> 2.2.2'
-gem 'rails3-jquery-autocomplete'
-gem 'rickshaw_rails'
+# for the rails autocomplete with acts as taggable using the main branch you will get a 500 error
+# and it is the same issue as here - https://github.com/crowdint/rails3-jquery-autocomplete/issues/81
+# there is a pull request to fix this - https://github.com/crowdint/rails3-jquery-autocomplete/pull/102
+# but until it gets merged in i have to use my forked copy below
+gem 'rails3-jquery-autocomplete', :git => 'https://github.com/willfults/rails3-jquery-autocomplete.git'
+gem 'lazy_high_charts'
 
 gem 'ajaxful_rating' , '>= 3.0.0.beta8'
 gem 'linkedin', '~> 0.3.7'
+gem 'koala', '~> 1.5.0'
 
 gem 'chronic'
 gem 'mongoid'
 gem 'cancan', '1.6.7'
 gem 'resque', :require => "resque/server"
 gem 'mysql2'
+
+gem 'tire'
 
 group :development do
   gem 'annotate', '~> 2.4.1.beta'
@@ -53,7 +61,6 @@ group :assets do
   gem 'sass-rails', '~> 3.1'
   gem 'jquery-ui-rails'
   gem 'uglifier', '~> 1.2.3'
-
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 end
