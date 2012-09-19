@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'ayah_integration'
 gem 'bson_ext', '~> 1.6.4'
 gem 'rails', '~> 3.2.5'
 gem 'bcrypt-ruby', '~> 3.0.1'

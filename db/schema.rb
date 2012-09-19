@@ -50,24 +50,11 @@ ActiveRecord::Schema.define(:version => 20120915055222) do
     t.string   "class_type"
     t.string   "file"
     t.integer  "course_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "position",   :default => 0
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "position",      :default => 0
+    t.integer  "display_order"
     t.string   "video_url"
-  end
-
-  create_table "courseforums", :force => true do |t|
-    t.integer  "course_id"
-    t.integer  "forum_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "courseforums", :force => true do |t|
-    t.integer  "course_id"
-    t.integer  "forum_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "courses", :force => true do |t|

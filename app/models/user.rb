@@ -43,6 +43,8 @@ class User < ActiveRecord::Base
   has_many :course_histories
   has_many :bookmarks
   
+  validates :username, presence: true
+  validates_length_of :username, :minimum =>6
   
   
   

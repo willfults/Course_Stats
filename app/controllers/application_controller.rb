@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include MongodbLogger::Base
   include ApplicationHelper
+  include DeviseHelper
   
   protect_from_forgery
   before_filter :logExtraInformation, :getUnreadMessageCount
