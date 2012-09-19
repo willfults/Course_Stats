@@ -1,15 +1,19 @@
 <div class="container-fluid">
-<%= form_for @forum do |f| %>
+<%= form_for @forum, :html => {:multipart => true} do |f| %>
+	
 	<% if @forum.errors.any? %>
 		<div class="row-fluid"><div class="span12">
               <div id="error_explanation">
                 <ul>
                 <% @forum.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
+                  <li>
+				<%= "ram message" %>
+				<%= msg %>
+			</li>
                 <% end %>
                 </ul>
               </div>
-		</div>
+		</div></div>
 	<% end %>
 
 	<div>
@@ -29,9 +33,18 @@
     			<%= f.text_area :description, :class=>'input-full' %>
 		
 			</br>
+
 			<div>
-      			<%= f.submit "Create Forum", :class => "btn btn-primary" %>
+				<%= raw @ayah.get_publisher_html %>
 			</div>
+
+			</br>
+
+			<% if can? :create, Forum %>
+				<div>
+      				<%= f.submit "Create Forum", :class => "btn btn-primary" %>
+				</div>
+			<% end %>
 		</div>
 
   		

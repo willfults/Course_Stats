@@ -34,11 +34,13 @@
             <% end %>
           </li>
         </ul>
+	<% if can? :create, Course %>
         <ul class="nav pull-right">
           <li>
             <%= link_to "Switch to Course Admin View", manage_courses_path, :class => 'btn btn-success btn-mini admin_swtich_btn'%>
           </li>
         </ul>
+	<% end %>
       </nav>
     </div>
   </div>

@@ -46,10 +46,11 @@
 </br></br>
 
 <div>
-	<%= link_to "New Topic", :controller=>"topics", :action=>"new", :forum_id=>@forum %>
-	
-	&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-	
+	<% if can? :create, Topic %>
+		<%= link_to "New Topic", :controller=>"topics", :action=>"new", :forum_id=>@forum %>
+		&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+	<% end %>
+		
 	<%= link_to "Back to Forum List", :controller=>"forums", :action=>"index", :course_id=>@forum.course_id %>
 
 </div>

@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'ayah_integration'
 gem 'bson_ext', '~> 1.6.4'
 gem 'rails', '~> 3.2.5'
 gem 'bcrypt-ruby', '~> 3.0.1'
@@ -30,6 +31,7 @@ gem 'lazy_high_charts'
 
 gem 'ajaxful_rating' , '>= 3.0.0.beta8'
 gem 'linkedin', '~> 0.3.7'
+gem 'koala', '~> 1.5.0'
 
 gem 'chronic'
 gem 'mongoid'

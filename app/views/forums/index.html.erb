@@ -12,13 +12,15 @@
 
 <div class="row-fluid">
 	<div class="span10"></div>
+	<% if can? :create, Forum %>
 	<div class="span2">
 	<% if @course.id %>
 		<p><%= link_to "Create a New Forum", :controller => "forums", :action => "new", :course_id => @course, :class => "btn" %></p>
 	<% else %>
 		<p><%= link_to "Create a New Forum", new_forum_path, :class => "btn" %></p>
 	<% end %>
-  </div>
+  	</div>
+	<% end %>
 <div class="span12">
 <div class="table table-hover">
 <body>

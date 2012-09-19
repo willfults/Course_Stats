@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120915055222) do
+ActiveRecord::Schema.define(:version => 20120917163722) do
 
   create_table "bookmarks", :force => true do |t|
     t.integer  "user_id"
@@ -248,13 +248,13 @@ ActiveRecord::Schema.define(:version => 20120915055222) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.string   "email",                  :default => "",    :null => false
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.string   "email",                  :default => "",     :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin",                  :default => false
-    t.string   "encrypted_password",     :default => "",    :null => false
+    t.string   "encrypted_password",     :default => "",     :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -271,6 +271,7 @@ ActiveRecord::Schema.define(:version => 20120915055222) do
     t.string   "slug"
     t.string   "avatar"
     t.string   "twitter_username"
+    t.string   "role",                   :default => "user"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
