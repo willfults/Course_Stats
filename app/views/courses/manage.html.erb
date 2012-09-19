@@ -36,8 +36,12 @@
         </tbody>
       </table>      
     </div>
-    <div class="span3">
-      <%= link_to 'Create New Course', {:controller => "courses", :action => "new"}, :class => 'btn btn-primary' %>    
-    </div>
+    
+	 <% if can? :create, Course %>
+	     <div class="span3">
+	     		<%= link_to 'Create New Course', {:controller => "courses", :action => "new"}, :class => 'btn btn-primary' %> 
+     	     </div>
+	<% end %>
+   
   </div>
 </div>

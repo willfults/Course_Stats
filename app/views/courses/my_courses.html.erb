@@ -44,6 +44,9 @@
               <td nowrap>
                 <%= link_to course_history.status == "completed"?'Review Course':'Resume Course', :controller => "courses", :action => "start", :id => course %>
               </td>
+		  <td nowrap>
+			<%= link_to "Course Forums", :controller=>"forums", :action=>"index", :course_id=>course %>
+		  </td>
             </tr>
           <% end %>
         </tbody>

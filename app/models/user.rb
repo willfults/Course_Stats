@@ -27,14 +27,14 @@
 #  slug                   :string(255)
 #  avatar                 :string(255)
 #  twitter_username       :string(255)
-#
+#  role			  :string(255)    default("user")
 
 class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :username, use: [:slugged, :history]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :confirmed_at, :avatar, :twitter_username
+  attr_accessible :email, :name, :password, :password_confirmation, :remember_me, :confirmed_at, :avatar, :twitter_username, :role
   acts_as_messageable # for mailbox
   ajaxful_rater # for star rating
   
@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
   def unfollow!(other_user)
     relationships.find_by_followed_id(other_user.id).destroy
   end
-  
+ 
   
   private
 

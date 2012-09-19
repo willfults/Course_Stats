@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include MongodbLogger::Base
   include ApplicationHelper
-  
+    
   protect_from_forgery
   before_filter :logExtraInformation, :getUnreadMessageCount
   
@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
   end
   
   
-  
+  rescue_from CanCan::AccessDenied do |exception|
+	flash[:error] = "Access Denied."
+	redirect_to root_url
+  end
+    
   
 end
