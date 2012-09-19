@@ -39,7 +39,6 @@ class UsersController < ApplicationController
     if request.path != user_path(@user)
       redirect_to @user, status: :moved_permanently
     end
-    facebook_profile
     linkedin_profile
   end
 
