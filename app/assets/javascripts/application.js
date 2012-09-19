@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require jquery.Jcrop
-//= require autocomplete-rails
 //= require bootstrap
 //= require bootstrap.min
 //= require highcharts 
