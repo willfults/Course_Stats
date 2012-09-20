@@ -40,5 +40,17 @@ module ApplicationHelper
     class_list = menu_class
     class_list += (selected_menu == menu_class) ? " active" : ""
   end
+
+
+  # "Are you a human" captcha initialization code
+  def ayah_init
+     ayah = AYAH::Integration.new("d5fbcc5d5d32f645158e72fc00b55eea205b13b4", "3969dc9a22c5378abdfc1d576b8757a8638b16d7")
+  end
+
+  def ayah_view_init
+    ayah = ayah_init
+    @captcha_html = ayah.get_publisher_html
+  end
+
   
 end

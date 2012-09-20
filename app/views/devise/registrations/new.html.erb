@@ -5,9 +5,7 @@
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal well"}) do |f| %>
     <h3>Sign Up</h3>
 
-      <% devise_error_messages!.each do |key, value| %>
-          <div class="flash <%= key %>"><%= key %> <%= value %></div>
-      <% end %>
+    <%= display_devise_error_messages %>
       
       <div class="control-group">
         <%= f.label :name, "Full Name", :class => "control-label" %>
@@ -37,13 +35,16 @@
         </div>    
       </div>
 
-	<div class="controls">
-		<%=f.label :role, "Course Creator", {:class => "control-label"} %> &nbsp <%=f.radio_button :role, "creator" %>
-	</div>
-	</br>
-	<div class="controls">
-		<%=f.label :role, "Course Taker", {:class => "control-label"} %> &nbsp <%=f.radio_button :role, "user"%>
-	</div>
+      <div class="control-group">
+        <%= f.label :role, "User Type", {:class => "control-label"} %>
+      	<div class="controls form-inline">
+      		<%=f.radio_button :role, "user", {:class => 'radio'}  %>&nbsp;<%=f.label :role, "Course Taker", :value => 'user' %>
+      	</div>
+        
+        <div class="controls form-inline">
+        	<%=f.radio_button :role, "creator", {:class => 'radio'}  %>&nbsp;<%=f.label :role, "Course Creator (can also take courses)", :value => 'creator' %>
+      	</div>
+      </div>
 	
 	</br>
 

@@ -1,4 +1,4 @@
-<%= link_to "Back to Profile", current_user %>
+<%= render 'users_menu', :highlight => "friends" %>
 <% if @facebook_friends %>
   <% num = 0 %>
   <h3>Facebook Friends (<%=@facebook_friends.length%>)</h3>

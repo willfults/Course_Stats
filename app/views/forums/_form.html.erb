@@ -34,9 +34,9 @@
 		
 			</br>
 
-			<div>
-				<%= raw @ayah.get_publisher_html %>
-			</div>
+			<div class="control-group captcha">
+        			<%= @captcha_html.try(:html_safe)  %>
+      		</div>
 
 			</br>
 

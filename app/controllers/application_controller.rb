@@ -24,12 +24,11 @@ class ApplicationController < ActionController::Base
     end
     @unread_message_count = count
   end
-  
-  
+    
   rescue_from CanCan::AccessDenied do |exception|
 	flash[:error] = "Access Denied."
 	redirect_to root_url
   end
+
     
-  
 end
