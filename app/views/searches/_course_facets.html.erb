@@ -4,11 +4,13 @@
   <h4>Course Ratings</h4>
   <ul>
     
-    <% @facets.results.facets['course_ratings']['terms'].each do |facet| %>
+    <% @facets.results.facets['course_ratings']['terms'].each do |facet| 
+      temp = params.dup
+      temp.delete :page
+      %>
       <li>
-      <%= link_to_unless_current facet['term'].to_s + " stars", params.merge(course_rating: facet['term']) %>
+      <%= link_to_unless_current facet['term'].to_s + " stars", temp.merge(course_rating: facet['term']) %>
       <% if params[:course_rating] == facet['term'].to_s 
-        temp = params.dup
         temp.delete :course_rating
       %>
         (<%= link_to "remove", temp %>)
@@ -28,12 +30,12 @@
   <ul>
     <% @facets.results.facets['authors']['terms'].each do |facet| 
       username = User.find(facet['term']).name
+      temp = params.dup
+      temp.delete :page
       %>
       <li>
-        <%= link_to_unless_current username, params.merge(author: facet['term']) %>
+        <%= link_to_unless_current username, temp.merge(author: facet['term']) %>
         <% if params[:author] == facet['term'].to_s 
-          temp = params.dup
-          
           temp.delete :author
         %>
           (<%= link_to "remove", temp %>)
@@ -49,12 +51,13 @@
 <div id="facets">
   <h4>Industry</h4>
   <ul>
-    <% @facets.results.facets['industries']['terms'].each do |facet| %>
+    <% @facets.results.facets['industries']['terms'].each do |facet| 
+      temp = params.dup
+      temp.delete :page
+      %>
       <li>
-        <%= link_to_unless_current facet['term'].camelize, params.merge(industry: facet['term']) %>
+        <%= link_to_unless_current facet['term'].camelize, temp.merge(industry: facet['term']) %>
         <% if params[:industry] == facet['term'].to_s 
-          temp = params.dup
-          
           temp.delete :industry
         %>
           (<%= link_to "remove", temp %>)

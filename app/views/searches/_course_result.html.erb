@@ -13,6 +13,6 @@
         <% end %>
       </div>
       <div class="description"><%= truncate result.description, :length => 300 %></div>
-      CourseRate: <%= ratings_for Course.find(result.id), :static %>
+      <%= ratings_for Course.find(result.id), :static %>
     </td>
   </tr>
