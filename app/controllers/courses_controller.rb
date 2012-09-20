@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :getUnreadMessageCount, :only =>[:manage, :my_courses]
   
   #autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag' # <- New
   

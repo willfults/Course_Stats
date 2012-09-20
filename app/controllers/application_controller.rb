@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include DeviseHelper
   
   protect_from_forgery
-  before_filter :logExtraInformation, :getUnreadMessageCount
+  before_filter :logExtraInformation
   
   def logExtraInformation
     if Rails.logger.respond_to?(:add_metadata)
