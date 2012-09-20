@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
       @facets = Course.facets(params)
       
       @courses = Search.search(params)
-    
+      
   end
   
 end

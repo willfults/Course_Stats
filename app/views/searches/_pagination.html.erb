@@ -1,0 +1,21 @@
+<div class="apple_pagination">
+  <% if searchParams[:page] == 1 %>
+    <span class="disabled previous_page">← Previous</span>
+  <% else %>
+    <%= link_to "← Previous", params.merge(page: searchParams[:page] - 1), :class => "previous_page" %>
+  <% end %>
+    <% (searchParams[:minPage]..searchParams[:maxPage]).each do |i| %>
+      <% if i==searchParams[:page]%>
+        <em class="current"><%= i %></em>
+      <% else %>
+        <%= link_to i, params.merge(page: i) %>
+      <% end %>
+    <% end %>
+  <% if searchParams[:page] == searchParams[:totalPages] %>
+    <span class="disabled next_page">Next →</span>
+  <% else %>
+    <%= link_to "Next →", params.merge(page: searchParams[:page] + 1), :class => "next_page" %>
+  <% end %>
+</div>
+
+
