@@ -20,21 +20,28 @@ class RegistrationsController < Devise::RegistrationsController
 
     build_resource
     
-    resource.errors.add(:captcha, "failed validation") if ! ayah_passed
-    if ! resource.save || ! ayah_passed
+    begin
+      if ! ayah_passed || ! resource.save #resource.valid?
+        resource.errors.add(:captcha, "failed validation") if ! ayah_passed
+        ayah_view_init
+        render :new  
+      else
+        super
+      end
+    rescue Exception  # exception handling needed in case of duplicate emails
       ayah_view_init
       render :new  
-    else
-      super
     end
   end
   
   private 
+    # http://areyouahuman.com/
     def ayah_init
       ayah = AYAH::Integration.new("d5fbcc5d5d32f645158e72fc00b55eea205b13b4", "3969dc9a22c5378abdfc1d576b8757a8638b16d7")
     end
 
     def ayah_view_init
+      logger.warn "in view init"
       ayah = ayah_init
       @captcha_html = ayah.get_publisher_html
     end
