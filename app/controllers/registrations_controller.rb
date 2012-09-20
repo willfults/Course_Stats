@@ -22,7 +22,7 @@ class RegistrationsController < Devise::RegistrationsController
     build_resource
     
     begin
-      if ! ayah_passed || ! resource.save #resource.valid?
+      if ! ayah_passed || ! resource.valid?
         resource.errors.add(:captcha, "failed validation") if ! ayah_passed
         ayah_view_init
         render :new  
@@ -35,5 +35,4 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
    
-
 end
