@@ -21,14 +21,19 @@ class RegistrationsController < Devise::RegistrationsController
 
     build_resource
     
-    resource.errors.add(:captcha, "failed validation") if ! ayah_passed
-    if ! resource.save || ! ayah_passed
+    begin
+      if ! ayah_passed || ! resource.save #resource.valid?
+        resource.errors.add(:captcha, "failed validation") if ! ayah_passed
+        ayah_view_init
+        render :new  
+      else
+        super
+      end
+    rescue Exception  # exception handling needed in case of duplicate emails
       ayah_view_init
       render :new  
-    else
-      super
     end
   end
-  
-  
+   
+
 end

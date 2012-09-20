@@ -25,8 +25,9 @@ gem 'rcov', '0.9.11'# needed for autocomplete
 # and it is the same issue as here - https://github.com/crowdint/rails3-jquery-autocomplete/issues/81
 # there is a pull request to fix this - https://github.com/crowdint/rails3-jquery-autocomplete/pull/102
 # but until it gets merged in i have to use my forked copy below
-#gem 'rails3-jquery-autocomplete', :git => 'https://github.com/willfults/rails3-jquery-autocomplete.git'
-gem "wf-rails3-jquery-autocomplete", "~> 1.0.4"
+#temp commenting out git location for server
+gem 'rails3-jquery-autocomplete'#, :git => 'https://github.com/willfults/rails3-jquery-autocomplete.git'
+
 gem 'lazy_high_charts'
 
 gem 'ajaxful_rating' , '>= 3.0.0.beta8'
