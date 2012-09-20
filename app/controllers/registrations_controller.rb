@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+	include ApplicationHelper
 
   def after_update_path_for(resource)
     if resource_params[:image].present?
@@ -29,13 +30,5 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
   
-  private 
-    def ayah_init
-      ayah = AYAH::Integration.new("d5fbcc5d5d32f645158e72fc00b55eea205b13b4", "3969dc9a22c5378abdfc1d576b8757a8638b16d7")
-    end
-
-    def ayah_view_init
-      ayah = ayah_init
-      @captcha_html = ayah.get_publisher_html
-    end
+  
 end
