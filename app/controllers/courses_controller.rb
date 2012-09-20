@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!
   
-  autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag' # <- New
+  #autocomplete :tag, :name, :class_name => 'ActsAsTaggableOn::Tag' # <- New
   
   def index
     @courses = Course.all

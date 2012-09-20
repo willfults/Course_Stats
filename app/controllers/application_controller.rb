@@ -30,5 +30,15 @@ class ApplicationController < ActionController::Base
 	redirect_to root_url
   end
 
-    
+
+  def after_sign_in_path_for(resource)
+ 	if ( current_user.role == "creator" )
+		manage_courses_path
+	elsif ( current_user.role == "user" )
+		my_courses_path
+	else
+		super
+	end
+  end
+  
 end
