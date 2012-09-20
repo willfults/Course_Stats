@@ -1,5 +1,12 @@
 class Search < ActiveRecord::Base
+  
   def self.search(params)
+    results_on_page = 10 # this needs to be a property.
+    page = 0
+    if params[:page] 
+      page = params[:page].to_i - 1
+    end
+    from = page * results_on_page
     Tire.search  do
     #tire.search :per_page => 2, :page => 1 do
       query do
@@ -15,8 +22,8 @@ class Search < ActiveRecord::Base
         
       end
       # User from and size for pagination
-      #from 3
-      #size 2
+      from from
+      size results_on_page
       # raise to_curl
     end
   end
