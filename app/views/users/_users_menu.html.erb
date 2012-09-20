@@ -14,11 +14,13 @@
               <i class="icon-file icon-white"></i>Profile
             <% end %>  
           </li>
+          <% if @user == current_user %>
           <li class="<%= activate_menu("friends", highlight) %>">
             <%= link_to facebook_friends_user_path(current_user) do %>
               <i class="icon-thumbs-up icon-white"></i>Friends
             <% end %>
           </li>
+          <% end %>
         </ul>
       </nav>
     </div>

@@ -30,7 +30,9 @@
       </div>
       <div class="span6">
         <%= render :partial => 'saved_profile' %>
-        <%= render :partial => 'linkedin_profile' %>
+        <% if @user == current_user%>
+          <%= render :partial => 'linkedin_profile' %>
+        <% end %>
       </div>
     </div>
   </div>
