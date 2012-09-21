@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   end
   
   def facebook_friends
+    @user = User.find(params[:id])
     facebook_profile
   end
 
